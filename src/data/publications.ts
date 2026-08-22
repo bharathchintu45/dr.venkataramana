@@ -1,0 +1,515 @@
+export interface Publication {
+  id: string;
+  year: number;
+  title: string;
+  authors: string;
+  journal: string;
+  volume?: string;
+  pages?: string;
+  category: 'SCOPUS' | 'UGC_CARE' | 'PEER_REVIEWED' | 'BOOK' | 'CHAPTER';
+  impactFactor?: string;
+  isHighlight?: boolean;
+  doiOrUrl?: string;
+  tags: string[];
+}
+
+export const publicationsData: Publication[] = [
+  // SCOPUS INDEXED
+  {
+    id: "pub-1",
+    year: 2011,
+    title: "Some Critical Notes on Leonotis nepetifolia (L.) R. Br. var. africana (P.Beauv.) J.K. Morton (Lamiaceae)",
+    authors: "M. Venkat Ramana, P.V. Prasanna, P. Venu and Avishek Bhattacharjee",
+    journal: "Taiwania",
+    volume: "56(3)",
+    pages: "254–256",
+    category: "SCOPUS",
+    tags: ["Lamiaceae", "Taxonomy", "Nomenclature"]
+  },
+  {
+    id: "pub-2",
+    year: 2011,
+    title: "Hybanthus stellarioides (Violaceae), a new record for India",
+    authors: "M. Venkat Ramana, P. V. Prasanna & P. Venu",
+    journal: "Rheedea",
+    volume: "21(1)",
+    pages: "10–12",
+    category: "SCOPUS",
+    tags: ["Violaceae", "New Record", "Flora of India"]
+  },
+  {
+    id: "pub-3",
+    year: 2012,
+    title: "The rediscovery of Polyalthia crassa (Annonaceae) from Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, P. Venu and M. Sanjappa",
+    journal: "Rheedea",
+    volume: "22(1)",
+    pages: "05–08",
+    category: "SCOPUS",
+    isHighlight: true,
+    tags: ["Annonaceae", "Rediscovery", "Andaman Islands"]
+  },
+  {
+    id: "pub-4",
+    year: 2012,
+    title: "Ledebouria hyderabadensis (Hyacinthaceae), a new species from India",
+    authors: "M. Venkat Ramana, P. V. Prasanna & P. Venu",
+    journal: "Kew Bulletin",
+    volume: "67(3)",
+    pages: "1–4",
+    category: "SCOPUS",
+    isHighlight: true,
+    tags: ["New Species", "Hyacinthaceae", "Kew Bulletin", "Hyderabad"]
+  },
+  {
+    id: "pub-5",
+    year: 2013,
+    title: "Murdannia saddlepeakensis (Commelinaceae) – a new species from Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, Mayur Nandikar, R.V. Gurav, Johny Kumar Tagore, and M. Sanjappa",
+    journal: "PhytoKeys",
+    volume: "20",
+    pages: "9–15",
+    category: "SCOPUS",
+    impactFactor: "0.686",
+    isHighlight: true,
+    tags: ["New Species", "Commelinaceae", "PhytoKeys", "Saddle Peak"]
+  },
+  {
+    id: "pub-6",
+    year: 2014,
+    title: "Two new species of Syzygium (Syzygium hookeri & Syzygium sanjappianum) (Myrtaceae) from the Saddle Peak National Park, Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, Alok Chorghe, P. Venu",
+    journal: "Blumea",
+    volume: "59",
+    pages: "42–48",
+    category: "SCOPUS",
+    impactFactor: "0.376",
+    isHighlight: true,
+    tags: ["New Species", "Myrtaceae", "Blumea", "Syzygium"]
+  },
+  {
+    id: "pub-7",
+    year: 2014,
+    title: "Staurogyne andamanica sp. nov. (Acanthaceae) from Saddle Peak National Park, Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, M. Sanjappa, P. Venu & Alok Chorghe",
+    journal: "Kew Bulletin",
+    volume: "69(2)",
+    pages: "9506 (1-5)",
+    category: "SCOPUS",
+    isHighlight: true,
+    tags: ["New Species", "Acanthaceae", "Kew Bulletin", "Endemic"]
+  },
+  {
+    id: "pub-8",
+    year: 2014,
+    title: "Centotheca ganeshaiahiana sp. nov. (Poaceae) from Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, Alok Chorghe, P.V. Prasanna and M. Sanjappa",
+    journal: "Nordic Journal of Botany",
+    volume: "32(5)",
+    pages: "559–562",
+    category: "SCOPUS",
+    impactFactor: "1.05",
+    isHighlight: true,
+    tags: ["New Species", "Poaceae", "Nordic J. Bot.", "Grass"]
+  },
+  {
+    id: "pub-9",
+    year: 2014,
+    title: "Anticancer Active Homoisoflavone from the underground bulbs of Ledebouria hyderabadensis",
+    authors: "Chinthala Y, Chinde S, Kumar AN, Srinivas KS, Kumar JK, Sastry KP, M. Venkat Ramana",
+    journal: "Pharmacognosy Research",
+    volume: "6",
+    pages: "303–305",
+    category: "SCOPUS",
+    impactFactor: "1.0",
+    isHighlight: true,
+    tags: ["Anticancer", "Pharmacognosy", "Phytochemistry", "Bioactivity"]
+  },
+  {
+    id: "pub-10",
+    year: 2015,
+    title: "On Roxburgh’s Gelonium bifarium (Euphorbiaceae) from the Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, P. Venu and M. Sanjappa",
+    journal: "Phytotaxa",
+    volume: "221(2)",
+    pages: "181–187",
+    category: "SCOPUS",
+    impactFactor: "1.376",
+    tags: ["Euphorbiaceae", "Phytotaxa", "Nomenclature"]
+  },
+  {
+    id: "pub-11",
+    year: 2015,
+    title: "Glochidion kingii sp. nov. (Phyllanthaceae) from Saddle Peak National Park, Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, M. Sanjappa, P. Venu and Alok Chorghe",
+    journal: "Nordic Journal of Botany",
+    volume: "33",
+    pages: "38–41",
+    category: "SCOPUS",
+    impactFactor: "1.05",
+    tags: ["Phyllanthaceae", "New Species", "Saddle Peak"]
+  },
+  {
+    id: "pub-12",
+    year: 2015,
+    title: "The less known Mitrephora andamanica (Annonaceae) from Andaman & Nicobar Islands",
+    authors: "M. Venkat Ramana, P. Venu and M. Sanjappa",
+    journal: "Rheedea",
+    volume: "25(1)",
+    pages: "72–76",
+    category: "SCOPUS",
+    tags: ["Annonaceae", "Taxonomy", "Andaman Islands"]
+  },
+  {
+    id: "pub-13",
+    year: 2016,
+    title: "Artabotrys manoranjanii sp. nov. (Annonaceae) from the Andaman Islands, India",
+    authors: "M. Venkat Ramana, J. Swamy and K. Chandra Mohan",
+    journal: "Nordic Journal of Botany",
+    volume: "34",
+    pages: "413–415",
+    category: "SCOPUS",
+    impactFactor: "1.05",
+    isHighlight: true,
+    tags: ["New Species", "Annonaceae", "Nordic J. Bot."]
+  },
+
+  // UGC CARE LISTED JOURNALS
+  {
+    id: "pub-14",
+    year: 2011,
+    title: "A note on the Distribution of Ceropegia bulbosa var. lushii (Apocynaceae) in Andhra Pradesh",
+    authors: "M. Venkat Ramana, V. Hanumantha Rao and V. Vasudeva Rao",
+    journal: "Indian Journal of Forestry",
+    volume: "34(4)",
+    category: "UGC_CARE",
+    tags: ["Apocynaceae", "Ceropegia", "Andhra Pradesh"]
+  },
+  {
+    id: "pub-15",
+    year: 2011,
+    title: "Seasamum radiatum Schum. (Pedaliaceae) New distributional record for Andhra Pradesh from Greater Hyderabad",
+    authors: "M. Venkat Ramana",
+    journal: "Journal of Economic and Taxonomic Botany",
+    volume: "35(4)",
+    category: "UGC_CARE",
+    tags: ["Pedaliaceae", "Distribution Record", "Hyderabad"]
+  },
+  {
+    id: "pub-16",
+    year: 2011,
+    title: "On the identity and occurrence of Ophioglossum costatum (Pteridophyta: Ophioglossaceae) in Andhra Pradesh, India",
+    authors: "Vatsavaya S. Raju, A. Ragan, S. Suthari & M.V. Ramana",
+    journal: "Journal of Threatened Taxa",
+    volume: "3(1)",
+    pages: "1462–1464",
+    category: "UGC_CARE",
+    tags: ["Pteridophyta", "Ophioglossaceae", "Fern"]
+  },
+  {
+    id: "pub-17",
+    year: 2012,
+    title: "Dendrolobium triangulare (Retz.) Schindl., and Vigna vexillata (L.) A. Rich. (Leguminosae-Faboideae), new distributional records to the flora of Andaman and Nicobar Islands",
+    authors: "M. Venkat Ramana, J. Swamy and Johny Kumar Tagore",
+    journal: "Journal of Economic and Taxonomic Botany",
+    volume: "36(4)",
+    pages: "840–842",
+    category: "UGC_CARE",
+    tags: ["Leguminosae", "Distribution Records", "Andaman Islands"]
+  },
+  {
+    id: "pub-18",
+    year: 2012,
+    title: "Report of two medicinal and aromatic gingers from Andaman and Nicobar Islands, India",
+    authors: "M. Venkat Ramana, Johny Kumar Tagore & Avishek Bhattacharjee",
+    journal: "Journal of Threatened Taxa",
+    volume: "4(5)",
+    pages: "2582–2586",
+    category: "UGC_CARE",
+    tags: ["Zingiberaceae", "Medicinal Plants", "Aromatic"]
+  },
+  {
+    id: "pub-19",
+    year: 2012,
+    title: "An imperfectly known Cleidion nitidum (Mull. Arg.) Thw. ex Kurz (Euphorbiaceae) from Andaman & Nicobar Islands, India",
+    authors: "M. Venkat Ramana, P. Venu, and M. Sanjappa",
+    journal: "Nelumbo",
+    volume: "54",
+    pages: "163–167",
+    category: "UGC_CARE",
+    tags: ["Euphorbiaceae", "Nelumbo", "Taxonomy"]
+  },
+  {
+    id: "pub-20",
+    year: 2013,
+    title: "Ichnanthus pallens (Poaceae) New Record for India from Andaman and Nicobar Islands",
+    authors: "Alok Chorghe, J. Swamy and Johny Kumar Tagore, M. Venkat Ramana",
+    journal: "Indian Journal of Forestry",
+    volume: "36(1)",
+    pages: "79–82",
+    category: "UGC_CARE",
+    tags: ["Poaceae", "New Record", "Flora of India"]
+  },
+  {
+    id: "pub-21",
+    year: 2016,
+    title: "Status assessment of the Saddlepeak Dewflower (Commelinaceae: Murdannia saddlepeakensis Ramana & Nandikar): an endemic spiderwort plant of Andaman Islands, India",
+    authors: "Johny Kumar Tagore, Sebastian Soosairaj, M. Venkat Ramana, M. Sanjappa & K.N. Ganeshaiah",
+    journal: "Journal of Threatened Taxa",
+    volume: "8(14)",
+    pages: "9643–9647",
+    category: "UGC_CARE",
+    tags: ["Murdannia", "Conservation Status", "Threatened Taxa"]
+  },
+  {
+    id: "pub-22",
+    year: 2017,
+    title: "Implications of mistaken identities in conservation of wild mangoes",
+    authors: "M. Venkat Ramana, P. Venu and M. Sanjappa",
+    journal: "Current Science",
+    volume: "112(6)",
+    pages: "1107–1108",
+    category: "UGC_CARE",
+    impactFactor: "0.833",
+    isHighlight: true,
+    tags: ["Current Science", "Conservation", "Wild Mangoes", "Mangifera"]
+  },
+  {
+    id: "pub-23",
+    year: 2018,
+    title: "Name Confusions in Indian cycads",
+    authors: "M. Venkat Ramana, P. Venu and M. Sanjappa",
+    journal: "Current Science",
+    volume: "114(2)",
+    pages: "269–270",
+    category: "UGC_CARE",
+    impactFactor: "0.833",
+    isHighlight: true,
+    tags: ["Current Science", "Cycas", "Nomenclature", "Indian Cycads"]
+  },
+  {
+    id: "pub-24",
+    year: 2020,
+    title: "Seed Germination in CITES Listed Cycas beddomei and its Bearing in its Conservation",
+    authors: "K. Nethaji, Y. Mahesh, D. Ashok & M. Venkat Ramana",
+    journal: "Nelumbo",
+    volume: "63(2)",
+    pages: "54–57",
+    category: "UGC_CARE",
+    isHighlight: true,
+    tags: ["CITES Appendix-I", "Cycas beddomei", "Seed Germination", "Nelumbo"]
+  },
+  {
+    id: "pub-25",
+    year: 2020,
+    title: "Habenaria reniformis (D. Don) Hook.f. (Orchidaceae) - A New Distributional Record for Andhra Pradesh",
+    authors: "Y. Mahesh, L. Rasingam & M. Venkat Ramana",
+    journal: "Nelumbo",
+    volume: "62(1)",
+    pages: "57–59",
+    category: "UGC_CARE",
+    tags: ["Orchidaceae", "Habenaria", "Nelumbo", "Andhra Pradesh"]
+  },
+  {
+    id: "pub-26",
+    year: 2021,
+    title: "Salomonia cantoniensis Lour. (Polygalaceae) - A New Distributional Record for Southern India",
+    authors: "Y. Mahesh, L. Rasingam & M. Venkat Ramana",
+    journal: "Nelumbo",
+    volume: "63(2)",
+    pages: "63–65",
+    category: "UGC_CARE",
+    tags: ["Polygalaceae", "Salomonia", "New Record", "Southern India"]
+  },
+  {
+    id: "pub-27",
+    year: 2022,
+    title: "Three New Distributional Records to the Flora of Andhra Pradesh, India",
+    authors: "Y. Mahesh, L. Rasingam & M. Venkat Ramana",
+    journal: "Indian Forester",
+    volume: "148(12)",
+    pages: "1274–1275",
+    category: "UGC_CARE",
+    tags: ["Indian Forester", "Distribution Records", "Flora of AP"]
+  },
+  {
+    id: "pub-28",
+    year: 2022,
+    title: "Neanotis tubulosa (G. Don) Mabb. (Rubiaceae) A new Distributional Record for Andhra Pradesh, India",
+    authors: "Y. Mahesh, L. Rasingam & M. Venkat Ramana",
+    journal: "Indian Forester",
+    volume: "148(11)",
+    pages: "1160–1161",
+    category: "UGC_CARE",
+    tags: ["Rubiaceae", "Neanotis", "Indian Forester"]
+  },
+  {
+    id: "pub-29",
+    year: 2022,
+    title: "A review on taxonomy and allied issues in Cycas beddomei Dyer, a narrow endemic from the Southern Eastern Ghats, India",
+    authors: "K. Nethaji, M. Venkat Ramana, M. Sankara Rao & P. Venu",
+    journal: "Nelumbo",
+    volume: "64(1)",
+    pages: "143–151",
+    category: "UGC_CARE",
+    isHighlight: true,
+    tags: ["Cycas beddomei", "Narrow Endemic", "Eastern Ghats", "Nelumbo"]
+  },
+  {
+    id: "pub-30",
+    year: 2023,
+    title: "Fimbristylis hookeriana (Cyperaceae), a new addition to the flora of Andhra Pradesh, India",
+    authors: "Y. Mahesh, Laden Rasingam, Munigela Venkat Ramana",
+    journal: "Nelumbo",
+    volume: "65(2)",
+    pages: "202–203",
+    category: "UGC_CARE",
+    tags: ["Cyperaceae", "Fimbristylis", "Nelumbo"]
+  },
+
+  // PEER REVIEWED & OPEN ACCESS
+  {
+    id: "pub-31",
+    year: 2024,
+    title: "Medicinal Plants Exhibit Variation in Leaf Morphology from Flora of Telangana, India",
+    authors: "Ashok Dudagonda, Venkat Ramana Munigela and Nethaji Kante",
+    journal: "International Journal of Advanced Research",
+    volume: "12(07)",
+    pages: "1390–1394",
+    category: "PEER_REVIEWED",
+    tags: ["Morphology", "Medicinal Plants", "Telangana Flora"]
+  },
+  {
+    id: "pub-32",
+    year: 2024,
+    title: "IUCN Red Listed Medicinal Plants and Their Conservation Issues from Flora of Telangana",
+    authors: "Tharasingh Banoth, Venkat Ramana Munigela, and Nethaji Kante",
+    journal: "International Journal of Advanced Research",
+    volume: "12(07)",
+    pages: "1013–1019",
+    category: "PEER_REVIEWED",
+    isHighlight: true,
+    tags: ["IUCN Red List", "Conservation", "Telangana", "Medicinal Plants"]
+  },
+  {
+    id: "pub-33",
+    year: 2024,
+    title: "Medicinal Plants Highly Adulterated and Substituted in the Telangana State, India",
+    authors: "Tharasingh Banoth, Venkat Ramana Munigela, and Nethaji Kante",
+    journal: "International Journal of Advanced Research",
+    volume: "12(05)",
+    pages: "830–833",
+    category: "PEER_REVIEWED",
+    tags: ["Adulteration", "Substitutes", "Pharmacognosy"]
+  },
+  {
+    id: "pub-34",
+    year: 2024,
+    title: "Comparative Phytochemical Evaluation and Antimicrobial Activity Studies on Medicinal Tree Aegle marmelos (L.) Correa and its Intraspecific Variant 'Ekabilva'",
+    authors: "Sandhya A, Venkat Ramana M. & Nethaji K.",
+    journal: "International Journal of Advanced Research",
+    volume: "12(05)",
+    pages: "106–113",
+    category: "PEER_REVIEWED",
+    tags: ["Aegle marmelos", "Phytochemistry", "Antimicrobial", "Ekabilva"]
+  },
+  {
+    id: "pub-35",
+    year: 2024,
+    title: "Intraspecific Diversity Angiosperm Taxa from Flora of Telangana, India",
+    authors: "Ashok Dudagonda, Venkat Ramana Munigela and Nethaji Kante",
+    journal: "International Journal of Advanced Research",
+    volume: "12(04)",
+    pages: "142–146",
+    category: "PEER_REVIEWED",
+    tags: ["Intraspecific Diversity", "Angiosperms", "Telangana"]
+  },
+  {
+    id: "pub-36",
+    year: 2024,
+    title: "Plant Introductions and Changes in the Floristic Composition: A Case Study on Nagoba Sacred Grove from Northern Telangana, India",
+    authors: "Narender Thappatla, Venkat Ramana Munigela & Nethaji Kante",
+    journal: "International Journal of Advanced Research",
+    volume: "12(02)",
+    pages: "351–356",
+    category: "PEER_REVIEWED",
+    isHighlight: true,
+    tags: ["Sacred Grove", "Nagoba", "Floristic Composition", "Telangana"]
+  },
+  {
+    id: "pub-37",
+    year: 2016,
+    title: "Cycas L. (Cycadaceae) in Eastern Ghats",
+    authors: "M. Venkat Ramana",
+    journal: "EPTRI ENVIS News Letter",
+    volume: "22(1)",
+    pages: "5–6",
+    category: "PEER_REVIEWED",
+    tags: ["Cycas", "Eastern Ghats", "EPTRI ENVIS"]
+  },
+  {
+    id: "pub-38",
+    year: 2015,
+    title: "Status assessment of Centotheca ganeshaiahiana (Poaceae), an endemic of Saddle Peak National Park, Andaman and Nicobar Islands, India",
+    authors: "Johny Kumar Tagore, Sebastian Soosairaj, M. Venkat Ramana, R. Sathiyaseelan, M. Sanjappa and K.N. Ganeshaiah",
+    journal: "Asian Journal of Plant Sciences and Research",
+    volume: "5(11)",
+    pages: "16–20",
+    category: "PEER_REVIEWED",
+    tags: ["Centotheca", "Endemic", "Saddle Peak"]
+  },
+  {
+    id: "pub-39",
+    year: 2015,
+    title: "Cycas andamanica (Cycadaceae): a new species from Andaman & Nicobar Islands, India",
+    authors: "K. Prasad, M. Venkat Ramana, B. Ravi Prasad Rao & M. Sanjappa",
+    journal: "International Journal of Innovative Science and Research",
+    volume: "4(9)",
+    pages: "473–476",
+    category: "PEER_REVIEWED",
+    isHighlight: true,
+    tags: ["New Species", "Cycas andamanica", "Cycadaceae", "Andaman"]
+  },
+  {
+    id: "pub-40",
+    year: 2024,
+    title: "Comparative Phytochemical, Antimicrobial and Molecular Docking Studies on a Medicinal Tree Vitex negundo var. negundo and its Intraspecific Variant 'Kali Nirgundi'",
+    authors: "Sandhya A, Navaneetha N, Venkat Ramana M. & Nethaji K.",
+    journal: "International Journal of Creative Research Thoughts (IJCRT)",
+    volume: "12(2)",
+    pages: "c163–c180",
+    category: "PEER_REVIEWED",
+    tags: ["Vitex negundo", "Molecular Docking", "Phytochemistry", "Kali Nirgundi"]
+  },
+  {
+    id: "pub-41",
+    year: 2024,
+    title: "Medicinal Plant Wealth of an Ancient Sacred Grove 'Pandavula Gutta' from Eastern Telangana, India",
+    authors: "Narender Thappatla, Venkat Ramana Munigela & Nethaji Kante",
+    journal: "International Journal of Creative Research Thoughts (IJCRT)",
+    volume: "12(3)",
+    pages: "i651–i658",
+    category: "PEER_REVIEWED",
+    tags: ["Sacred Grove", "Pandavula Gutta", "Ethnobotany"]
+  },
+  {
+    id: "pub-42",
+    year: 2023,
+    title: "Status assessment of the two Acanthaceae species strictly endemic to Saddle Peak National Park of Andaman and Nicobar Islands, India",
+    authors: "Tagore JK, Raja P, Soosairaj S, Ramana MV, Jansirani P.",
+    journal: "Species",
+    volume: "24",
+    pages: "e68s1572",
+    category: "PEER_REVIEWED",
+    tags: ["Acanthaceae", "Saddle Peak", "Endemic", "Staurogyne"]
+  }
+];
+
+export const featuredPublicationPages: Publication[][] = (() => {
+  const featured = publicationsData
+    .filter((p) => p.isHighlight)
+    .sort((a, b) => b.year - a.year);
+  const pages: Publication[][] = [];
+  for (let i = 0; i < featured.length; i += 3) pages.push(featured.slice(i, i + 3));
+  return pages;
+})();

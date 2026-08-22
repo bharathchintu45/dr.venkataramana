@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+}
+
+html {
+  background-color: #040D07;
+  color: #EFE8D8;
+}
+
+/* Lenis Smooth Scrolling Optimization */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+
+body {
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+  background-color: #040D07;
+  color: #EFE8D8;
+}
+
+::selection {
+  background-color: #2A6B48;
+  color: #FAF7F2;
+}
+
+/* Custom Botanical Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #040D07;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E4D34;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #89C35C;
+}
+
+/* Typography Utilities */
+.font-serif-title {
+  font-family: var(--font-playfair), var(--font-cinzel), Georgia, serif;
+}
+
+.font-botanical-heading {
+  font-family: var(--font-cinzel), Georgia, serif;
+  letter-spacing: 0.05em;
+}
+
+.font-editorial {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+/* Wooden Signboard Style */
+.wooden-signboard {
+  background: linear-gradient(180deg, #4A3420 0%, #342213 100%);
+  border: 3px solid #23160B;
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+  color: #E2C98F;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Botanical Button Animations */
+.btn-forest-primary {
+  background: linear-gradient(180deg, #2A6B48 0%, #153B25 100%);
+  border: 1px solid #89C35C;
+  color: #FAF7F2;
+  box-shadow: 0 4px 15px rgba(10, 28, 18, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-forest-primary:hover {
+  background: linear-gradient(180deg, #388E5E 0%, #1E5033 100%);
+  box-shadow: 0 0 25px rgba(137, 195, 92, 0.4), 0 4px 20px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Ambient glow keyframes */
+@keyframes botanicalPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.animate-botanical-pulse {
+  animation: botanicalPulse 4s ease-in-out infinite;
+}
+
+@keyframes sunbeamShift {
+  0%, 100% {
+    opacity: 0.4;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: rotate(1deg);
+  }
+}
+
+.animate-sunbeam {
+  animation: sunbeamShift 8s ease-in-out infinite;
+}
