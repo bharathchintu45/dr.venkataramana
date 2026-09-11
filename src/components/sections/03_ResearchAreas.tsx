@@ -109,9 +109,9 @@ export const ResearchAreas: React.FC = () => {
       {/* Research Area Deep-Dive Modal */}
       {activeArea && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-3xl max-h-[90vh] bg-[#08170E] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+          <div className="relative w-full max-w-3xl max-h-[90vh] bg-[#08170E] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row animate-modal-pop">
             <div className="w-full md:w-5/12 shrink-0 bg-[#F4EEDF] p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#C5A868]/40">
-              <div className="relative w-48 h-64">
+              <div className="relative w-36 h-48 sm:w-48 sm:h-64">
                 <Image
                   src={activeArea.imagePath}
                   alt={activeArea.title}

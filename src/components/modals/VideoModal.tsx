@@ -28,7 +28,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/90 backdrop-blur-xl animate-fade-in">
-      <div className="relative w-full max-w-5xl max-h-[92vh] bg-[#07150C] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-5xl max-h-[92vh] bg-[#07150C] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-modal-pop">
         {/* Header */}
         <div className="p-6 border-b border-[#89C35C]/20 bg-gradient-to-r from-[#0A1C12] via-[#0D2417] to-[#0A1C12] flex items-center justify-between">
           <div className="flex items-center gap-3">

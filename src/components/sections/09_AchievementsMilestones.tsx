@@ -45,7 +45,7 @@ export const AchievementsMilestones: React.FC = () => {
         <div className="self-start">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-[#0F2618] border border-[#89C35C]/50 text-white shadow-lg">
             <span className="px-2 py-0.5 rounded bg-[#1A472C] text-[#A4E06A] font-bold text-xs font-mono">
-              09
+              08
             </span>
             <span className="text-sm font-serif font-semibold tracking-wide">
               Achievements & Milestones
@@ -66,13 +66,13 @@ export const AchievementsMilestones: React.FC = () => {
         </div>
 
         {/* 5 Dark Glass Rounded Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto my-auto w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-6xl mx-auto my-auto w-full">
           {achievementStats.map((stat) => {
             const Icon = getIcon(stat.id);
             return (
             <div
               key={stat.id}
-              className="bg-[#07190E]/85 backdrop-blur-md rounded-2xl border border-[#89C35C]/35 p-5 flex flex-col items-center justify-between text-center group hover:-translate-y-2 transition-all duration-500 shadow-2xl"
+              className="bg-[#07190E]/85 backdrop-blur-md rounded-2xl border border-[#89C35C]/35 p-4 sm:p-5 flex flex-col items-center justify-between text-center group hover:-translate-y-2 transition-all duration-500 shadow-2xl"
             >
               <div className="w-12 h-12 rounded-full border-2 border-[#89C35C] bg-[#123120] flex items-center justify-center text-[#9FE870] shadow-[0_0_12px_rgba(137,195,92,0.4)] mb-3 group-hover:scale-110 transition-transform">
                 <Icon className="w-5 h-5" strokeWidth={1.75} />

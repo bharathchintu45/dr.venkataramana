@@ -35,7 +35,6 @@ export default function Home() {
       "hero",
       "journey",
       "research",
-      "publications",
       "species",
       "projects",
       "books",
@@ -130,7 +129,7 @@ export default function Home() {
       {/* Right-edge journey progress trail */}
       <JourneyTrail activeSection={activeSection} />
 
-      {/* 16 Sequential Botanical Expedition Sections */}
+      {/* 15 Sequential Botanical Expedition Sections */}
       <main className="relative z-10 w-full overflow-hidden">
         {/* 01 Forest Entrance (Hero) */}
         <ForestEntrance
@@ -144,51 +143,42 @@ export default function Home() {
         {/* 03 Research Areas (Parchment Cards) */}
         <ResearchAreas />
 
-        {/* 04 Publications (Open Notebook) */}
-        <Publications onOpenCatalog={() => setPubModalOpen(true)} />
-
-        {/* 05 Species Discoveries (Herbarium Cards) */}
+        {/* 04 Species Discoveries (Herbarium Cards) */}
         <SpeciesDiscoveries />
 
-        {/* 06 Research Projects (Clipboard Camp) */}
+        {/* 05 Research Projects (Clipboard Camp) */}
         <ResearchProjects />
 
-        {/* 07 Books Authored (Table Display) */}
+        {/* 06 Books Authored (Table Display) */}
         <BooksAuthored />
 
-        {/* 08 Field Work & Videos (Gallery) */}
+        {/* 07 Field Work & Videos (Gallery) */}
         <FieldWorkVideos />
 
-        {/* 09 Achievements & Milestones (Waterfall Stats) */}
+        {/* 08 Achievements & Milestones (Waterfall Stats) */}
         <AchievementsMilestones />
 
-        {/* 10 Conferences & Talks (Podium Lecture Hall) */}
+        {/* 09 Conferences & Talks (Podium Lecture Hall) */}
         <ConferencesTalks />
 
-        {/* 11 Awards & Recognitions (Golden Laurels) */}
+        {/* 10 Awards & Recognitions (Golden Laurels) */}
         <AwardsRecognition />
 
-        {/* 12 Teaching & Mentoring (Study Desk Seedling) */}
+        {/* 11 Teaching & Mentoring (Study Desk Seedling) */}
         <TeachingMentoring />
 
-        {/* 13 Professional Memberships (Emblem Badges) */}
+        {/* 12 Professional Memberships (Emblem Badges) */}
         <ProfessionalMemberships />
 
-        {/* 14 Research Resources (Microscope Lab) */}
+        {/* 13 Research Resources (Microscope Lab) */}
         <ResearchResources />
 
-        {/* 15 Get in Touch / Contact (Sunlit Clearing & Signpost) */}
+        {/* 14 Get in Touch / Contact (Sunlit Clearing & Signpost) */}
         <ContactClearing />
       </main>
 
-      {/* 16 Forest Footer */}
+      {/* 15 Forest Footer */}
       <ForestFooter />
-
-      {/* Global Searchable Publications Modal */}
-      <PublicationsModal
-        isOpen={pubModalOpen}
-        onClose={() => setPubModalOpen(false)}
-      />
     </div>
   );
 }

@@ -47,7 +47,7 @@ export const ContactClearing: React.FC = () => {
         <div className="self-start">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-[#0F2618] border border-[#89C35C]/50 text-white shadow-lg">
             <span className="px-2 py-0.5 rounded bg-[#1A472C] text-[#A4E06A] font-bold text-xs font-mono">
-              15
+              14
             </span>
             <span className="text-sm font-serif font-semibold tracking-wide">
               Contact / Final Forest Clearing
@@ -165,7 +165,7 @@ export const ContactClearing: React.FC = () => {
       {/* Direct Message Form Modal */}
       {formOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#0A1F13] border border-[#89C35C]/50 rounded-2xl p-6 sm:p-8 shadow-2xl text-[#EFE8D8] space-y-4" data-lenis-prevent>
+          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#0A1F13] border border-[#89C35C]/50 rounded-2xl p-6 sm:p-8 shadow-2xl text-[#EFE8D8] space-y-4 animate-modal-pop" data-lenis-prevent>
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-serif-title font-bold text-white">
                 Send Botanical Inquiry

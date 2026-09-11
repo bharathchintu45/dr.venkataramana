@@ -20,7 +20,7 @@ export const BooksModal: React.FC<BooksModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-fade-in">
-      <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#07150C] border border-[#C5A868]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div className="relative w-full max-w-4xl max-h-[90vh] bg-[#07150C] border border-[#C5A868]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-modal-pop">
         {/* Header */}
         <div className="p-6 border-b border-[#C5A868]/30 bg-gradient-to-r from-[#0A1C12] via-[#21160C] to-[#0A1C12] flex items-center justify-between">
           <div className="flex items-center gap-3">

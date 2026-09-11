@@ -15,7 +15,7 @@ export const SpeciesModal: React.FC<SpeciesModalProps> = ({ species, onClose }) 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-fade-in">
-      <div className="relative w-full max-w-3xl max-h-[90vh] bg-[#08170E] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+      <div className="relative w-full max-w-3xl max-h-[90vh] bg-[#08170E] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row animate-modal-pop">
         {/* Left Botanical Specimen Image & Herbarium Header */}
         <div className="w-full md:w-5/12 bg-[#F4EEDF] p-6 flex flex-col items-center justify-between border-b md:border-b-0 md:border-r border-[#C5A868]/40 relative shrink-0">
           <div className="w-full text-center border-b border-[#C5A868]/30 pb-2 mb-3">

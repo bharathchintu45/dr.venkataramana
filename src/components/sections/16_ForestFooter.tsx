@@ -10,7 +10,6 @@ export const ForestFooter: React.FC = () => {
     { label: "Home", href: "#hero" },
     { label: "About", href: "#journey" },
     { label: "Research Areas", href: "#research" },
-    { label: "Publications", href: "#publications" },
     { label: "Projects", href: "#projects" },
     { label: "Books", href: "#books" },
     { label: "Gallery", href: "#fieldwork" },
@@ -34,7 +33,7 @@ export const ForestFooter: React.FC = () => {
         <div className="self-start">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-[#0F2618] border border-[#89C35C]/50 text-white shadow-lg">
             <span className="px-2 py-0.5 rounded bg-[#1A472C] text-[#A4E06A] font-bold text-xs font-mono">
-              16
+              15
             </span>
             <span className="text-sm font-serif font-semibold tracking-wide">
               Footer

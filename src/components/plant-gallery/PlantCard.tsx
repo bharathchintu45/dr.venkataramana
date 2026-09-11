@@ -11,9 +11,9 @@ export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
   return (
     <Link
       href={`/plant-gallery/${species.id}`}
-      className="bg-[#F0E8D5] rounded-xl p-3.5 sm:p-4 flex flex-col items-center justify-between text-center group cursor-pointer hover:-translate-y-2 transition-all duration-500 shadow-2xl border border-[#C5A868]/60"
+      className="bg-[#F0E8D5] rounded-xl p-3 sm:p-4 flex flex-col items-center justify-between text-center group cursor-pointer hover:-translate-y-2 transition-all duration-500 shadow-2xl border border-[#C5A868]/60"
     >
-      <div className="relative w-full h-44 sm:h-48 mb-2 rounded overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-32 sm:h-48 mb-2 rounded overflow-hidden flex items-center justify-center">
         <Image
           src={species.imageCard}
           alt={species.scientificName}

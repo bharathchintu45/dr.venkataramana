@@ -36,7 +36,7 @@ export const ConferencesTalks: React.FC = () => {
         <div className="self-start">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-[#0F2618] border border-[#89C35C]/50 text-white shadow-lg">
             <span className="px-2 py-0.5 rounded bg-[#1A472C] text-[#A4E06A] font-bold text-xs font-mono">
-              10
+              09
             </span>
             <span className="text-sm font-serif font-semibold tracking-wide">
               Conferences & Talks
@@ -100,7 +100,7 @@ export const ConferencesTalks: React.FC = () => {
       {/* Conference List Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-3xl max-h-[85vh] bg-[#0A1F13] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col text-[#EFE8D8]">
+          <div className="relative w-full max-w-3xl max-h-[85vh] bg-[#0A1F13] border border-[#89C35C]/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col text-[#EFE8D8] animate-modal-pop">
             <div className="p-5 border-b border-white/10 flex items-center justify-between">
               <div>
                 <h3 className="text-xl font-serif-title font-bold text-white">

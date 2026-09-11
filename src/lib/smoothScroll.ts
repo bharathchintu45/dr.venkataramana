@@ -12,7 +12,7 @@ export function scrollToSection(target: string | HTMLElement, offset: number = -
   if (instance) {
     instance.scrollTo(target, {
       offset,
-      duration: 1.2,
+      duration: 1.6,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
     });
     return;

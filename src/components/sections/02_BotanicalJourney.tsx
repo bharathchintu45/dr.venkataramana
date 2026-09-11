@@ -151,7 +151,7 @@ export const BotanicalJourney: React.FC = () => {
       {/* Interactive Milestone Details Modal */}
       {selectedMilestone && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-[#0A1F13] border border-[#89C35C]/50 rounded-2xl p-6 sm:p-8 shadow-2xl text-[#EFE8D8] space-y-4" data-lenis-prevent>
+          <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-[#0A1F13] border border-[#89C35C]/50 rounded-2xl p-6 sm:p-8 shadow-2xl text-[#EFE8D8] space-y-4 animate-modal-pop" data-lenis-prevent>
             <div className="flex items-start justify-between">
               <div>
                 <span className="px-2.5 py-0.5 rounded bg-[#1B4B2E] text-[#A4E06A] text-xs font-mono font-bold">
