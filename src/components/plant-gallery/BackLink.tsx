@@ -10,9 +10,9 @@ export const BackLink: React.FC<BackLinkProps> = ({ href, label }) => {
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 text-sm text-[#EFE8D8]/70 hover:text-[#9FE870] transition-colors group"
+      className="focus-ring touch-target relative group inline-flex items-center gap-2 rounded text-sm text-ink-secondary transition-colors hover:text-herbarium-deep"
     >
-      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+      <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" aria-hidden />
       <span>{label}</span>
     </Link>
   );

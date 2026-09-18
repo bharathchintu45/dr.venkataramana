@@ -6,6 +6,8 @@ export interface FieldExpedition {
   durationOrDate: string;
   posterImage: string;
   videoUrl?: string;
+  /** Link to a fuller photo gallery for this expedition, when one exists. */
+  galleryHref?: string;
   description: string;
   highlights: string[];
   findings: string[];
@@ -18,7 +20,7 @@ export const fieldworkVideos: FieldExpedition[] = [
     category: "Field Research",
     location: "Papikonda National Park & Eastern Ghats",
     durationOrDate: "Extensive Surveys",
-    posterImage: "/assets/fieldwork/video-eastern-ghats.png",
+    posterImage: "/images/expeditions/2daed99d-7a3f-442f-8733-afffd1d67ee6.webp",
     videoUrl: "https://www.youtube.com/watch?v=UDzsyEzbB14",
     description: "Deep jungle floristic expeditions traversing the rugged riverine ravines of Godavari basin and mist-shrouded peaks of Papikonda National Park, surveying unmapped angiospermic plant diversity.",
     highlights: [
@@ -37,7 +39,7 @@ export const fieldworkVideos: FieldExpedition[] = [
     category: "Botanical Exploration",
     location: "Saddle Peak National Park & North Andaman Islands",
     durationOrDate: "2010–2013 Exploration Tenure",
-    posterImage: "/assets/fieldwork/video-expeditions.png",
+    posterImage: "/images/expeditions/dsc-8456.webp",
     videoUrl: "https://www.youtube.com/watch?v=g99MQtD5QwM",
     description: "Trekking through dense primary wet evergreen rainforests, ascending Saddle Peak (732 m), and navigating mangrove creeks to discover previously unknown plant species.",
     highlights: [
@@ -56,7 +58,7 @@ export const fieldworkVideos: FieldExpedition[] = [
     category: "Cycad Research",
     location: "Southern Eastern Ghats & Seshachalam Hills",
     durationOrDate: "DST SERB Grant Expedition (2018–2021)",
-    posterImage: "/assets/fieldwork/video-cycads.png",
+    posterImage: "/images/expeditions/dsc-7340.webp",
     videoUrl: "https://www.youtube.com/watch?v=UDzsyEzbB14",
     description: "Mapping the fragmented wild populations of CITES Appendix-I listed Cycas beddomei and investigating reproductive ecology, seed germination constraints, and anthropogenic pressures.",
     highlights: [
@@ -75,8 +77,9 @@ export const fieldworkVideos: FieldExpedition[] = [
     category: "Academic Field Activities",
     location: "Telangana Sacred Groves & Gram Panchayats",
     durationOrDate: "UNEP-GEF ABS Project",
-    posterImage: "/assets/fieldwork/video-communities.png",
+    posterImage: "/images/conservation/img-0980.webp",
     videoUrl: "https://www.youtube.com/watch?v=g99MQtD5QwM",
+    galleryHref: "/sacred-groves",
     description: "Engaging directly with indigenous tribal communities, traditional vaidyas, and rural elders to record ethnobotanical lore, medicinal remedies, and conserve ancient sacred forest groves.",
     highlights: [
       "Prepared 10 People's Biodiversity Registers (PBRs) for Telangana State Biodiversity Board",

@@ -18,7 +18,7 @@ export const researchAreas: ResearchArea[] = [
     title: "Plant Systematics",
     shortDesc: "Studies on classification, taxonomy, morphology, and phylogenetic relationships of seed plants (Gymnosperms & Angiosperms).",
     fullDesc: "Comprehensive floristic exploration and taxonomic revision of critical plant families across Peninsular India and island ecosystems. Research focuses on resolving nomenclatural confusions, discovering undescribed taxa, and standardizing botanical nomenclature under IPNI author standard 'M.V.Ramana'.",
-    imagePath: "/assets/research/card-systematics.png",
+    imagePath: "/images/research-lab/img-20190106-wa0008.webp",
     keyTopics: [
       "Taxonomic Revisions & Floristic Surveys",
       "Morphological & Anatomical Characterization",
@@ -43,7 +43,7 @@ export const researchAreas: ResearchArea[] = [
     title: "Biodiversity & Conservation",
     shortDesc: "Documenting biodiversity, preparing People's Biodiversity Registers, and developing actionable strategies for conservation of threatened flora.",
     fullDesc: "Translating taxonomic discovery into frontline conservation policy. Spearheading the documentation of indigenous floras, sacred groves, national parks, and urban green corridors under UNEP-GEF, National Biodiversity Authority, and State Biodiversity Boards.",
-    imagePath: "/assets/research/card-biodiversity.png",
+    imagePath: "/images/expeditions/dsc-8578.webp",
     keyTopics: [
       "People's Biodiversity Registers (PBRs) Documentation",
       "IUCN Red List Threatened Species Assessments",
@@ -68,7 +68,7 @@ export const researchAreas: ResearchArea[] = [
     title: "Medicinal Botany & Ethnobotany",
     shortDesc: "Research on indigenous medicinal plants, traditional healthcare knowledge systems, phytochemical screening, and botanical adulteration detection.",
     fullDesc: "Bridging indigenous tribal knowledge with contemporary phytochemistry and pharmacognosy. Investigating intraspecific chemical and morphological variations in potent medicinal trees like Aegle marmelos and Vitex negundo, evaluating antimicrobial activities, and identifying commercial adulterations.",
-    imagePath: "/assets/research/card-medicinal.png",
+    imagePath: "/images/conservation/img-5907.webp",
     keyTopics: [
       "Ethnobotanical Documentation of Tribal Practices",
       "Comparative Phytochemical & Molecular Docking Studies",
@@ -93,7 +93,7 @@ export const researchAreas: ResearchArea[] = [
     title: "Indian Cycads Conservation",
     shortDesc: "Specialized systematic, ecological, and conservation biology studies on the ancient gymnosperm genus Cycas L. in India.",
     fullDesc: "Pioneering Indian cycad research focused on resolving nomenclatural confusions, mapping habitat distributions, assessing reproductive bottlenecks, and developing ex-situ seed germination protocols for CITES Appendix-I and IUCN Red Listed taxa like Cycas beddomei and Cycas andamanica.",
-    imagePath: "/assets/research/card-cycads.png",
+    imagePath: "/images/expeditions/dsc-0080.webp",
     keyTopics: [
       "Systematics and Phylogeny of Genus Cycas L. in India",
       "CITES Appendix-I Listed Cycas beddomei Conservation",

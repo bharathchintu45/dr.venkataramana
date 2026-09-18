@@ -70,7 +70,7 @@ export const conferencesData: ConferenceItem[] = [
     dates: "2–4 December 2011",
     role: "Paper Presentation",
     coAuthors: "M. Venkat Ramana and Johny Kumar Tagore",
-    description: "Awarded the Prestigious Antony Mukkath – Prof. K.S. Manilal Award for Best Paper Presentation."
+    description: "Awarded the Prestigious Antony Mukkath - Prof. K.S. Manilal Award for Best Paper Presentation."
   }
 ];
 

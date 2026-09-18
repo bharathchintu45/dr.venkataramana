@@ -27,14 +27,14 @@ export const botanicalJourney: Milestone[] = [
     year: "2010",
     title: "Island Floristics & Species Exploration",
     role: "Research Associate",
-    institution: "ANRC – Botanical Survey of India (BSI)",
+    institution: "ANRC, Botanical Survey of India (BSI)",
     location: "Andaman and Nicobar Islands, India",
     description: "Conducted intensive botanical explorations across rugged tropical rainforests and isolated peaks of Andaman and Nicobar Islands, resulting in multiple new species discoveries and botanical rediscoveries.",
     highlights: [
       "Discovered & described 6 new plant species from Saddle Peak National Park & North Andaman",
       "Rediscovered Polyalthia crassa after decades of obscurity",
       "Documented medicinal and aromatic Zingiberaceae and island endemic flora",
-      "Received the prestigious Antony Mukkath – Prof. K.S. Manilal Award (IAAT, 2011)"
+      "Received the prestigious Antony Mukkath - Prof. K.S. Manilal Award (IAAT, 2011)"
     ],
     keyTaxa: "Artabotrys manoranjanii, Centotheca ganeshaiahiana, Murdannia saddlepeakensis, Syzygium spp."
   },

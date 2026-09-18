@@ -1,139 +1,898 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * Design tokens — "herbarium sheet" direction.
+ * Colors are stored as space-separated R G B so Tailwind's <alpha-value>
+ * placeholder keeps working with opacity modifiers (bg-paper/60, etc).
+ * Every pairing below has a measured WCAG contrast ratio in the comment;
+ * re-check with the same method before changing a value (see project notes).
+ */
 :root {
-  --font-cinzel: 'Cinzel', Georgia, serif;
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-outfit: 'Outfit', sans-serif;
-  --font-playfair: 'Playfair Display', Georgia, serif;
+  /* surfaces */
+  --paper: 241 240 234;            /* #F1F0EA — page ground, cool archival paper */
+  --paper-raised: 250 249 245;     /* #FAF9F5 — cards, label blocks */
+  --plate: 12 18 14;               /* #0C120E — dark photo-plate ground */
+  --plate-raised: 23 33 26;        /* #17211A — cards on a plate */
+
+  /* ink */
+  --ink: 26 33 28;                 /* #1A211C — primary text, 14.4:1 on paper */
+  --ink-secondary: 74 84 75;       /* #4A544B — body/meta text, 6.9:1 on paper */
+  --ink-muted: 94 104 92;          /* #5E685C — captions, 5.1:1 on paper */
+  --plate-ink: 242 239 230;        /* #F2EFE6 — text on plates, 16.5:1 */
+  --plate-ink-muted: 199 205 195;  /* #C7CDC3 — captions on plates, 11.7:1 */
+
+  /* structure */
+  --line: 216 211 196;             /* #D8D3C4 — hairlines */
+  --line-strong: 189 180 156;      /* #BDB49C — emphasised rules */
+
+  /* accent: herbarium green — the only accent hue in the system */
+  --herbarium: 47 93 63;           /* #2F5D3F — links, active state, primary button, 6.7:1 on paper */
+  --herbarium-deep: 30 61 42;      /* #1E3D2A — hover/pressed, 10.5:1 on paper */
+  --herbarium-tint: 227 234 221;   /* #E3EADD — chip/badge backgrounds */
+
+  /* rare highlight ink — never a CTA color */
+  --annotation: 140 91 47;         /* #8C5B2F — 5.0:1 on paper */
+
+  /* state */
+  --state-success: 60 115 80;      /* #3C7350 — 4.9:1 on paper */
+  --state-danger: 179 38 30;       /* #B3261E — 5.7:1 on paper */
+
+  /* The one deliberately off-system hue on the site: a pink heart that
+     replaces the cursor over the designer credit in the footer. Never
+     carries UI meaning and never appears anywhere else. */
+  --heart: 214 51 132;             /* #D63384 — magenta-pink */
+
+  /* radius / shadow */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --shadow-card: 0 1px 2px rgba(26, 33, 28, 0.06), 0 1px 1px rgba(26, 33, 28, 0.08);
+  --shadow-raised: 0 8px 24px -8px rgba(26, 33, 28, 0.22), 0 2px 6px rgba(26, 33, 28, 0.08);
+  --shadow-plate: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+
+  /* motion — mirrored in src/lib/motion.ts so GSAP and CSS never drift */
+  --dur-instant: 120ms;
+  --dur-fast: 180ms;
+  --dur-base: 280ms;
+  --dur-slow: 420ms;
+  --dur-plate: 700ms;
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
 html {
-  background-color: #040D07;
-  color: #EFE8D8;
+  background-color: rgb(var(--paper));
+  color: rgb(var(--ink));
+  scroll-behavior: auto;
 }
 
-/* Lenis Smooth Scrolling Optimization */
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  border-color: rgb(var(--line));
+}
+
+::selection {
+  background-color: rgb(var(--herbarium) / 0.22);
+  color: rgb(var(--ink));
+}
+
+/* Botanical scrollbar, paper-toned */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--paper));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line-strong));
+  border-radius: 5px;
+  border: 2px solid rgb(var(--paper));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--herbarium));
+}
+
+/* Typography */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* A literal specimen-label stamp — the one deliberate use of tracked caps,
+   because the subject itself (a herbarium determination slip) is capitalised. */
+.stamp {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Grows a small control's tap area to 44px tall without moving anything.
+   Vertical only, so side-by-side chips never overlap; stacked targets
+   need at least 14px between them, and the parent must not clip. Pair it
+   with Tailwind's `relative` (kept out of here so a `cn()` override to
+   `absolute` still wins). */
+.touch-target::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: max(100%, 44px);
+  transform: translateY(-50%);
+}
+
+/* Labels that sit on a photo: always shown on touch screens, revealed on
+   hover or keyboard focus where a pointer can hover. */
+@media (hover: hover) {
+  .hover-reveal {
+    opacity: 0;
+  }
+  .group:hover .hover-reveal,
+  .group:focus-visible .hover-reveal {
+    opacity: 1;
+  }
+}
+
+/* Tabular figures for counts/years/citations so columns don't jitter */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------
+   Motion system
+   - Everything that animates on scroll starts HIDDEN only when
+     `html.has-motion` is present (added by an inline script in <head>
+     before paint, only when JS runs AND reduced-motion is not requested).
+   - No JS, or reduced motion -> the class is never added -> every
+     [data-reveal] element is visible from the very first paint.
+   ------------------------------------------------------------------- */
+html.has-motion [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 18px), 0);
+}
+html.has-motion [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-slow) var(--ease-enter),
+    transform var(--dur-slow) var(--ease-enter);
+}
+html.has-motion [data-reveal-scale] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+html.has-motion [data-reveal-scale].is-revealed {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--dur-base) var(--ease-enter),
+    transform var(--dur-base) var(--ease-enter);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The species-name marquee (Species.tsx) only scrolls under the motion
+   gate. Without this, the reduced-motion override above (which forces
+   animation-duration to 0.01ms rather than removing the animation) would
+   snap the track to its end frame — translated a full width off-position —
+   instead of leaving it at rest. This covers both no-JS and reduced motion
+   in one rule. */
+html:not(.has-motion) [data-marquee-track] {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Scoped cursor suppression for <Pointer> (used once, for the footer
+   credit's heart cursor — see Footer.tsx). A child <a>'s UA-stylesheet
+   `cursor: pointer` beats an inherited `cursor: none` on the parent, hence
+   the descendant selector. The class is toggled from JS only, so the real
+   cursor is never hidden without motion being active. */
+.pointer-host,
+.pointer-host * {
+  cursor: none;
+}
+
+/* Focus ring — the one focus style in the system, applied by every
+   interactive primitive via the `.focus-ring` utility class. */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid rgb(var(--herbarium));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Lenis smooth scrolling */
 html.lenis,
 html.lenis body {
   height: auto;
 }
-
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
-
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
-
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
 
+/* ---- Site-wide photo lightbox (yet-another-react-lightbox) theme ----
+   Restyled onto a lightGallery-style layout: a full-width dark bar
+   across the top holds the counter (left) and the icon toolbar (right)
+   as one continuous strip, a thumbnail strip with a copper active-border
+   sits along the bottom, and captions read as a plain caption line
+   rather than a soft vignette. A slightly translucent backdrop + blur
+   still lets the page peek through — a deliberately more immersive,
+   "premium viewer" treatment than the rest of the site, which otherwise
+   avoids glass effects. */
+.site-lightbox {
+  --yarl__color_backdrop: rgba(6, 9, 7, 0.96);
+  --yarl__color_button: rgba(242, 239, 230, 0.85);
+  --yarl__color_button_active: #f2efe6;
+  --yarl__color_button_disabled: rgba(242, 239, 230, 0.25);
+  --yarl__button_filter: none;
+  --yarl__button_background_color: transparent;
+  --yarl__button_margin: 1px;
+  --yarl__button_padding: 7px;
+  --yarl__icon_size: 22px;
+  --yarl__toolbar_padding: 10px 14px;
+  --yarl__navigation_button_padding: 24px 18px;
+  --yarl__slide_icon_loading_color: rgba(242, 239, 230, 0.7);
+  --yarl__slide_icon_error_color: #d98e7a;
+  --yarl__thumbnails_container_background_color: #0a0f0b;
+  --yarl__thumbnails_thumbnail_border_color: rgba(242, 239, 230, 0.15);
+  --yarl__thumbnails_thumbnail_active_border_color: #8c5b2f;
+  --yarl__thumbnails_thumbnail_background: #17211a;
+  --yarl__slide_title_color: #f2efe6;
+  --yarl__slide_description_color: rgba(242, 239, 230, 0.8);
+  /* No scrim: the caption sits in its own cleared strip below the photo
+     (see the image cap further down), so a gradient here would only cast
+     a dark band across the bottom of the image it no longer overlaps. */
+  --yarl__slide_captions_container_background: transparent;
+  --yarl__slide_captions_container_padding: 6px 16px;
+}
 
-body {
-  font-family: var(--font-outfit), sans-serif;
+.site-lightbox .yarl__container {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* A single full-width gradient bar behind both the counter and the
+   toolbar, so the two separately-positioned elements read as one
+   continuous dark strip (see the `topbar` div in `render.controls`). */
+.site-lightbox-topbar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 72px;
+  background: linear-gradient(to bottom, rgba(6, 9, 7, 0.88), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site-lightbox .yarl__toolbar {
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.site-lightbox .yarl__counter {
+  z-index: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.site-lightbox .yarl__button {
+  border-radius: 999px;
+  transition: background-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+}
+
+.site-lightbox .yarl__button:hover,
+.site-lightbox .yarl__button:focus-visible {
+  background-color: rgba(47, 93, 63, 0.55);
+}
+
+/* Rotate/flip only — hidden below ~520px so the 9-icon toolbar doesn't
+   wrap or crowd out fullscreen/zoom/download/close on small phones. */
+@media (max-width: 520px) {
+  .site-lightbox .site-lightbox-btn-transform {
+    display: none;
+  }
+}
+
+.site-lightbox .yarl__slide_title {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.site-lightbox .yarl__slide_description,
+.site-lightbox .yarl__counter {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+}
+
+/* By default the title overlays the very TOP of the slide (colliding
+   with the toolbar) and the description overlays the bottom edge of
+   the slide box — not the bottom edge of the photo itself, so a photo
+   that doesn't fill the full slide height (most landscape photos) gets
+   a description sitting right across its lower portion.
+   (A tempting fix — adding bottom padding to `.yarl__slide` — doesn't
+   work: the description's `bottom: 0` is measured from the PADDING
+   edge, so padding drags it further UP into the image instead of down
+   below it.) Fixed here by capping the image's own height so a real
+   gap is always left at the true bottom of the slide, and by moving
+   the title to stack directly above the description as one bottom
+   caption block instead of a separate top overlay. */
+.site-lightbox .yarl__slide_title_container {
+  top: unset;
+  bottom: 50px;
+}
+
+/* `!important` is load-bearing: ImageSlide writes `max-height` as an
+   INLINE style on the <img> (`{...defaultStyle, ...style}`), which a
+   plain stylesheet rule cannot beat — without it the image keeps its
+   full height and the caption block lands back on top of the photo.
+   Zoom is unaffected: it scales via `transform` on a wrapper, not by
+   growing the image past this cap. Keep this in sync with the title's
+   `bottom` offset above — together they define the cleared strip.
+   The `.yarl__carousel` scope is required, not cosmetic: the thumbnail
+   strip renders through the same ImageSlide component, so an unscoped
+   rule subtracts 150px from a 60px-tall thumbnail and blanks the whole
+   strip. */
+.site-lightbox--has-captions .yarl__carousel .yarl__slide_image {
+  max-height: calc(100% - 150px) !important;
+}
+
+/* Applies the current rotate/flip transform around a slide's image —
+   see the `slideContainer` render override in Lightbox.tsx. */
+.site-lightbox-transform {
+  width: 100%;
+  height: 100%;
+  transition: transform 320ms var(--ease-standard, cubic-bezier(0.16, 1, 0.3, 1));
+  will-change: transform;
+}
+
+/* Auto-fading keyboard/gesture hint (top-center, below the toolbar bar)
+   — see `render.controls` in Lightbox.tsx. Only ever rendered when
+   `hasMotion()` is true, so there's no reduced-motion variant to
+   reconcile here. */
+@keyframes lightbox-hint-fade {
+  0%, 60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.site-lightbox-hint {
+  animation: lightbox-hint-fade 4.5s var(--ease-standard) forwards;
+}
+
+/* ---------------------------------------------------------------------
+   Field notebook (home page) — a flat-hinge page turn. The spring
+   physics (k=170/c=26 commit, k=150/c=24 cancel), the 62%-of-width drag
+   span, the 0.42/1.1-per-sec commit thresholds, and the sin(pi*t) shading
+   envelope are reimplemented from the geometry described in
+   github.com/MengTo/sketchbook (that repo carries no license, so nothing
+   was copied — only the technique and constants, rebuilt against our own
+   tokens). Its 18-nested-strip paper curl was NOT ported: that trick only
+   works on pre-rendered page images, and our pages hold live, selectable,
+   linkable text, so the leaf here is a flat hinge instead of a curl.
+   All per-frame values (--angle/--shade/--facing/--closed-*) are written
+   straight to the stage and leaf from a rAF loop — never through React
+   state. The book is bound between two hardcovers and starts shut; on
+   the home page, scrolling through a pinned scene opens the front cover.
+   ------------------------------------------------------------------- */
+/* Scroll scene: the runway is taller than the viewport and the scene
+   inside it sticks just under the fixed header. The scroll distance
+   between the two is what opens the front cover (see NotebookBook). */
+.notebook__runway {
+  position: relative;
+  height: calc(100vh - 4rem + 80vh);
+  height: calc(100svh - 4rem + 80svh);
+}
+.notebook__scene {
+  position: sticky;
+  top: 4rem;
+  height: calc(100vh - 4rem);
+  height: calc(100svh - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.notebook__stage {
+  --shade: 0;
+  --facing: 1;
+  /* 0..1 — how shut the book is on its front / back cover. */
+  --closed-front: 0;
+  --closed-back: 0;
+  /* -1 centres the right-hand page, +1 the left, 0 the whole spread. */
+  --focus: 0;
+  position: relative;
+  width: 100%;
+  /* Never taller than the scene can show with the controls beneath it. */
+  max-width: min(960px, calc((100vh - 12rem) * 1.6));
+  max-width: min(960px, calc((100svh - 12rem) * 1.6));
+  aspect-ratio: 16 / 10;
+  margin-inline: auto;
+  touch-action: pan-y;
+  outline: none;
+}
+/* Chromium restarts the touch-action intersection at every scroll
+   container, and each page (overflow: hidden) and its content
+   (overflow-y: auto) is one — so the stage's pan-y has to be restated
+   inside it, or the browser claims a horizontal swipe on a page (and
+   cancels the drag, or even reads it as a history-back gesture). */
+.notebook__stage * {
+  touch-action: pan-y;
+}
+.notebook__stage:focus-visible {
+  outline: 2px solid rgb(var(--herbarium));
+  outline-offset: 6px;
+  border-radius: var(--radius-lg);
+}
+/* The book slides a quarter-width either way to centre one page: a
+   closed book (only one cover showing), or — in single-page mode — the
+   page being read. The perspective lives here (not on the stage) so the
+   2D slide flattens the turning leaf along with everything else. */
+.notebook__book {
+  position: absolute;
+  inset: 0;
+  perspective: 2400px;
+  perspective-origin: 50% 44%;
+  transform: translateX(calc(var(--focus) * 25%));
+}
+.notebook__shadow {
+  position: absolute;
+  left: calc(4% + 46% * var(--closed-front));
+  right: calc(4% + 46% * var(--closed-back));
+  bottom: -14px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgb(var(--ink) / calc(0.22 - var(--shade) * 0.1));
+  filter: blur(18px);
+  pointer-events: none;
+}
+.notebook__spine {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 2%;
+  bottom: 2%;
+  width: 2px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: calc(1 - var(--closed-front) - var(--closed-back));
+  background: linear-gradient(180deg, transparent, rgb(var(--line-strong) / 0.8), transparent);
+}
+.notebook__page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  overflow: hidden;
+  z-index: 1;
+  background-color: rgb(var(--paper-raised));
+}
+/* The page block under a closed cover: stacked paper edges peeking out
+   past the fore-edge. Every offset scales with how shut the book is, so
+   the stack is invisible (all offsets 0) on an open spread. */
+.notebook__page--right {
+  --stack: var(--closed-front);
+  right: 0;
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow:
+    calc(var(--stack) * 2px) calc(var(--stack) * 2px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * 3px) calc(var(--stack) * 3px) 0 rgb(var(--line-strong)),
+    calc(var(--stack) * 5px) calc(var(--stack) * 5px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * 6px) calc(var(--stack) * 6px) 0 rgb(var(--line-strong)),
+    calc(var(--stack) * 8px) calc(var(--stack) * 8px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * 9px) calc(var(--stack) * 9px) 0 rgb(var(--line-strong)),
+    var(--shadow-card);
+}
+.notebook__page--left {
+  --stack: var(--closed-back);
+  left: 0;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  box-shadow:
+    calc(var(--stack) * -2px) calc(var(--stack) * 2px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * -3px) calc(var(--stack) * 3px) 0 rgb(var(--line-strong)),
+    calc(var(--stack) * -5px) calc(var(--stack) * 5px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * -6px) calc(var(--stack) * 6px) 0 rgb(var(--line-strong)),
+    calc(var(--stack) * -8px) calc(var(--stack) * 8px) 0 rgb(var(--paper-raised)),
+    calc(var(--stack) * -9px) calc(var(--stack) * 9px) 0 rgb(var(--line-strong)),
+    var(--shadow-card);
+}
+/* Gutter shading: every page darkens slightly toward the binding. */
+.notebook__page::after,
+.notebook__face::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 9%;
+  pointer-events: none;
+}
+.notebook__page--left::after,
+.notebook__face--back::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(var(--ink) / 0.12), transparent);
+}
+.notebook__page--right::after,
+.notebook__face--front::after {
+  left: 0;
+  background: linear-gradient(to right, rgb(var(--ink) / 0.12), transparent);
+}
+.notebook__leaf {
+  position: absolute;
+  inset: 0 0 0 50%;
+  z-index: 5;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--angle, 0deg));
+  will-change: transform;
+}
+.notebook__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+  background-color: rgb(var(--paper-raised));
+}
+.notebook__face--front {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  box-shadow: var(--shadow-raised);
+}
+.notebook__face--back {
+  transform: rotateY(180deg);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  box-shadow: var(--shadow-raised);
+}
+.notebook__face-content {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+}
+/* The notes page's flexible middle (description + diagnostic notes).
+   It shrinks to the height the page has left, so the "Full record"
+   footer never falls off a short phone page — and the page never
+   becomes an inner scroller that swallows the visitor's scroll.
+   - A column-wrap flexbox with a definite height moves any block that
+     doesn't fit whole into a second column, which starts past the right
+     edge and is clipped: the diagnostic notes show complete or not at
+     all (they stay in the accessibility tree either way). The first
+     block of a line never wraps, so the description always shows.
+   - A description taller than the page runs on into the bottom padding,
+     which the mask fades out. The matching negative margin lays that
+     fade zone over the gap above the footer instead of spending page
+     height on it; text that fits never reaches it, so it never fades.
+   In the unbounded carousel nothing wraps and nothing is clipped. */
+.notebook-notes__more {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-flow: column wrap;
+  /* Row gap matches the page's own gap-2 / sm:gap-3. */
+  gap: 0.5rem 2rem;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 1rem), transparent calc(100% - 0.25rem));
+  mask-image: linear-gradient(to bottom, black calc(100% - 1rem), transparent calc(100% - 0.25rem));
+}
+@media (min-width: 640px) {
+  .notebook-notes__more {
+    row-gap: 0.75rem;
+  }
+}
+/* Without an explicit width, a wrapping column's items size to their
+   max-content width and the text stops wrapping. */
+.notebook-notes__more > * {
+  width: 100%;
+}
+/* Darkens as a face turns away from flat-on (the physical page catching
+   less light edge-on); brightens back out as it lands. */
+.notebook__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgb(var(--ink) / calc((1 - var(--facing)) * 0.5));
+}
+/* A soft specular pass, peaking mid-turn and only where the face is
+   still mostly facing the viewer — squared falloff, same as the source
+   technique's --lit*--lit term. */
+.notebook__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background: rgb(var(--paper-raised) / calc(var(--shade) * var(--facing) * var(--facing) * 0.35));
+}
+/* Single-page mode (narrow screens): the stage is a full spread two
+   pages wide, centred on the column and clipped to it, so exactly one
+   page shows at a time. Each page is 5:7 and never taller than the
+   pinned scene can fit above the controls. */
+.notebook__clip {
   overflow-x: hidden;
-  background-color: #040D07;
-  color: #EFE8D8;
+  overflow-x: clip;
+}
+.notebook__stage--single {
+  --stage-w: min(calc(200% - 40px), 52rem, calc((100vh - 12rem) * 10 / 7));
+  --stage-w: min(calc(200% - 40px), 52rem, calc((100svh - 12rem) * 10 / 7));
+  width: var(--stage-w);
+  max-width: none;
+  margin-inline: 0;
+  margin-left: calc(50% - var(--stage-w) / 2);
+  aspect-ratio: 10 / 7;
+}
+/* Keep the vanishing point on the centred page, not on the sliding spine. */
+.notebook__stage--single .notebook__book {
+  perspective: 1600px;
+  perspective-origin: calc(50% - var(--focus) * 25%) 46%;
+}
+.notebook__stage--single .notebook__shadow {
+  left: calc(28% - 24% * var(--focus));
+  right: calc(28% + 24% * var(--focus));
 }
 
-::selection {
-  background-color: #2A6B48;
-  color: #FAF7F2;
-}
-
-/* Custom Botanical Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #040D07;
-}
-::-webkit-scrollbar-thumb {
-  background: #1E4D34;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #89C35C;
-}
-
-/* Typography Utilities */
-.font-serif-title {
-  font-family: var(--font-playfair), var(--font-cinzel), Georgia, serif;
-}
-
-.font-botanical-heading {
-  font-family: var(--font-cinzel), Georgia, serif;
-  letter-spacing: 0.05em;
-}
-
-.font-editorial {
-  font-family: var(--font-cormorant), Georgia, serif;
-}
-
-/* Wooden Signboard Style */
-.wooden-signboard {
-  background: linear-gradient(180deg, #4A3420 0%, #342213 100%);
-  border: 3px solid #23160B;
-  box-shadow: 
-    0 12px 30px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
-  color: #E2C98F;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* Botanical Button Animations */
-.btn-forest-primary {
-  background: linear-gradient(180deg, #2A6B48 0%, #153B25 100%);
-  border: 1px solid #89C35C;
-  color: #FAF7F2;
-  box-shadow: 0 4px 15px rgba(10, 28, 18, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-forest-primary:hover {
-  background: linear-gradient(180deg, #388E5E 0%, #1E5033 100%);
-  box-shadow: 0 0 25px rgba(137, 195, 92, 0.4), 0 4px 20px rgba(0, 0, 0, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Ambient glow keyframes */
-@keyframes botanicalPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
+@keyframes notebook-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
   }
   50% {
-    opacity: 0.9;
-    transform: scale(1.03);
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+.notebook__cue {
+  animation: notebook-cue 1.6s var(--ease-standard) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .notebook__leaf {
+    will-change: auto;
   }
 }
 
-.animate-botanical-pulse {
-  animation: botanicalPulse 4s ease-in-out infinite;
+/* ---------------------------------------------------------------------
+   Hero flight — a scroll-scrubbed drone-footage intro above the Hero.
+   Same runway/scene pinning shape as .notebook__runway/.notebook__scene
+   above (a taller runway, a scene sticky inside it, scroll distance
+   mapped to progress in HeroFlight.tsx), but full-bleed under the fixed
+   header instead of starting below it: `main` still carries its global
+   pt-16 (see layout.tsx), so this section alone pulls itself up over
+   that gap with a negative margin. Every other section keeps the
+   header offset untouched.
+   ------------------------------------------------------------------- */
+.hero-flight {
+  margin-top: -4rem;
+}
+.hero-flight__runway {
+  position: relative;
+  height: calc(100vh * 1.5);
+  height: calc(100svh * 1.5);
+}
+.hero-flight__scene {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: rgb(var(--plate));
+}
+.hero-flight__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-standard);
+}
+.hero-flight__canvas--ready {
+  opacity: 1;
+}
+.hero-flight__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(var(--plate)), rgb(var(--plate) / 0.45) 45%, rgb(var(--plate) / 0.15) 75%);
+}
+/* Centered and left fully opaque for the whole flight (no scroll-driven
+   fade) — only the scroll cue below responds to progress. */
+.hero-flight__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: rgb(var(--plate-ink));
+}
+/* Pinned to the bottom independently of the centered text above, so the
+   "start scrolling" hint can fade out on its own once scrolling begins. */
+.hero-flight__cue-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .hero-flight__cue-wrap {
+    bottom: 2.5rem;
+  }
+}
+.hero-flight__cue {
+  animation: notebook-cue 1.6s var(--ease-standard) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-flight__canvas {
+    transition: none;
+  }
 }
 
-@keyframes sunbeamShift {
-  0%, 100% {
-    opacity: 0.4;
-    transform: rotate(0deg);
-  }
-  50% {
-    opacity: 0.7;
-    transform: rotate(1deg);
-  }
+/* Hardcovers. Sized in container units so the type and trim scale with
+   the page — the same cover renders at ~420–480px wide in the book and
+   at phone width in the carousel. */
+.notebook-cover {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: size;
+  background: rgb(var(--herbarium-deep));
+  color: rgb(var(--plate-ink));
+}
+.notebook-cover__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgb(var(--plate) / 0.6), rgb(var(--plate) / 0) 32%),
+    linear-gradient(to top, rgb(var(--plate) / 0.72), rgb(var(--plate) / 0) 58%),
+    radial-gradient(130% 95% at 50% 45%, rgb(var(--plate) / 0) 55%, rgb(var(--plate) / 0.5));
+}
+/* Blind-stamped double rule, inset from the board edge. */
+.notebook-cover__frame {
+  position: absolute;
+  inset: 4.5cqmin;
+  border: 1px solid rgb(var(--plate-ink) / 0.5);
+  outline: 1px solid rgb(var(--plate-ink) / 0.22);
+  outline-offset: -6px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+/* The groove where a hardcover board flexes at the spine. */
+.notebook-cover__hinge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3cqw;
+  pointer-events: none;
+}
+.notebook-cover__hinge--left {
+  left: 2.2cqw;
+  background: linear-gradient(
+    to right,
+    rgb(var(--plate) / 0.4),
+    rgb(var(--plate-ink) / 0.16) 45%,
+    rgb(var(--plate) / 0.32)
+  );
+}
+.notebook-cover__hinge--right {
+  right: 2.2cqw;
+  background: linear-gradient(
+    to left,
+    rgb(var(--plate) / 0.4),
+    rgb(var(--plate-ink) / 0.16) 45%,
+    rgb(var(--plate) / 0.32)
+  );
+}
+.notebook-cover__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10cqmin 11cqmin;
+}
+/* A pasted-on paper label with its own printed double rule. */
+.notebook-cover__label,
+.notebook-bookplate {
+  border-radius: 2px;
+  background: rgb(var(--paper-raised));
+  color: rgb(var(--ink));
+  box-shadow:
+    0 12px 26px -14px rgb(var(--plate) / 0.9),
+    inset 0 0 0 1px rgb(var(--line-strong)),
+    inset 0 0 0 5px rgb(var(--paper-raised)),
+    inset 0 0 0 6px rgb(var(--line));
+}
+.notebook-cover__label {
+  padding: 6cqmin 7cqmin;
+}
+.notebook-cover__label--compact {
+  padding: 5cqmin 6cqmin;
+}
+.notebook-cover__title {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 8.6cqw, 2.4rem);
+  font-style: italic;
+  line-height: 1.06;
+  color: rgb(var(--ink));
+}
+.notebook-cover__rule {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin: 0.75rem 0;
+  background: rgb(var(--herbarium) / 0.6);
+}
+.notebook-cover__region {
+  margin-top: 0.35rem;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.1rem, 6.6cqw, 1.85rem);
+  font-style: italic;
+  line-height: 1.12;
+  color: rgb(var(--plate-ink));
+  text-shadow: 0 1px 14px rgb(var(--plate) / 0.7);
 }
 
-.animate-sunbeam {
-  animation: sunbeamShift 8s ease-in-out infinite;
+/* Endpapers: a deep-green botanical paper inside each cover. */
+.notebook-endpaper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--herbarium-deep));
+  color: rgb(var(--herbarium-tint) / 0.16);
+}
+.notebook-bookplate {
+  position: relative;
+  width: min(78%, 17rem);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+.notebook-bookplate .notebook-cover__rule {
+  margin-inline: auto;
+}
+.notebook-stamp {
+  position: relative;
+  width: min(48%, 11rem);
+  color: rgb(var(--herbarium-tint) / 0.55);
+  transform: rotate(-12deg);
+}
+
+/* Print (used by /cv, and applies wherever else the browser print dialog
+   is invoked): comfortable margins, no forced page background color. */
+@media print {
+  @page {
+    margin: 18mm 16mm;
+  }
+  html,
+  body {
+    background: #fff;
+  }
 }

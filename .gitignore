@@ -39,3 +39,17 @@ parsed_cv.txt
 
 # Large Word / raw CV files (optional to exclude or keep)
 *.docx
+
+# Raw drone-flight source frames (26MB) — processed copies live in
+# public/images/hero-flight/, see scripts/process-hero-frames.mjs
+/ezgif-*-png-split/
+
+# Raw, uncropped photo source dump (17GB) — every photo the site actually
+# serves has already been resized/converted into public/images/, which is
+# committed in full. This folder is source material for regenerating those,
+# never itself requested by the site, and far too large to push.
+/content and images/
+
+# Editor / local tool config and debug artifacts
+.vscode/
+.playwright-mcp/

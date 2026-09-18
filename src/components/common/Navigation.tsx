@@ -1,248 +1,247 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import { profileData } from "@/data/profile";
-import { Menu, X, Volume2, VolumeX, Leaf } from "lucide-react";
 import { scrollToSection } from "@/lib/smoothScroll";
+import { cn } from "@/lib/cn";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { HOME_SECTION_IDS } from "@/config/nav";
 
-interface NavProps {
-  activeSection: string;
-  isMuted: boolean;
-  toggleAudio: () => void;
-}
+const NAV_LINKS = [
+  { name: "Research", href: "#research" },
+  { name: "Species", href: "/plant-gallery" },
+  { name: "Publications", href: "/publications" },
+  { name: "Photos", href: "/photo-gallery" },
+  { name: "Sacred Groves", href: "/sacred-groves" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "#contact" },
+];
 
-export const Navigation: React.FC<NavProps> = ({
-  activeSection,
-  isMuted,
-  toggleAudio
-}) => {
+export const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  // Hidden for the length of the homepage's drone-flight intro (HeroFlight,
+  // above Hero) — the header competes with the footage, so it stays off
+  // until that section has fully scrolled past. `.hero-flight` matches both
+  // its static (reduced-motion) and animated variants, so this adapts to
+  // whichever one is mounted. See globals.css / HeroFlight.tsx.
+  const [hideForFlight, setHideForFlight] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // `inert` is a real DOM property in every browser this site targets, but
+  // @types/react's HTMLAttributes and React 18's own attribute whitelist
+  // disagree on it (JSX `inert={bool}` either fails to typecheck or warns
+  // at runtime depending on which one you satisfy) — setting the DOM
+  // property directly sidesteps both.
+  useEffect(() => {
+    if (headerRef.current) headerRef.current.inert = hideForFlight;
+  }, [hideForFlight]);
+
+  // Tracks which homepage section is most visible, for the two hash-based
+  // nav links (#research, #contact). Self-contained so Navigation can live
+  // once in the root layout rather than being wired per-page.
+  useEffect(() => {
+    if (!isHome) return;
+    const ratios = new Map<string, number>();
+    let current = "";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+        let bestId = current;
+        let bestRatio = 0;
+        ratios.forEach((ratio, id) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        });
+        if (bestRatio > 0 && bestId !== current) {
+          current = bestId;
+          setActiveSection(bestId);
+        }
+      },
+      { threshold: [0, 0.1, 0.25, 0.4, 0.6, 0.8, 1] }
+    );
+
+    HOME_SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [isHome]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+
+      const flight = isHome ? document.querySelector<HTMLElement>(".hero-flight") : null;
+      setHideForFlight(!!flight && window.scrollY < flight.offsetHeight);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
+  // Close the mobile menu on route change and on resize past the mobile breakpoint.
+  useEffect(() => setMenuOpen(false), [pathname]);
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMenuOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "About", href: "#journey" },
-    { name: "Research", href: "#research" },
-    { name: "Species Gallery", href: "/plant-gallery" },
-    { name: "Projects", href: "#projects" },
-    { name: "Books", href: "#books" },
-    { name: "Gallery", href: "#fieldwork" },
-    { name: "Contact", href: "#contact" }
-  ];
+  useFocusTrap(menuOpen, menuRef);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
-  const identityBadges = [
-    { label: "RG", title: "ResearchGate Profile", href: profileData.researchGate },
-    { label: "iD", title: `ORCID: ${profileData.orcid}`, href: profileData.orcidUrl },
-    { label: "V", title: `VIDWAN ID: ${profileData.vidwanId}`, href: profileData.vidwanUrl }
-  ];
+  const resolveHref = (href: string) => (href.startsWith("#") ? (isHome ? href : `/${href}`) : href);
 
-  // Hash links only make sense when rendered on the homepage itself. Off
-  // the homepage they need to navigate back to "/" and land on the hash
-  // (e.g. "/#research") rather than trying to scroll an element that
-  // doesn't exist on the current page.
-  const resolveHref = (href: string) => {
-    if (!href.startsWith("#")) return href;
-    return isHome ? href : `/${href}`;
+  const isLinkActive = (href: string) =>
+    href.startsWith("#") ? isHome && activeSection === href.slice(1) : pathname?.startsWith(href);
+
+  const renderLink = (href: string, name: string, onNavigate: () => void, className: string) => {
+    const isHashLink = href.startsWith("#");
+    if (isHashLink && isHome) {
+      return (
+        <a
+          key={name}
+          href={href}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection(href);
+            onNavigate();
+          }}
+          className={className}
+        >
+          {name}
+        </a>
+      );
+    }
+    return (
+      <Link key={name} href={resolveHref(href)} onClick={onNavigate} className={className}>
+        {name}
+      </Link>
+    );
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-30 transition-all duration-500 border-b ${
-        isScrolled
-          ? "bg-[#040D07]/70 backdrop-blur-2xl border-white/10 shadow-lg py-3"
-          : "bg-[#040D07]/30 backdrop-blur-xl border-white/[0.06] py-5"
-      }`}
+      ref={headerRef}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-40 border-b transition-all duration-base print:hidden",
+        isScrolled ? "border-line bg-paper/95 backdrop-blur-md shadow-card" : "border-transparent bg-paper/80 backdrop-blur-sm",
+        hideForFlight && "-translate-y-full opacity-0"
+      )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
-        {/* Brand Logo & Name */}
-        <a
-          href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("#hero");
-          }}
-          className="flex items-center gap-3 group focus:outline-none shrink-0"
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+        <Link
+          href="/"
+          className="focus-ring group flex shrink-0 flex-col leading-tight"
+          aria-label="Dr. M. Venkat Ramana, home"
         >
-          <div className="w-10 h-10 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm flex items-center justify-center transition-transform group-hover:scale-105">
-            <Leaf className="w-5 h-5 text-[#89C35C]" />
-          </div>
-          <div className="hidden sm:block">
-            <div className="text-white font-serif-title font-semibold text-base tracking-wide group-hover:text-[#9FE870] transition-colors">
-              Dr. M. Venkat Ramana
-            </div>
-            <div className="text-[11px] text-[#EFE8D8]/55 font-sans tracking-wider">
-              Botanist · Researcher · Educator
-            </div>
-          </div>
-        </a>
+          <span className="font-display text-base font-medium text-ink group-hover:text-herbarium-deep sm:text-lg">
+            {profileData.name}
+          </span>
+          <span className="hidden text-xs tracking-wide text-ink-muted sm:block">{profileData.tagline}</span>
+        </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-0.5 bg-white/5 backdrop-blur-md px-1.5 py-1.5 rounded-full border border-white/10">
-          {navLinks.map((link) => {
-            const isHashLink = link.href.startsWith("#");
-            const isActive = isHashLink
-              ? isHome && activeSection === link.href.replace("#", "")
-              : pathname?.startsWith(link.href);
-            const linkClassName = `px-3.5 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all ${
-              isActive
-                ? "bg-[#1E4D34]/80 text-[#9FE870] font-semibold"
-                : "text-[#EFE8D8]/70 hover:text-white hover:bg-white/10"
-            }`;
-
-            if (isHashLink && isHome) {
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  className={linkClassName}
-                >
-                  {link.name}
-                </a>
-              );
-            }
-
-            return (
-              <Link key={link.name} href={resolveHref(link.href)} className={linkClassName}>
-                {link.name}
-              </Link>
-            );
-          })}
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          {NAV_LINKS.map((link) =>
+            renderLink(
+              link.href,
+              link.name,
+              () => {},
+              cn(
+                "focus-ring rounded px-3 py-2 text-sm font-medium transition-colors",
+                isLinkActive(link.href) ? "text-herbarium-deep" : "text-ink-secondary hover:text-herbarium-deep"
+              )
+            )
+          )}
+          <Link
+            href="/cv"
+            className="focus-ring ml-2 rounded border border-line-strong px-3.5 py-1.5 text-xs font-semibold text-ink transition-colors hover:border-herbarium hover:text-herbarium-deep"
+          >
+            CV
+          </Link>
         </nav>
 
-        {/* Right Action Icons & Badges */}
-        <div className="hidden lg:flex items-center gap-2">
-          {identityBadges.map((badge) => (
-            <a
-              key={badge.label}
-              href={badge.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 flex items-center justify-center rounded-full text-xs font-bold bg-white/5 border border-white/10 text-[#EFE8D8]/80 hover:text-[#9FE870] hover:bg-white/10 hover:border-white/20 transition-all"
-              title={badge.title}
-            >
-              {badge.label}
-            </a>
-          ))}
-
-          {/* Ambient Sound Toggle */}
-          <button
-            onClick={toggleAudio}
-            className={`p-2.5 rounded-full border transition-all ${
-              !isMuted
-                ? "bg-[#1E4D34]/60 border-[#89C35C]/50 text-[#9FE870]"
-                : "bg-white/5 border-white/10 text-white/50 hover:text-white hover:border-white/20"
-            }`}
-            title={isMuted ? "Unmute Forest Atmosphere" : "Mute Forest Atmosphere"}
-            aria-label="Toggle Forest Audio"
-          >
-            {!isMuted ? (
-              <Volume2 className="w-4 h-4" />
-            ) : (
-              <VolumeX className="w-4 h-4" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={toggleAudio}
-            className={`p-2.5 rounded-full border transition-all ${
-              !isMuted
-                ? "bg-[#1E4D34]/60 border-[#89C35C]/50 text-[#9FE870]"
-                : "bg-white/5 border-white/10 text-white/50"
-            }`}
-            aria-label="Toggle Audio"
-          >
-            {!isMuted ? (
-              <Volume2 className="w-4 h-4" />
-            ) : (
-              <VolumeX className="w-4 h-4" />
-            )}
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-full bg-white/5 border border-white/10 text-[#EFE8D8] hover:text-[#9FE870] hover:bg-white/10 transition-all"
-            aria-label="Open Mobile Menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
-        </div>
+        <button
+          ref={menuButtonRef}
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="focus-ring rounded p-2 text-ink lg:hidden"
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#040D07]/80 backdrop-blur-2xl border-t border-white/10 px-6 py-5">
-          <nav className="flex flex-col gap-1">
-            {navLinks.map((link) => {
-              const isHashLink = link.href.startsWith("#");
-              const linkClassName =
-                "px-4 py-2.5 rounded-xl text-sm text-[#EFE8D8]/85 hover:text-white hover:bg-white/10 font-medium transition-colors";
+      {/* Scroll progress — a slim, always-visible substitute for the old
+          rails, which disappeared entirely below 1440px. Scaled via
+          transform, not animated width, so the browser composites it
+          instead of recomputing layout on every scroll frame. */}
+      <div className="h-px w-full bg-line" aria-hidden>
+        <div
+          className="h-px w-full origin-left bg-herbarium transition-transform duration-fast ease-standard"
+          style={{ transform: `scaleX(${progress})` }}
+        />
+      </div>
 
-              if (isHashLink && isHome) {
-                return (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setMobileMenuOpen(false);
-                      scrollToSection(link.href);
-                    }}
-                    className={linkClassName}
-                  >
-                    {link.name}
-                  </a>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.name}
-                  href={resolveHref(link.href)}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={linkClassName}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          ref={menuRef}
+          className="absolute left-0 right-0 top-full border-b border-line bg-paper shadow-raised lg:hidden"
+        >
+          <nav className="flex flex-col px-5 py-3" aria-label="Mobile">
+            {NAV_LINKS.map((link) =>
+              renderLink(
+                link.href,
+                link.name,
+                () => setMenuOpen(false),
+                cn(
+                  "focus-ring rounded px-2 py-3 text-base font-medium border-b border-line last:border-b-0",
+                  isLinkActive(link.href) ? "text-herbarium-deep" : "text-ink-secondary"
+                )
+              )
+            )}
+            <Link
+              href="/cv"
+              onClick={() => setMenuOpen(false)}
+              className="focus-ring mt-3 rounded border border-line-strong px-4 py-2.5 text-center text-sm font-semibold text-ink"
+            >
+              Download CV
+            </Link>
           </nav>
-          <div className="flex items-center gap-2.5 pt-4 mt-3 border-t border-white/10">
-            {identityBadges.map((badge) => (
-              <a
-                key={badge.label}
-                href={badge.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center rounded-full text-xs font-bold bg-white/5 border border-white/10 text-[#EFE8D8]/80 hover:text-[#9FE870] hover:bg-white/10"
-                title={badge.title}
-              >
-                {badge.label}
-              </a>
-            ))}
-          </div>
         </div>
       )}
     </header>

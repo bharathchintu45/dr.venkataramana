@@ -33,7 +33,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "North Andaman, Andaman & Nicobar Islands",
     geography: "Andaman Islands, India (Endemic)",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-artabotrys.png",
+    imageCard: "/images/landscapes/dsc-8756.webp",
     conservationStatus: "Critically Endangered (Narrow Endemic)",
     diagnosticFeatures: [
       "Woody climbing liana with hooked peduncles for tree canopy attachment",
@@ -55,7 +55,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Saddle Peak National Park, North Andaman",
     geography: "Andaman Islands, India (Strictly Endemic)",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-centotheca.png",
+    imageCard: "/images/landscapes/dsc-8759.webp",
     conservationStatus: "Critically Endangered",
     diagnosticFeatures: [
       "Perennial broad-leaved forest grass with open panicle inflorescence",
@@ -77,7 +77,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Saddle Peak National Park, North Andaman",
     geography: "Andaman Islands, India (Endemic)",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-murdannia.png",
+    imageCard: "/images/landscapes/dsc-9544.webp",
     conservationStatus: "Endangered",
     diagnosticFeatures: [
       "Slender erect herb known as the Saddle Peak Dewflower",
@@ -99,7 +99,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Saddle Peak National Park, North Andaman",
     geography: "Andaman Islands, India",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-syzygium-sanjappanum.png",
+    imageCard: "/images/landscapes/dsc-5711.webp",
     conservationStatus: "Vulnerable (Narrow Range)",
     diagnosticFeatures: [
       "Evergreen tree with coriaceous elliptic leaves and prominent intramarginal veins",
@@ -121,7 +121,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Saddle Peak National Park, North Andaman",
     geography: "Andaman Islands, India",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-syzygium-hookeri.png",
+    imageCard: "/images/landscapes/dsc-6099.webp",
     conservationStatus: "Endangered",
     diagnosticFeatures: [
       "Stout branched tree distinguished by densely clustered inflorescences",
@@ -143,7 +143,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Saddle Peak National Park, North Andaman",
     geography: "Andaman Islands, India (Strictly Endemic)",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/specimens/card-staurogyne.png",
+    imageCard: "/images/landscapes/dsc-0966.webp",
     conservationStatus: "Critically Endangered",
     diagnosticFeatures: [
       "Small procumbent herb with glandular-pubescent stems and leaves",
@@ -165,7 +165,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Granitic rocky hillocks, Hyderabad, Telangana",
     geography: "Peninsular India (Hyderabad Endemic)",
     region: "Peninsular India (Telangana)",
-    imageCard: "/assets/specimens/card-artabotrys.png",
+    imageCard: "/images/landscapes/dsc-0108.webp",
     conservationStatus: "Endangered (Urban Pressure)",
     diagnosticFeatures: [
       "Bulbous geophytic herb adapted to shallow soils over Deccan granitic rocks",
@@ -188,7 +188,7 @@ export const speciesDiscoveries: SpeciesDiscovery[] = [
     typeLocality: "Andaman & Nicobar Islands",
     geography: "Andaman & Nicobar Islands, India",
     region: "Andaman & Nicobar Islands",
-    imageCard: "/assets/research/card-cycads.png",
+    imageCard: "/images/expeditions/dscn1125.webp",
     conservationStatus: "Endangered (CITES Appendix II)",
     diagnosticFeatures: [
       "Arborescent ancient gymnosperm with solitary pachycaul trunk",

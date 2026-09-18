@@ -12,6 +12,8 @@ import {
 import { PlantCard } from "./PlantCard";
 import { BackLink } from "./BackLink";
 import { Search, SlidersHorizontal, ChevronDown, ChevronUp, Leaf } from "lucide-react";
+import { cn } from "@/lib/cn";
+import { Button } from "@/components/ui/Button";
 
 function toggleInSet(set: Set<string>, value: string): Set<string> {
   const next = new Set(set);
@@ -31,29 +33,30 @@ interface FacetGroupProps {
 }
 
 const FacetGroup: React.FC<FacetGroupProps> = ({ label, options, selected, onToggle }) => (
-  <div>
-    <div className="text-[11px] uppercase tracking-wider text-[#89C35C] font-semibold mb-2">
-      {label}
-    </div>
+  <fieldset>
+    <legend className="mb-2 text-xs font-semibold uppercase tracking-wider text-herbarium">{label}</legend>
     <div className="flex flex-wrap gap-1.5">
       {options.map((opt) => {
         const isActive = selected.has(opt);
         return (
           <button
             key={opt}
+            type="button"
+            aria-pressed={isActive}
             onClick={() => onToggle(opt)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+            className={cn(
+              "focus-ring rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
               isActive
-                ? "bg-[#2A6B48] text-white border border-[#89C35C] shadow-botanical-glow"
-                : "bg-[#0A1C12] text-[#EFE8D8]/70 hover:text-white hover:bg-[#143523] border border-white/5"
-            }`}
+                ? "border-herbarium bg-herbarium text-paper-raised"
+                : "border-line-strong bg-paper text-ink-secondary hover:border-herbarium/60 hover:text-herbarium-deep"
+            )}
           >
             {opt}
           </button>
         );
       })}
     </div>
-  </div>
+  </fieldset>
 );
 
 export const GalleryView: React.FC = () => {
@@ -101,95 +104,71 @@ export const GalleryView: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto w-full">
-      <BackLink href="/" label="Back to Home" />
+    <div className="mx-auto w-full max-w-6xl">
+      <BackLink href="/" label="Back to home" />
 
-      <div className="text-center max-w-2xl mx-auto my-6 space-y-2">
-        <h1 className="text-3xl sm:text-5xl font-serif-title font-bold text-white tracking-tight">
-          Plant Gallery
-        </h1>
-        <p className="text-sm sm:text-base text-[#EFE8D8]/85 font-sans">
-          Every species discovered and described by Dr. M. Venkat Ramana
+      <div className="my-6 max-w-2xl">
+        <p className="stamp text-herbarium">{speciesDiscoveries.length} type specimens</p>
+        <h1 className="mt-2 font-display text-3xl font-medium text-ink sm:text-4xl">Plant gallery</h1>
+        <p className="mt-2 text-base text-ink-secondary">
+          Every species discovered and described by Dr. M. Venkat Ramana.
         </p>
       </div>
 
-      {/* Search & Advanced Filters */}
-      <div className="bg-[#091C10]/70 border border-[#89C35C]/15 rounded-2xl p-4 sm:p-6 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="mb-6 rounded border border-line bg-paper-raised p-4 sm:p-5">
+        <div className="flex flex-col items-stretch gap-3 md:flex-row md:items-center md:justify-between">
           <div className="relative w-full md:w-96">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#89C35C]" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-herbarium" aria-hidden />
             <input
               type="text"
-              placeholder="Search by scientific name, local name, or family..."
+              placeholder="Search by scientific name, local name, or family…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-[#050E08] border border-[#89C35C]/30 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#9FE870] focus:ring-1 focus:ring-[#9FE870]"
+              aria-label="Search species"
+              className="focus-ring w-full rounded-full border border-line-strong bg-paper py-2 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted focus:border-herbarium"
             />
           </div>
 
           <button
+            type="button"
             onClick={() => setAdvancedOpen((v) => !v)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium bg-[#0A1C12] text-[#EFE8D8]/80 hover:text-white hover:bg-[#143523] border border-white/10 transition-all"
+            aria-expanded={advancedOpen}
+            aria-controls="advanced-search"
+            className="focus-ring touch-target relative flex items-center justify-center gap-2 rounded-full border border-line-strong px-4 py-2 text-xs font-medium text-ink-secondary transition-colors hover:border-herbarium hover:text-herbarium-deep"
           >
-            <SlidersHorizontal className="w-3.5 h-3.5 text-[#89C35C]" />
-            <span>Advanced Search{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}</span>
-            {advancedOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden />
+            <span>Advanced search{activeFilterCount > 0 ? ` (${activeFilterCount})` : ""}</span>
+            {advancedOpen ? <ChevronUp className="h-3.5 w-3.5" aria-hidden /> : <ChevronDown className="h-3.5 w-3.5" aria-hidden />}
           </button>
         </div>
 
         {advancedOpen && (
-          <div className="mt-5 pt-5 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <FacetGroup
-              label="Family"
-              options={familyOptions}
-              selected={selectedFamilies}
-              onToggle={(v) => setSelectedFamilies((s) => toggleInSet(s, v))}
-            />
-            <FacetGroup
-              label="Growth Habit"
-              options={habitOptions}
-              selected={selectedHabits}
-              onToggle={(v) => setSelectedHabits((s) => toggleInSet(s, v))}
-            />
-            <FacetGroup
-              label="Region"
-              options={regionOptions}
-              selected={selectedRegions}
-              onToggle={(v) => setSelectedRegions((s) => toggleInSet(s, v))}
-            />
-            <FacetGroup
-              label="Conservation Status"
-              options={statusOptions}
-              selected={selectedStatuses}
-              onToggle={(v) => setSelectedStatuses((s) => toggleInSet(s, v))}
-            />
+          <div id="advanced-search" className="mt-5 grid grid-cols-1 gap-5 border-t border-line pt-5 sm:grid-cols-2">
+            <FacetGroup label="Family" options={familyOptions} selected={selectedFamilies} onToggle={(v) => setSelectedFamilies((s) => toggleInSet(s, v))} />
+            <FacetGroup label="Growth habit" options={habitOptions} selected={selectedHabits} onToggle={(v) => setSelectedHabits((s) => toggleInSet(s, v))} />
+            <FacetGroup label="Region" options={regionOptions} selected={selectedRegions} onToggle={(v) => setSelectedRegions((s) => toggleInSet(s, v))} />
+            <FacetGroup label="Conservation status" options={statusOptions} selected={selectedStatuses} onToggle={(v) => setSelectedStatuses((s) => toggleInSet(s, v))} />
           </div>
         )}
       </div>
 
-      {/* Result count */}
-      <div className="text-xs text-[#EFE8D8]/60 mb-4">
-        Showing <span className="text-[#9FE870] font-semibold">{filteredSpecies.length}</span> of{" "}
-        {speciesDiscoveries.length} species
-      </div>
+      <p className="mb-4 text-xs text-ink-muted" role="status">
+        Showing <span className="font-semibold text-herbarium-deep">{filteredSpecies.length}</span> of {speciesDiscoveries.length} species
+      </p>
 
-      {/* Grid */}
       {filteredSpecies.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
           {filteredSpecies.map((sp) => (
             <PlantCard key={sp.id} species={sp} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 text-[#EFE8D8]/50">
-          <Leaf className="w-12 h-12 mx-auto mb-3 opacity-30 text-[#89C35C]" />
+        <div className="py-16 text-center text-ink-muted">
+          <Leaf className="mx-auto mb-3 h-12 w-12 text-herbarium/40" aria-hidden />
           <p>No species found matching your search.</p>
-          <button
-            onClick={clearAll}
-            className="mt-3 text-xs text-[#9FE870] hover:underline"
-          >
-            Clear Filters
-          </button>
+          <Button variant="link" onClick={clearAll} className="mt-3">
+            Clear filters
+          </Button>
         </div>
       )}
     </div>
