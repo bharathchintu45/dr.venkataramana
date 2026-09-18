@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { profileData } from "@/data/profile";
-import { hasMotion } from "@/lib/motion";
+import { useHasMotion } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
 const FRAME_COUNT = 35;
@@ -24,8 +24,17 @@ const framePath = (variant: "desktop" | "mobile", i: number) =>
  * .notebook__runway/.notebook__scene in Sketchbook.tsx.
  */
 export const HeroFlight: React.FC = () => {
-  const [animated, setAnimated] = useState(false);
-  useEffect(() => setAnimated(hasMotion()), []);
+  // useSyncExternalStore, not useState+useEffect: React specifically
+  // renders the `getServerSnapshot` (false) value on the client's
+  // hydration pass to avoid a mismatch there, then re-checks the real
+  // snapshot as part of its own commit cycle — not a separately scheduled
+  // effect. That distinction is load-bearing, not stylistic: an effect
+  // (`useEffect(() => setAnimated(hasMotion()), [])`) was found to never
+  // fire at all on hosts that inject extra markup into <head> (observed
+  // on Netlify's default output), leaving this stuck on the static
+  // fallback forever even though has-motion was present. See useHasMotion
+  // in src/lib/motion.ts.
+  const animated = useHasMotion();
 
   return animated ? <AnimatedFlight /> : <StaticFlight />;
 };

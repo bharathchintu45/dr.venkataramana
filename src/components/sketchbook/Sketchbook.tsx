@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import type { SpeciesDiscovery } from "@/data/species";
 import { cn } from "@/lib/cn";
@@ -125,17 +125,26 @@ export const Sketchbook: React.FC<SketchbookProps> = ({ species }) => {
   // SSR (and the pre-hydration client render) always renders the
   // carousel — the honest, fully-readable baseline. Only after mount do we
   // swap to the 3D book: a two-page spread on wide screens, one page at a
-  // time on narrow ones. No JS at all means this effect never runs and the
-  // carousel stays: every species remains in the HTML for a crawler or a
-  // no-JS visitor.
-  const [layout, setLayout] = useState<"spread" | "single" | null>(null);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 900px)");
-    const update = () => setLayout(mq.matches ? "spread" : "single");
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
+  // time on narrow ones. No JS at all means the snapshot below never
+  // resolves and the carousel stays: every species remains in the HTML
+  // for a crawler or a no-JS visitor.
+  //
+  // useSyncExternalStore, not useState+useEffect: on hosts that inject
+  // extra markup into <head> (observed on Netlify's default output), the
+  // resulting hydration mismatch at the document root was found to
+  // permanently stop a useEffect-driven setLayout call from ever firing —
+  // stuck showing the carousel to every visitor, motion or not. This
+  // hook's snapshot is instead re-checked as part of React's own commit
+  // cycle and was verified to keep working under that exact failure mode.
+  const layout = useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia("(min-width: 900px)");
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    },
+    () => (window.matchMedia("(min-width: 900px)").matches ? "spread" : "single"),
+    () => null as "spread" | "single" | null
+  );
 
   if (!layout) {
     return <NotebookCarousel species={species} speciesIndex={speciesIndex} meta={meta} />;
