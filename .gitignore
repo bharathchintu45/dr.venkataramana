@@ -7,8 +7,11 @@
 # testing
 /coverage
 
-# next.js
+# next.js — /.next-build/ is the alternate distDir used by
+# `NEXT_DIST_DIR=.next-build npm run build`, so a production build can run
+# without clobbering the .next a dev server is using (see next.config.mjs).
 /.next/
+/.next-build/
 /out/
 
 # production
