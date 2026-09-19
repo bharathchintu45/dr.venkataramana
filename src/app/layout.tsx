@@ -87,11 +87,54 @@ export default function RootLayout({
     } catch (e) {}
   `;
 
+  // Netlify rewrites the HTML at the edge, inserting a comment and two meta
+  // tags into <head> right after <meta charset>. React never rendered those
+  // nodes, so hydration walks into markup it doesn't recognise at the very
+  // top of the tree and fails — observed live as #418 + #423 (React discards
+  // the server HTML and re-renders the whole root, which also wipes the
+  // has-motion class straight back off <html>) and, worse, sometimes #329,
+  // where hydration dies outright and no client component ever mounts. Either
+  // way the page renders but is completely inert: no scroll-driven hero, no
+  // notebook.
+  //
+  // There's no documented way to turn the injection off, so remove the nodes
+  // before React runs. This script sits after them in document order, so they
+  // are already parsed by the time it executes. Matching is deliberately
+  // narrow — if Netlify changes the markup this simply does nothing and we're
+  // no worse off. The served HTML still carries the tags, so whatever reads
+  // them (crawlers, Netlify's own tooling) is unaffected; only the live DOM
+  // React is about to hydrate gets cleaned.
+  const stripInjectedHeadNodes = `
+    try {
+      var head = document.head;
+      if (head) {
+        var nodes = head.childNodes;
+        for (var i = nodes.length - 1; i >= 0; i--) {
+          var n = nodes[i];
+          if (n.nodeType === 8) {
+            if (n.nodeValue && n.nodeValue.indexOf('hosted on Netlify') !== -1) head.removeChild(n);
+          } else if (n.nodeType === 3) {
+            // The injected block is newline-separated, and those newlines
+            // land in <head> as text nodes React also never rendered —
+            // enough on their own to keep hydration mismatching. React's
+            // own head output has no whitespace between elements, so any
+            // whitespace-only text node here is foreign too.
+            if (n.nodeValue && !n.nodeValue.trim()) head.removeChild(n);
+          } else if (n.nodeType === 1 && n.tagName === 'META') {
+            var name = n.getAttribute('name');
+            if (name === 'hosting-provider' || name === 'netlify-deploy') head.removeChild(n);
+          }
+        }
+      }
+    } catch (e) {}
+  `;
+
   // The gate edits <html>'s class before hydration, so its attributes are
   // expected to differ from the server render.
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: stripInjectedHeadNodes }} />
         <script dangerouslySetInnerHTML={{ __html: motionGate }} />
         <script
           type="application/ld+json"
