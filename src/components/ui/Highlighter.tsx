@@ -65,6 +65,7 @@ export function Highlighter({
     let annotation: RoughAnnotation | null = null;
     let resizeObserver: ResizeObserver | null = null;
     let timer: ReturnType<typeof setTimeout> | null = null;
+    let resizeRaf: number | null = null;
 
     if (shouldShow && element) {
       const draw = () => {
@@ -80,23 +81,54 @@ export function Highlighter({
         annotation = currentAnnotation;
         currentAnnotation.show();
 
-        resizeObserver = new ResizeObserver(() => {
+        const redraw = () => {
           currentAnnotation.hide();
           currentAnnotation.show();
-        });
+        };
+
+        // rough-notation draws a plain SVG positioned absolutely from a
+        // single getBoundingClientRect() snapshot — it never tracks the
+        // element afterwards. ResizeObserver only fires when the element
+        // (or body) actually changes SIZE, so it misses the far more common
+        // case: the *window* resizes (or a device rotates) and the phrase
+        // reflows onto a different line without its own box changing size
+        // at all. Without this, the mark is left floating at its old,
+        // now-wrong coordinates — a squiggle with no text near it.
+        resizeObserver = new ResizeObserver(redraw);
         resizeObserver.observe(element);
         resizeObserver.observe(document.body);
+
+        const handleWindowResize = () => {
+          if (resizeRaf) cancelAnimationFrame(resizeRaf);
+          resizeRaf = requestAnimationFrame(redraw);
+        };
+        window.addEventListener("resize", handleWindowResize);
+        window.addEventListener("orientationchange", handleWindowResize);
+
+        return () => {
+          window.removeEventListener("resize", handleWindowResize);
+          window.removeEventListener("orientationchange", handleWindowResize);
+        };
       };
 
       // Clears the ~420ms [data-reveal] fade-in this phrase may still be
       // mid-transition through when it first enters view.
-      timer = setTimeout(draw, 500);
+      let cleanupWindowListeners: (() => void) | undefined;
+      timer = setTimeout(() => {
+        cleanupWindowListeners = draw();
+      }, 500);
+
+      return () => {
+        if (timer) clearTimeout(timer);
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        cleanupWindowListeners?.();
+        annotation?.remove();
+        resizeObserver?.disconnect();
+      };
     }
 
     return () => {
       if (timer) clearTimeout(timer);
-      annotation?.remove();
-      resizeObserver?.disconnect();
     };
   }, [shouldShow, action, color, strokeWidth, animationDuration, iterations, padding, multiline]);
 

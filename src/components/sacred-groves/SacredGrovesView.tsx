@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { sacredGroves, groveSrc, groveThumb } from "@/data/sacredGroves";
 import { groveFlora } from "@/data/groveFlora";
 import { BackLink } from "@/components/plant-gallery/BackLink";
 import { Button } from "@/components/ui/Button";
+import { Card, CardBody, CardTitle, CardMeta, CardText, CardFooter } from "@/components/ui/Card";
 import { Lightbox, type LightboxImage } from "@/components/common/Lightbox";
 
 export const SacredGrovesView: React.FC = () => {
@@ -58,49 +58,46 @@ export const SacredGrovesView: React.FC = () => {
       </div>
 
       <div data-reveal-group className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {sacredGroves.map((grove, i) => {
+        {sacredGroves.map((grove) => {
           const floraCount = floraCounts.get(grove.id) ?? 0;
+          const groveIndex = sacredGroves.indexOf(grove);
           return (
-            <div
+            <Card
               key={grove.id}
               data-reveal-item
               data-reveal
               style={{ ["--reveal-y" as string]: "10px" }}
-              className="group relative overflow-hidden rounded border border-line bg-paper-raised shadow-card transition-all duration-base hover:-translate-y-0.5 hover:shadow-raised"
+              mediaAction={{
+                onSelect: () => setActiveIndex(groveIndex),
+                label: `View ${grove.photos.length} photos of ${grove.name}`
+              }}
+              media={{
+                src: groveThumb(grove.id, grove.photos[0].file),
+                alt: grove.photos[0].alt,
+                sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+                aspect: "4/3",
+                label: `${grove.photos.length} photos`
+              }}
             >
-              <button
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                className="focus-ring block w-full text-left"
-                aria-label={`View ${grove.photos.length} photos of ${grove.name}`}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-plate">
-                  <Image
-                    src={groveThumb(grove.id, grove.photos[0].file)}
-                    alt={grove.photos[0].alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-slow group-hover:scale-[1.04]"
-                  />
-                </div>
-              </button>
-              <div className="border-t border-line p-4">
-                <h2 className="text-sm font-medium text-ink">{grove.name}</h2>
-                <p className="mt-1 text-xs text-ink-muted">
-                  {grove.place} · {grove.photos.length} photos
-                </p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-secondary">{grove.description}</p>
+              <CardBody>
+                <CardTitle as="h2" className="min-h-0 font-sans text-sm font-medium">
+                  {grove.name}
+                </CardTitle>
+                <CardMeta>{grove.place}</CardMeta>
+                <CardText>{grove.description}</CardText>
                 {floraCount > 0 && (
-                  <Link
-                    href={`/sacred-groves/flora?grove=${grove.id}`}
-                    className="focus-ring touch-target relative group/link mt-3 inline-flex items-center gap-1 text-xs font-semibold text-herbarium hover:text-herbarium-deep"
-                  >
-                    {floraCount} plants recorded
-                    <ArrowRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
-                  </Link>
+                  <CardFooter>
+                    <Link
+                      href={`/sacred-groves/flora?grove=${grove.id}`}
+                      className="focus-ring touch-target relative group/link inline-flex items-center gap-1 text-xs font-semibold text-herbarium hover:text-herbarium-deep"
+                    >
+                      {floraCount} plants recorded
+                      <ArrowRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5" aria-hidden />
+                    </Link>
+                  </CardFooter>
                 )}
-              </div>
-            </div>
+              </CardBody>
+            </Card>
           );
         })}
       </div>

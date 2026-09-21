@@ -30,10 +30,10 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({ images, alt }) => {
         type="button"
         onClick={() => setLightboxOpen(true)}
         aria-label={`View larger: ${alt}`}
-        className="focus-ring relative block h-72 w-full overflow-hidden rounded border border-line bg-paper-raised sm:h-96"
+        className="focus-ring relative block aspect-[4/3] w-full overflow-hidden rounded border border-line bg-plate"
       >
         <Lens zoomFactor={1.8} lensSize={180} lensColor="rgb(var(--herbarium))" className="absolute inset-0">
-          <Image src={images[activeIndex]} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          <Image src={images[activeIndex]} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" />
         </Lens>
       </button>
 

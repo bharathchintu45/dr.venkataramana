@@ -1,26 +1,64 @@
-import { SpeciesDiscovery } from "@/data/species";
-import { getConservationCategory, getSpeciesThumb } from "@/lib/species";
-import { Card } from "@/components/ui/Card";
+import { Sparkles } from "lucide-react";
+import { PlantGalleryEntry } from "@/lib/plantGallery";
+import { Card, CardBody, CardTitle, CardMeta, CardFooter } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
 interface PlantCardProps {
-  species: SpeciesDiscovery;
+  entry: PlantGalleryEntry;
 }
 
-export const PlantCard: React.FC<PlantCardProps> = ({ species }) => {
+/** Renders any of the three plant catalogs the gallery merges — a new
+ *  species discovery (year + habit + conservation badge), a sacred-grove
+ *  flora record (family + which grove(s)), or a landscape/urban-forestry
+ *  catalog record (family + which collection(s) + leaf type) — on one
+ *  shared card shell so a mixed grid still reads as one consistent gallery.
+ *  The "New species" eyebrow is what keeps the 8 discoveries from
+ *  disappearing into the field/landscape records. */
+export const PlantCard: React.FC<PlantCardProps> = ({ entry }) => {
+  const isDiscovery = entry.source === "discovery";
+  const isLandscape = entry.source === "landscape-flora";
+
   return (
     <Card
-      href={`/plant-gallery/${species.id}`}
-      media={{ src: getSpeciesThumb(species.imageCard), alt: `Habitat of ${species.scientificName}`, sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw", aspect: "3/4" }}
+      href={entry.href}
+      media={{
+        src: entry.thumbSrc,
+        alt: entry.thumbAlt,
+        sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw",
+        aspect: "4/3",
+        label: isDiscovery ? (
+          <Badge tone="accent" size="sm" icon={<Sparkles className="h-3 w-3" aria-hidden />} className="border-0 bg-transparent p-0">
+            New species
+          </Badge>
+        ) : (
+          entry.family
+        )
+      }}
     >
-      <div className="p-3">
-        <h2 className="font-display text-sm italic leading-tight text-ink">{species.scientificName}</h2>
-        <div className="mt-1 font-mono text-xs font-semibold text-ink-muted">{species.year}</div>
-        <div className="mt-2 flex flex-wrap gap-1">
-          <Badge tone="neutral">{species.growthHabit}</Badge>
-          <Badge tone="annotation">{getConservationCategory(species.conservationStatus)}</Badge>
-        </div>
-      </div>
+      <CardBody className="p-3">
+        <CardTitle as="h2" italic>
+          {entry.scientificName}
+        </CardTitle>
+        {isDiscovery ? (
+          <>
+            <CardMeta>{entry.growthHabit}</CardMeta>
+            <CardFooter className="pt-2">
+              <Badge tone="annotation">{entry.conservationCategory}</Badge>
+            </CardFooter>
+          </>
+        ) : isLandscape ? (
+          <>
+            <CardMeta className="line-clamp-2">{entry.collectionLabel}</CardMeta>
+            {entry.leafType && (
+              <CardFooter className="pt-2">
+                <Badge tone="annotation">{entry.leafType === "narrow" ? "Narrow-leaved" : "Broad-leaved"}</Badge>
+              </CardFooter>
+            )}
+          </>
+        ) : (
+          <CardMeta className="line-clamp-2">Recorded in {entry.groveLabel}</CardMeta>
+        )}
+      </CardBody>
     </Card>
   );
 };

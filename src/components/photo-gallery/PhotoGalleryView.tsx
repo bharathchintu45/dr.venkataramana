@@ -6,6 +6,7 @@ import { galleryCategories, photoSrc, photoThumb } from "@/data/photoGallery";
 import { BackLink } from "@/components/plant-gallery/BackLink";
 import { Lightbox, type LightboxImage } from "@/components/common/Lightbox";
 import { Button } from "@/components/ui/Button";
+import { handleSpotlightMove } from "@/components/ui/Card";
 import { cn } from "@/lib/cn";
 
 interface FlatPhoto {
@@ -108,13 +109,17 @@ export const PhotoGalleryView: React.FC = () => {
         })}
       </div>
 
-      <div className="columns-2 gap-3 sm:columns-3 sm:gap-4 lg:columns-4">
+      <div data-reveal-group className="columns-2 gap-3 sm:columns-3 sm:gap-4 lg:columns-4">
         {visiblePhotos.map((photo, i) => (
           <button
             key={photo.src}
             type="button"
+            data-reveal-item
+            data-reveal
+            style={{ ["--reveal-y" as string]: "10px" }}
             onClick={() => setLightboxIndex(i)}
-            className="focus-ring group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded border border-line bg-paper-raised transition-colors hover:border-herbarium/60 sm:mb-4"
+            onPointerMove={handleSpotlightMove}
+            className="card-spotlight focus-ring group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded border border-line bg-paper-raised shadow-card transition-all duration-base hover:-translate-y-1 hover:border-herbarium/60 hover:shadow-raised hover:ring-1 hover:ring-herbarium/25 active:scale-[0.98] sm:mb-4"
             aria-label={`Open ${photo.alt}`}
           >
             <Image
@@ -124,10 +129,10 @@ export const PhotoGalleryView: React.FC = () => {
               height={photo.height}
               loading="lazy"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className="h-auto w-full transform transition-transform duration-slow group-hover:scale-105"
+              className="h-auto w-full transform transition-transform duration-slow ease-enter group-hover:scale-105"
             />
             {activeCategory === "all" && (
-              <span className="hover-reveal absolute bottom-2 left-2 rounded-full bg-plate/75 px-2.5 py-1 text-xs font-medium text-plate-ink transition-opacity">
+              <span className="hover-reveal absolute bottom-2 left-2 z-[2] rounded-full bg-plate/75 px-2.5 py-1 text-xs font-medium text-plate-ink transition-opacity">
                 {photo.categoryTitle}
               </span>
             )}

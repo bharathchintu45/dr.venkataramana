@@ -24,7 +24,7 @@ export const Contact: React.FC = () => {
           <ContactForm />
         </div>
 
-        <div data-reveal style={{ ["--reveal-y" as string]: "14px" }} className="flex flex-col gap-5">
+        <div data-reveal style={{ ["--reveal-y" as string]: "14px" }} className="flex h-full flex-col gap-5">
           <div className="rounded border border-line bg-paper-raised p-5 shadow-card">
             <p className="stamp text-herbarium">Direct contact</p>
             <div className="mt-4 space-y-4 text-sm">
@@ -55,7 +55,12 @@ export const Contact: React.FC = () => {
             </div>
           </div>
 
-          <div className="rounded border border-herbarium/30 bg-herbarium-tint p-5 text-center">
+          {/* `flex-1` + centered content: the ContactForm panel next to this
+              is naturally taller (more fields), which stretches this whole
+              column via the grid's default items-stretch. Without this, the
+              extra height landed as dead space below this box instead of in
+              it — this panel now grows to absorb it instead. */}
+          <div className="flex flex-1 flex-col justify-center rounded border border-herbarium/30 bg-herbarium-tint p-5 text-center">
             <MessageCircle className="mx-auto h-6 w-6 text-herbarium-deep" aria-hidden />
             <p className="mt-2 text-sm font-medium text-herbarium-deep">Prefer to skip the form?</p>
             <p className="mt-1 text-xs text-ink-secondary">Start a WhatsApp chat directly.</p>

@@ -5,7 +5,15 @@ export interface DoctoralScholar {
   status: 'Awarded' | 'Working';
   thesisTitle: string;
   area: string;
+  /** Whether a scanned thesis cover exists at thesisCoverSrc(id)/thesisCoverThumb(id). */
+  hasCoverScan?: boolean;
 }
+
+/** A scholar's bound-thesis cover scan, at /public/images/theses/<id>.webp
+ *  (thumbnail at thumbs/<id>.webp). Only set `hasCoverScan` once both files
+ *  exist for that id. */
+export const thesisCoverSrc = (id: string) => `/images/theses/${id}.webp`;
+export const thesisCoverThumb = (id: string) => `/images/theses/thumbs/${id}.webp`;
 
 export const doctoralScholars: DoctoralScholar[] = [
   {
@@ -14,7 +22,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2023,
     status: "Awarded",
     thesisTitle: "Floristic Studies of Papikonda National Park, Andhra Pradesh",
-    area: "Plant Floristics & Orchidology"
+    area: "Plant Floristics & Orchidology",
+    hasCoverScan: true
   },
   {
     id: "phd-2",
@@ -22,7 +31,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2023,
     status: "Awarded",
     thesisTitle: "Systematics and Conservation of the Genus Cycas L. (Cycadaceae) in India",
-    area: "Gymnosperm Systematics & Cycad Conservation"
+    area: "Gymnosperm Systematics & Cycad Conservation",
+    hasCoverScan: true
   },
   {
     id: "phd-3",
@@ -30,7 +40,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2025,
     status: "Awarded",
     thesisTitle: "Studies on Plant Diversity and Conservation Practices in Sacred Groves of Telangana State",
-    area: "Sacred Grove Ecology & Conservation"
+    area: "Sacred Grove Ecology & Conservation",
+    hasCoverScan: true
   },
   {
     id: "phd-4",
@@ -38,7 +49,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2025,
     status: "Awarded",
     thesisTitle: "Investigation of Intraspecific Variations Among Wild Angiosperms in Telangana State",
-    area: "Angiosperm Intraspecific Diversity"
+    area: "Angiosperm Intraspecific Diversity",
+    hasCoverScan: true
   },
   {
     id: "phd-5",
@@ -46,7 +58,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2025,
     status: "Awarded",
     thesisTitle: "Exploration of Medicinal Plant Wealth of Telangana State",
-    area: "Medicinal Plants & Conservation Biology"
+    area: "Medicinal Plants & Conservation Biology",
+    hasCoverScan: true
   },
   {
     id: "phd-6",
@@ -54,7 +67,8 @@ export const doctoralScholars: DoctoralScholar[] = [
     yearAwarded: 2025,
     status: "Awarded",
     thesisTitle: "Comparative Phytochemical, Antimicrobial Studies on Some Important Medicinal Plants Vitex negundo L., and Aegle marmelos (L.) Correa and Its Intraspecific Variants",
-    area: "Phytochemistry & Pharmacognosy"
+    area: "Phytochemistry & Pharmacognosy",
+    hasCoverScan: true
   }
 ];
 

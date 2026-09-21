@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Metric } from "@/components/ui/Metric";
 import { Highlighter } from "@/components/ui/Highlighter";
 import { scrollToSection } from "@/lib/smoothScroll";
+import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 
 const CREDENTIALS = [
   { label: "ORCID", value: profileData.orcid, href: profileData.orcidUrl },
@@ -68,7 +69,7 @@ export const Hero: React.FC = () => {
             >
               Get in touch
             </Button>
-            <Button href="/cv" variant="secondary" size="lg" iconLeft={<Download className="h-4 w-4" />}>
+            <Button href={CV_DOWNLOAD_URL} download={CV_DOWNLOAD_FILENAME} variant="secondary" size="lg" iconLeft={<Download className="h-4 w-4" />}>
               Download CV
             </Button>
           </div>

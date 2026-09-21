@@ -1,17 +1,19 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { Download, Users, MapPin, Calendar, IndianRupee, GraduationCap, Mic2 } from "lucide-react";
+import { Download, Users, MapPin, Calendar, IndianRupee, Mic2 } from "lucide-react";
 import { profileData } from "@/data/profile";
 import { botanicalJourney } from "@/data/journey";
 import { researchProjectsData } from "@/data/projects";
 import { conferencesData, academicStats } from "@/data/conferences";
-import { doctoralScholars, externalEvaluations, studentVisits } from "@/data/teaching";
+import { externalEvaluations, studentVisits } from "@/data/teaching";
 import { membershipsData } from "@/data/memberships";
 import { achievementStats, editorialReviewerJournals } from "@/data/achievements";
 import { BackLink } from "@/components/plant-gallery/BackLink";
+import { DoctoralScholarsList } from "@/components/about/DoctoralScholarsList";
 import { Badge } from "@/components/ui/Badge";
 import { Metric } from "@/components/ui/Metric";
 import { Button } from "@/components/ui/Button";
+import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 
 export const metadata: Metadata = {
   title: "About | Dr. M. Venkat Ramana",
@@ -38,7 +40,7 @@ export default function AboutPage() {
             <em>{profileData.ipniAuthorForm}</em> ({profileData.ipniLifespan}). Research interest score{" "}
             {profileData.researchInterestScore}, {profileData.citations} citations, h-index {profileData.hIndex}.
           </p>
-          <Button href="/cv" variant="secondary" size="sm" iconLeft={<Download className="h-4 w-4" />} className="mt-4">
+          <Button href={CV_DOWNLOAD_URL} download={CV_DOWNLOAD_FILENAME} variant="secondary" size="sm" iconLeft={<Download className="h-4 w-4" />} className="mt-4">
             Download CV
           </Button>
         </div>
@@ -171,21 +173,7 @@ export default function AboutPage() {
       {/* Teaching & doctoral supervision */}
       <section className="mt-14 border-t border-line pt-10">
         <h2 className="font-display text-2xl font-medium text-ink">Doctoral supervision</h2>
-        <ul className="mt-6 space-y-5 divide-y divide-line border-t border-line">
-          {doctoralScholars.map((s) => (
-            <li key={s.id} className="pt-5 first:pt-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <GraduationCap className="h-4 w-4 text-herbarium" aria-hidden />
-                <p className="text-sm font-semibold text-ink">{s.name}</p>
-                <Badge tone={s.status === "Awarded" ? "accent" : "outline"}>
-                  {s.status} {s.yearAwarded}
-                </Badge>
-              </div>
-              <p className="mt-1.5 text-sm text-ink-secondary">{s.thesisTitle}</p>
-              <p className="mt-1 text-xs text-ink-muted">{s.area}</p>
-            </li>
-          ))}
-        </ul>
+        <DoctoralScholarsList />
 
         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
@@ -239,10 +227,18 @@ export default function AboutPage() {
       {/* Professional memberships */}
       <section className="mt-14 border-t border-line pt-10 pb-4">
         <h2 className="font-display text-2xl font-medium text-ink">Professional memberships</h2>
-        <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <ul data-reveal-group className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {membershipsData.map((m) => (
-            <li key={m.id} className="rounded border border-line bg-paper-raised p-4">
-              <Badge tone="accent">{m.membershipType}</Badge>
+            <li
+              key={m.id}
+              data-reveal-item
+              data-reveal
+              style={{ ["--reveal-y" as string]: "10px" }}
+              className="flex h-full flex-col rounded border border-line bg-paper-raised p-4"
+            >
+              <Badge tone="accent" className="self-start">
+                {m.membershipType}
+              </Badge>
               <p className="mt-2 text-sm font-semibold text-ink">{m.name}</p>
               <p className="mt-1 text-xs text-ink-secondary">{m.description}</p>
             </li>

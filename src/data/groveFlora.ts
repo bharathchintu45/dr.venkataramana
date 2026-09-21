@@ -34,7 +34,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Acalypha villosa",
     family: "Euphorbiaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Acalypha villosa photographed in the Neeladishwaraswamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -79,7 +79,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Afzelia africana",
     family: "Fabaceae",
     groves: ["bheemuni-padam-gudur", "devuni-gutta-mulugu"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Afzelia africana photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Afzelia africana photographed in the Devuni Gutta sacred grove, photo 4" }],
   },
   // review
   {
@@ -87,7 +87,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Afzelia quanzensis",
     family: "Fabaceae",
     groves: ["mallela-theertham", "neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Afzelia quanzensis photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Afzelia quanzensis photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Afzelia quanzensis photographed in the Neeladishwaraswamy sacred grove, photo 5" }],
   },
   {
     id: "aglaia-elaeagnoidea",
@@ -216,7 +216,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Antiaris toxicaria",
     family: "Moraceae",
     groves: ["durgamma-rukma-thanda", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Antiaris toxicaria photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Antiaris toxicaria photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Antiaris toxicaria photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Antiaris toxicaria photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Antiaris toxicaria photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Antiaris toxicaria photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Antiaris toxicaria photographed in the Durgamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Antiaris toxicaria photographed in the Durgamma sacred grove, photo 5" }],
   },
   // review
   {
@@ -255,7 +255,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Aristotelia chilensis",
     family: "Elaeocarpaceae",
     groves: ["kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Aristotelia chilensis photographed in the Kota Maisamma Thalli sacred grove, photo 4" }],
   },
   // review
   {
@@ -286,7 +286,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Azadirachta indica",
     family: "Meliaceae",
     groves: ["gandi-muthyalamma", "geesu-konda", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Azadirachta indica photographed in the Geesu Konda sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Azadirachta indica photographed in the Geesu Konda sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Azadirachta indica photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Azadirachta indica photographed in the Geesu Konda sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Azadirachta indica photographed in the Geesu Konda sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Azadirachta indica photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Azadirachta indica photographed in the Gandi Muthyalamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Azadirachta indica photographed in the Gandi Muthyalamma sacred grove, photo 5" }],
   },
   {
     id: "bacopa-monnieri",
@@ -315,7 +315,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Bambusa vulgaris",
     family: "Poaceae",
     groves: ["bheemuni-padam-gudur", "neeladishwaraswamy", "sammakka-sarakka-jagannayakulagudem"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Bambusa vulgaris photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Bambusa vulgaris photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Bambusa vulgaris photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Bambusa vulgaris photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Bambusa vulgaris photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Bambusa vulgaris photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Bambusa vulgaris photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Bambusa vulgaris photographed in the Neeladishwaraswamy sacred grove, photo 5" }],
   },
   // review
   {
@@ -330,21 +330,21 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Barleria cristata",
     family: "Acanthaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Barleria cristata photographed in the Neeladishwaraswamy sacred grove, photo 4" }],
   },
   {
     id: "barleria-prionitis",
     scientificName: "Barleria prionitis",
     family: "Acanthaceae",
     groves: ["venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Barleria prionitis photographed in the Venkateshwara Swamy sacred grove, photo 5" }],
   },
   {
     id: "barringtonia-acutangula",
     scientificName: "Barringtonia acutangula",
     family: "Lecythidaceae",
     groves: ["devuni-gutta-mulugu", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Barringtonia acutangula photographed in the Kota Maisamma Thalli sacred grove, photo 5" }],
   },
   {
     id: "bauhinia-acuminata",
@@ -404,14 +404,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Bombax ceiba",
     family: "Malvaceae",
     groves: ["bheemuni-padam-gudur", "gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 933, height: 1400, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Bombax ceiba photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Bombax ceiba photographed in the Bheemuni Padam sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Bombax ceiba photographed in the Gunjedu Musalamma sacred grove, photo 6" }],
   },
   {
     id: "boswellia-serrata",
     scientificName: "Boswellia serrata",
     family: "Burseraceae",
     groves: ["devuni-gutta-mulugu"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Boswellia serrata photographed in the Devuni Gutta sacred grove, photo 5" }],
   },
   // review
   {
@@ -473,7 +473,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Brosimum alicastrum",
     family: "Moraceae",
     groves: ["bheemuni-padam-gudur", "mallela-theertham"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Brosimum alicastrum photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Brosimum alicastrum photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Brosimum alicastrum photographed in the Mallela Theertham sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Brosimum alicastrum photographed in the Mallela Theertham sacred grove, photo 6" }, { file: "7", width: 1400, height: 933, alt: "Brosimum alicastrum photographed in the Mallela Theertham sacred grove, photo 7" }],
   },
   {
     id: "butea-monosperma",
@@ -552,7 +552,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Cassia fistula",
     family: "Fabaceae",
     groves: ["buddavanam-nagarjuna-sagar", "durgamma-rukma-thanda", "gandi-muthyalamma", "mallela-theertham", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Cassia fistula photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cassia fistula photographed in the Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Cassia fistula photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Cassia fistula photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cassia fistula photographed in the Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Cassia fistula photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Cassia fistula photographed in the Durgamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Cassia fistula photographed in the Venkateshwara Swamy sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Cassia fistula photographed in the Venkateshwara Swamy sacred grove, photo 6" }],
   },
   {
     id: "casuarina-equisetifolia",
@@ -688,7 +688,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Clausena lansium",
     family: "Rutaceae",
     groves: ["gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Clausena lansium photographed in the Gunjedu Musalamma sacred grove, photo 4" }],
   },
   {
     id: "cleistanthus-collinus",
@@ -742,7 +742,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Combretum apiculatum",
     family: "Combretaceae",
     groves: ["mallela-theertham", "sammakka-sarakka-jagannayakulagudem", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Combretum apiculatum photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Combretum apiculatum photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Combretum apiculatum photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Combretum apiculatum photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Combretum apiculatum photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Combretum apiculatum photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Combretum apiculatum photographed in the Venkateshwara Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -782,7 +782,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Combretum mossambicense",
     family: "Combretaceae",
     groves: ["devuni-gutta-mulugu", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Venkateshwara Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Combretum mossambicense photographed in the Venkateshwara Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Combretum mossambicense photographed in the Devuni Gutta sacred grove, photo 4" }],
   },
   // review
   {
@@ -798,7 +798,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Combretum zeyheri",
     family: "Combretaceae",
     groves: ["durgamma-rukma-thanda", "kota-maisamma-yellandu", "mallela-theertham", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Combretum zeyheri photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Combretum zeyheri photographed in the Durgamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Combretum zeyheri photographed in the Kota Maisamma Thalli sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Combretum zeyheri photographed in the Venkateshwara Swamy sacred grove, photo 6" }],
   },
   {
     id: "commelina-benghalensis",
@@ -836,7 +836,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Copaifera langsdorffii",
     family: "Fabaceae",
     groves: ["gunjedu-musalamma-narsampet", "mallela-theertham", "sammakka-sarakka-jagannayakulagudem"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Copaifera langsdorffii photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Copaifera langsdorffii photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Copaifera langsdorffii photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 5" }],
   },
   // review
   {
@@ -852,7 +852,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Cordia boissieri",
     family: "Boraginaceae",
     groves: ["agasthappayya-swamy-maripeda", "bheemuni-padam-gudur"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Cordia boissieri photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cordia boissieri photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cordia boissieri photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Cordia boissieri photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cordia boissieri photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cordia boissieri photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Cordia boissieri photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -876,7 +876,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Cordia dentata",
     family: "Boraginaceae",
     groves: ["bheemuni-padam-gudur"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Cordia dentata photographed in the Bheemuni Padam sacred grove, photo 5" }],
   },
   {
     id: "cordia-dichotoma",
@@ -970,7 +970,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Cryptocarya alba",
     family: "Lauraceae",
     groves: ["bheemuni-padam-gudur", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Cryptocarya alba photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cryptocarya alba photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cryptocarya alba photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Cryptocarya alba photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Cryptocarya alba photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Cryptocarya alba photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Cryptocarya alba photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   // review
   {
@@ -1014,7 +1014,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Dalbergia latifolia",
     family: "Fabaceae",
     groves: ["durgamma-rukma-thanda", "gandi-chinna-muthyalamma", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Dalbergia latifolia photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Dalbergia latifolia photographed in the Gandi Chinna Muthyalamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -1097,7 +1097,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Diospyros melanoxylon",
     family: "Ebenaceae",
     groves: ["durgamma-rukma-thanda", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Diospyros melanoxylon photographed in the Durgamma sacred grove, photo 5" }],
   },
   // review
   {
@@ -1187,7 +1187,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Eriocaulon aquaticum",
     family: "Eriocaulaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Eriocaulon aquaticum photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -1203,7 +1203,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Eucalyptus microcorys",
     family: "Myrtaceae",
     groves: ["mallela-theertham"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Eucalyptus microcorys photographed in the Mallela Theertham sacred grove, photo 4" }],
   },
   // review
   {
@@ -1309,7 +1309,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Ficus hispida",
     family: "Moraceae",
     groves: ["gunjedu-musalamma-narsampet", "neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Ficus hispida photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ficus hispida photographed in the Neeladishwaraswamy sacred grove, photo 4" }],
   },
   {
     id: "ficus-lacor",
@@ -1339,14 +1339,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Ficus racemosa",
     family: "Moraceae",
     groves: ["buddavanam-nagarjuna-sagar", "gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Buddhavanam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Ficus racemosa photographed in the Gunjedu Musalamma sacred grove, photo 5" }],
   },
   {
     id: "ficus-religiosa",
     scientificName: "Ficus religiosa",
     family: "Moraceae",
     groves: ["buddavanam-nagarjuna-sagar", "devuni-gutta-mulugu", "gandi-muthyalamma", "kota-maisamma-yellandu", "krishnaswami-naikalgudem-yellandu", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ficus religiosa photographed in the Kota Maisamma Thalli sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Ficus religiosa photographed in the Buddhavanam sacred grove, photo 5" }],
   },
   // review
   {
@@ -1361,7 +1361,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Ficus virens",
     family: "Moraceae",
     groves: ["bheemuni-padam-gudur", "krishnaswami-naikalgudem-yellandu", "mallela-theertham"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Ficus virens photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ficus virens photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ficus virens photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Ficus virens photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ficus virens photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ficus virens photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ficus virens photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Ficus virens photographed in the Krishnaswami Temple sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Ficus virens photographed in the Krishnaswami Temple sacred grove, photo 6" }],
   },
   {
     id: "flueggea-leucopyrus",
@@ -1408,7 +1408,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Gardenia taitensis",
     family: "Rubiaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Gardenia taitensis photographed in the Neeladishwaraswamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -1416,7 +1416,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Genipa americana",
     family: "Rubiaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Genipa americana photographed in the Neeladishwaraswamy sacred grove, photo 5" }],
   },
   // review
   {
@@ -1439,14 +1439,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Grewia bicolor",
     family: "Malvaceae",
     groves: ["mallela-theertham", "neeladishwaraswamy", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Venkateshwara Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Grewia bicolor photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Grewia bicolor photographed in the Neeladishwaraswamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Grewia bicolor photographed in the Neeladishwaraswamy sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Grewia bicolor photographed in the Venkateshwara Swamy sacred grove, photo 6" }],
   },
   {
     id: "grewia-flavescens",
     scientificName: "Grewia flavescens",
     family: "Malvaceae",
     groves: ["agasthappayya-swamy-maripeda", "gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Grewia flavescens photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -1563,7 +1563,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Hibiscus micranthus",
     family: "Malvaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Hibiscus micranthus photographed in the Agasthappayya Swamy sacred grove, photo 6" }],
   },
   {
     id: "hibiscus-rosa-sinensis",
@@ -1607,14 +1607,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Holarrhena pubescens",
     family: "Apocynaceae",
     groves: ["durgamma-rukma-thanda", "kota-maisamma-yellandu", "sammakka-sarakka-jagannayakulagudem"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Holarrhena pubescens photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Holarrhena pubescens photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Holarrhena pubescens photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 5" }],
   },
   {
     id: "ichnocarpus-frutescens",
     scientificName: "Ichnocarpus frutescens",
     family: "Apocynaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ichnocarpus frutescens photographed in the Neeladishwaraswamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -1629,7 +1629,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Ipomoea aquatica",
     family: "Convolvulaceae",
     groves: ["neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Ipomoea aquatica photographed in the Neeladishwaraswamy sacred grove, photo 5" }],
   },
   {
     id: "ipomoea-carnea",
@@ -1691,7 +1691,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Lagerstroemia parviflora",
     family: "Lythraceae",
     groves: ["bheemuni-padam-gudur", "durgamma-rukma-thanda", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Lagerstroemia parviflora photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Lagerstroemia parriflora photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   // review
   {
@@ -1699,7 +1699,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Lannea discolor",
     family: "Anacardiaceae",
     groves: ["durgamma-rukma-thanda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Lannea discolor photographed in the Durgamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -1808,7 +1808,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Madhuca longifolia",
     family: "Sapotaceae",
     groves: ["bheemuni-padam-gudur", "chilaka-gandi-muthyalamma", "gandi-muthyalamma", "mallela-theertham", "neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Madhuca longifolia photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Madhuca longifolia photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -1832,14 +1832,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Malachra alceifolia",
     family: "Malvaceae",
     groves: ["gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Malachra alceifolia photographed in the Gunjedu Musalamma sacred grove, photo 5" }],
   },
   {
     id: "mallotus-philippensis",
     scientificName: "Mallotus philippensis",
     family: "Euphorbiaceae",
     groves: ["bheemuni-padam-gudur", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Mallotus philippensis photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Mallotus philippensis photographed in the Kota Maisamma Thalli sacred grove, photo 5" }],
   },
   // review
   {
@@ -1847,7 +1847,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Markhamia zanzibarica",
     family: "Bignoniaceae",
     groves: ["bheemuni-padam-gudur"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Markhamia zanzibarica photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   // review
   {
@@ -1870,7 +1870,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Micrargeria filiformis",
     family: "Orobanchaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Micrargeria filiformis photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   {
     id: "millingtonia-hortensis",
@@ -1915,7 +1915,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Mucuna pruriens",
     family: "Fabaceae",
     groves: ["bheemuni-padam-gudur"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Mucuna pruriens photographed in the Bheemuni Padam sacred grove, photo 5" }],
   },
   // review
   {
@@ -1945,7 +1945,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Neolamarckia cadamba",
     family: "Rubiaceae",
     groves: ["bheemuni-padam-gudur", "buddavanam-nagarjuna-sagar"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Neolamarckia cadamba photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Neolamarckia cadamba photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Neolamarckia cadamba photographed in the Buddhavanam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Neolamarckia cadamba photographed in the Buddhavanam sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Neolamarckia cadamba photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Neolamarckia cadamba photographed in the Buddhavanam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Neolamarckia cadamba photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Neolamarckia cadamba photographed in the Bheemuni Padam sacred grove, photo 5" }],
   },
   // review
   {
@@ -2036,7 +2036,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Paederia foetida",
     family: "Rubiaceae",
     groves: ["kota-maisamma-yellandu", "neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Neeladishwaraswamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Neeladishwaraswamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Paederia foetida photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Paederia foetida photographed in the Kota Maisamma Thalli sacred grove, photo 4" }],
   },
   // review
   {
@@ -2105,7 +2105,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Phyllanthus reticulatus",
     family: "Phyllanthaceae",
     groves: ["gunjedu-musalamma-narsampet", "mallela-theertham", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Mallela Theertham sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Venkateshwara Swamy sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Phyllanthus reticulatus photographed in the Venkateshwara Swamy sacred grove, photo 6" }],
   },
   // review
   {
@@ -2113,7 +2113,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Piliostigma thonningii",
     family: "Fabaceae",
     groves: ["chilaka-gandi-muthyalamma", "neeladishwaraswamy", "saleshwaram"],
-    photos: [{ file: "1", width: 1400, height: 1047, alt: "Piliostigma thonningii photographed in the Saleshwaram sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Piliostigma thonningii photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Piliostigma thonningii photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 1047, alt: "Piliostigma thonningii photographed in the Saleshwaram sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Piliostigma thonningii photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Piliostigma thonningii photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 1047, alt: "Piliostigma thonningii photographed in the Saleshwaram sacred grove, photo 4" }],
   },
   // review
   {
@@ -2145,7 +2145,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Piscidia piscipula",
     family: "Fabaceae",
     groves: ["bheemuni-padam-gudur", "devuni-gutta-mulugu", "mallela-theertham", "neeladishwaraswamy"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Neeladishwaraswamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Piscidia piscipula photographed in the Neeladishwaraswamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Piscidia piscipula photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Piscidia piscipula photographed in the Neeladishwaraswamy sacred grove, photo 5" }],
   },
   {
     id: "pisonia-aculeata",
@@ -2168,7 +2168,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Planchonia careya",
     family: "Lecythidaceae",
     groves: ["devuni-gutta-mulugu", "mallela-theertham"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Planchonia careya photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Planchonia careya photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Planchonia careya photographed in the Mallela Theertham sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Planchonia careya photographed in the Devuni Gutta sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Planchonia careya photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Planchonia careya photographed in the Mallela Theertham sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Planchonia careya photographed in the Devuni Gutta sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Planchonia careya photographed in the Devuni Gutta sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Planchonia careya photographed in the Devuni Gutta sacred grove, photo 6" }],
   },
   // review
   {
@@ -2237,7 +2237,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Psychotria carthagenensis",
     family: "Rubiaceae",
     groves: ["durgamma-rukma-thanda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Psychotria carthagenensis photographed in the Durgamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -2253,7 +2253,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Pterocarpus erinaceus",
     family: "Fabaceae",
     groves: ["bheemuni-padam-gudur", "devuni-gutta-mulugu", "mallela-theertham"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Pterocarpus erinaceus photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Pterocarpus erinaceus photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Pterocarpus erinaceus photographed in the Devuni Gutta sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Pterocarpus erinaceus photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Pterocarpus erinaceus photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Pterocarpus erinaceus photographed in the Devuni Gutta sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Pterocarpus erinaceus photographed in the Devuni Gutta sacred grove, photo 4" }],
   },
   // review
   {
@@ -2344,7 +2344,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Quercus polymorpha",
     family: "Fagaceae",
     groves: ["bheemuni-padam-gudur", "durgamma-rukma-thanda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Quercus polymorpha photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Quercus polymorpha photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Quercus polymorpha photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Quercus polymorpha photographed in the Durgamma sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Quercus polymorpha photographed in the Durgamma sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Quercus polymorpha photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Quercus polymorpha photographed in the Durgamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -2383,7 +2383,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Rawsonia lucida",
     family: "Achariaceae",
     groves: ["bheemuni-padam-gudur", "sammakka-sarakka-jagannayakulagudem"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Rawsonia lucida photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Rawsonia lucida photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Rawsonia lucida photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Rawsonia lucida photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Rawsonia lucida photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Rawsonia lucida photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Rawsonia lucida photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   // review
   {
@@ -2406,7 +2406,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Ruellia patula",
     family: "Acanthaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Ruellia patula photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -2421,7 +2421,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Salvadora persica",
     family: "Salvadoraceae",
     groves: ["chilaka-gandi-muthyalamma", "kota-maisamma-yellandu"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Salvadora persica photographed in the Kota Maisamma Thalli sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Salvadora persica photographed in the Chilaka Gandi Muthyalamma sacred grove, photo 4" }],
   },
   // review
   {
@@ -2466,7 +2466,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Schleichera oleosa",
     family: "Sapindaceae",
     groves: ["bheemuni-padam-gudur", "devuni-gutta-mulugu", "gandi-chinna-muthyalamma", "gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Schleichera oleosa photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Schleichera oleosa photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Schleichera oleosa photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Schleichera oleosa photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Schleichera oleosa photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Schleichera oleosa photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Schleichera oleosa photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   {
     id: "scleria-lithosperma",
@@ -2481,7 +2481,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Sclerocarya birrea",
     family: "Anacardiaceae",
     groves: ["bheemuni-padam-gudur", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Venkateshwara Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Sclerocarya birrea photographed in the Venkateshwara Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Sclerocarya birrea photographed in the Bheemuni Padam sacred grove, photo 4" }],
   },
   // review
   {
@@ -2630,7 +2630,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Strychnos potatorum",
     family: "Loganiaceae",
     groves: ["bheemuni-padam-gudur", "chilaka-gandi-muthyalamma", "devuni-gutta-mulugu", "gandi-chinna-muthyalamma", "mallela-theertham", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Gandi Chinna Muthyalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Venkateshwara Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Devuni Gutta sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Strychnos potatorum photographed in the Gandi Chinna Muthyalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Strychnos potatorum photographed in the Devuni Gutta sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Strychnos potatorum photographed in the Mallela Theertham sacred grove, photo 5" }],
   },
   // review
   {
@@ -2691,7 +2691,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Tabebuia aurea",
     family: "Bignoniaceae",
     groves: ["sammakka-sarakka-jagannayakulagudem", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Tabebuia aurea photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tabebuia aurea photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Tabebuia aurea photographed in the Venkateshwara Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Tabebuia aurea photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tabebuia aurea photographed in the Sammakka Sarakka, Jagannayakulagudem sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Tabebuia aurea photographed in the Venkateshwara Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Tabebuia aurea photographed in the Venkateshwara Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -2720,7 +2720,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Tectona grandis",
     family: "Lamiaceae",
     groves: ["bheemuni-padam-gudur", "kota-maisamma-yellandu", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Tectona grandis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tectona grandis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Tectona grandis photographed in the Venkateshwara Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Tectona grandis photographed in the Kota Maisamma Thalli sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tectona grandis photographed in the Kota Maisamma Thalli sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Tectona grandis photographed in the Venkateshwara Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Tectona grandis photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Tectona grandis photographed in the Venkateshwara Swamy sacred grove, photo 5" }],
   },
   {
     id: "terminalia-arjuna",
@@ -2809,14 +2809,14 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Tribulus cistoides",
     family: "Zygophyllaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Tribulus cistoides photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   {
     id: "tribulus-terrestris",
     scientificName: "Tribulus terrestris",
     family: "Zygophyllaceae",
     groves: ["agasthappayya-swamy-maripeda"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 2" }, { file: "3", width: 1065, height: 1400, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Tribulus terrestris photographed in the Agasthappayya Swamy sacred grove, photo 4" }],
   },
   // review
   {
@@ -2846,7 +2846,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Urena lobata",
     family: "Malvaceae",
     groves: ["bheemuni-padam-gudur", "gunjedu-musalamma-narsampet"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Urena lobata photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Urena lobata photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Urena lobata photographed in the Bheemuni Padam sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Urena lobata photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Urena lobata photographed in the Bheemuni Padam sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Urena lobata photographed in the Bheemuni Padam sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Urena lobata photographed in the Bheemuni Padam sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Urena lobata photographed in the Gunjedu Musalamma sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Urena lobata photographed in the Gunjedu Musalamma sacred grove, photo 6" }, { file: "7", width: 1400, height: 933, alt: "Urena lobata photographed in the Gunjedu Musalamma sacred grove, photo 7" }],
   },
   // review
   {
@@ -2877,7 +2877,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Vachellia nilotica",
     family: "Fabaceae",
     groves: ["gunjedu-musalamma-narsampet", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 1" }, { file: "2", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Gunjedu Musalamma sacred grove, photo 4" }, { file: "5", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Venkateshwara Swamy sacred grove, photo 5" }, { file: "6", width: 1400, height: 933, alt: "Vachellia nilotica photographed in the Venkateshwara Swamy sacred grove, photo 6" }],
   },
   // review
   {
@@ -2908,7 +2908,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Vitellaria paradoxa",
     family: "Sapotaceae",
     groves: ["devuni-gutta-mulugu", "mallela-theertham"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Devuni Gutta sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Mallela Theertham sacred grove, photo 1" }, { file: "2", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Mallela Theertham sacred grove, photo 2" }, { file: "3", width: 1400, height: 840, alt: "Vitellaria paradoxa photographed in the Devuni Gutta sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Vitellaria paradoxa photographed in the Devuni Gutta sacred grove, photo 4" }],
   },
   // review
   {
@@ -2932,7 +2932,7 @@ export const groveFlora: GroveFloraRecord[] = [
     scientificName: "Vitis labrusca",
     family: "Vitaceae",
     groves: ["agasthappayya-swamy-maripeda", "gunjedu-musalamma-narsampet", "venkateshwara-swamy-anantharam"],
-    photos: [{ file: "1", width: 1400, height: 840, alt: "Vitis labrusca photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 933, height: 1400, alt: "Vitis labrusca photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 933, height: 1400, alt: "Vitis labrusca photographed in the Gunjedu Musalamma sacred grove, photo 3" }],
+    photos: [{ file: "1", width: 1400, height: 840, alt: "Vitis labrusca photographed in the Agasthappayya Swamy sacred grove, photo 1" }, { file: "2", width: 933, height: 1400, alt: "Vitis labrusca photographed in the Gunjedu Musalamma sacred grove, photo 2" }, { file: "3", width: 933, height: 1400, alt: "Vitis labrusca photographed in the Gunjedu Musalamma sacred grove, photo 3" }, { file: "4", width: 1400, height: 933, alt: "Vitis labrusca photographed in the Gunjedu Musalamma sacred grove, photo 4" }],
   },
   // review
   {

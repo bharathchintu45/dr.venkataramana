@@ -5,7 +5,7 @@ import { ArrowRight, Play, ExternalLink } from "lucide-react";
 import { fieldworkVideos, FieldExpedition } from "@/data/fieldwork";
 import { thumbPath } from "@/lib/thumbs";
 import { SectionShell } from "@/components/ui/SectionShell";
-import { Card } from "@/components/ui/Card";
+import { Card, CardTitle, CardMeta } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Dialog } from "@/components/ui/Dialog";
 import { Prose } from "@/components/ui/Prose";
@@ -50,9 +50,11 @@ export const FieldPhotography: React.FC = () => {
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-plate-ink/30">
                 <Play className="h-3.5 w-3.5" aria-hidden />
               </span>
-              <div>
-                <p className="text-sm font-medium text-plate-ink">{video.title}</p>
-                <p className="mt-1 text-xs text-plate-ink-muted">{video.location}</p>
+              <div className="min-w-0 flex-1">
+                <CardTitle as="h3" className="min-h-[2.5rem] font-sans text-sm font-medium text-plate-ink group-hover:text-plate-ink">
+                  {video.title}
+                </CardTitle>
+                <CardMeta className="line-clamp-2 text-plate-ink-muted">{video.location}</CardMeta>
               </div>
             </div>
           </Card>

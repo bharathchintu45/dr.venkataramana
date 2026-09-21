@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, Heart } from "lucide-react";
 import { profileData } from "@/data/profile";
 import { scrollToSection } from "@/lib/smoothScroll";
 import { Pointer } from "@/components/ui/Pointer";
+import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 
 const QUICK_LINKS = [
   { label: "Research", href: "#research" },
@@ -109,7 +110,8 @@ export const Footer: React.FC = () => {
             ))}
           </ul>
           <Link
-            href="/cv"
+            href={CV_DOWNLOAD_URL}
+            download={CV_DOWNLOAD_FILENAME}
             className="focus-ring touch-target relative inline-block rounded border border-plate-ink/25 px-3.5 py-2 text-xs font-semibold text-plate-ink transition-colors hover:border-plate-ink/50"
           >
             Download CV

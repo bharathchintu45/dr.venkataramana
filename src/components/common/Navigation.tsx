@@ -9,6 +9,7 @@ import { scrollToSection } from "@/lib/smoothScroll";
 import { cn } from "@/lib/cn";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { HOME_SECTION_IDS } from "@/config/nav";
+import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 
 const NAV_LINKS = [
   { name: "Research", href: "#research" },
@@ -235,7 +236,8 @@ export const Navigation: React.FC = () => {
               )
             )}
             <Link
-              href="/cv"
+              href={CV_DOWNLOAD_URL}
+              download={CV_DOWNLOAD_FILENAME}
               onClick={() => setMenuOpen(false)}
               className="focus-ring mt-3 rounded border border-line-strong px-4 py-2.5 text-center text-sm font-semibold text-ink"
             >

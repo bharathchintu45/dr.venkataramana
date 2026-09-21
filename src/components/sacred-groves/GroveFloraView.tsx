@@ -3,31 +3,23 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
-import { groveFlora, floraSrc, floraThumb } from "@/data/groveFlora";
+import { groveFlora, floraThumb } from "@/data/groveFlora";
 import { sacredGroves } from "@/data/sacredGroves";
+import { groveLabel } from "@/lib/groveFlora";
 import { BackLink } from "@/components/plant-gallery/BackLink";
-import { Card } from "@/components/ui/Card";
+import { Card, CardBody, CardTitle, CardMeta } from "@/components/ui/Card";
 import { Select } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
-import { Lightbox, type LightboxImage } from "@/components/common/Lightbox";
-import { cn } from "@/lib/cn";
 
 const PAGE_SIZE = 48;
 
 const GROVE_NAME = new Map(sacredGroves.map((g) => [g.id, g.name]));
-
-function groveLabel(ids: string[]): string {
-  if (ids.length === 1) return GROVE_NAME.get(ids[0]) ?? ids[0];
-  if (ids.length === 2) return ids.map((id) => GROVE_NAME.get(id) ?? id).join(" and ");
-  return `${ids.length} groves`;
-}
 
 export const GroveFloraView: React.FC = () => {
   const searchParams = useSearchParams();
   const groveFromUrl = searchParams.get("grove") ?? "";
   const [query, setQuery] = useState("");
   const [groveFilter, setGroveFilter] = useState(groveFromUrl);
-  const [activeId, setActiveId] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filtered = useMemo(() => {
@@ -42,23 +34,6 @@ export const GroveFloraView: React.FC = () => {
 
   // Reset pagination whenever the search or grove filter changes.
   useEffect(() => setVisibleCount(PAGE_SIZE), [query, groveFilter]);
-
-  const active = activeId ? groveFlora.find((r) => r.id === activeId) ?? null : null;
-  const lightboxImages: LightboxImage[] = useMemo(
-    () =>
-      active
-        ? active.photos.map((p) => ({
-            src: floraSrc(active.id, p.file),
-            thumb: floraThumb(active.id, p.file),
-            width: p.width,
-            height: p.height,
-            alt: p.alt,
-            title: active.scientificName,
-            description: `${active.family} · Recorded in ${groveLabel(active.groves)}`
-          }))
-        : [],
-    [active]
-  );
 
   const activeGroveName = groveFilter ? GROVE_NAME.get(groveFilter) : null;
 
@@ -121,24 +96,25 @@ export const GroveFloraView: React.FC = () => {
           No species match that search.
         </p>
       ) : (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div data-reveal-group className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {visible.map((r) => (
-            <Card
-              key={r.id}
-              onSelect={() => setActiveId(r.id)}
-              media={{
-                src: floraThumb(r.id, r.photos[0].file),
-                alt: r.photos[0].alt,
-                sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw",
-                aspect: "4/3"
-              }}
-            >
-              <div className={cn("border-t border-line p-3")}>
-                <p className="font-display text-sm italic leading-snug text-ink">{r.scientificName}</p>
-                <p className="mt-1 text-xs text-ink-muted">{r.family || "Family unconfirmed"}</p>
-                <p className="mt-1 text-xs text-ink-muted">Recorded in {groveLabel(r.groves)}</p>
-              </div>
-            </Card>
+            <div key={r.id} data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }}>
+              <Card
+                href={`/sacred-groves/flora/${r.id}`}
+                media={{
+                  src: floraThumb(r.id, r.photos[0].file),
+                  alt: r.photos[0].alt,
+                  sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw",
+                  aspect: "4/3",
+                  label: r.family || "Unconfirmed"
+                }}
+              >
+                <CardBody className="p-3">
+                  <CardTitle italic>{r.scientificName}</CardTitle>
+                  <CardMeta className="line-clamp-2">Recorded in {groveLabel(r.groves)}</CardMeta>
+                </CardBody>
+              </Card>
+            </div>
           ))}
         </div>
       )}
@@ -154,8 +130,6 @@ export const GroveFloraView: React.FC = () => {
       <p className="mt-10 text-center text-xs text-ink-muted">
         Field photographs © Dr. M. Venkat Ramana / Dr. T. Narender
       </p>
-
-      <Lightbox images={lightboxImages} open={activeId !== null} onClose={() => setActiveId(null)} />
     </div>
   );
 };

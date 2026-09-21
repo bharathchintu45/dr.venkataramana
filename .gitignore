@@ -38,10 +38,13 @@ next-env.d.ts
 
 # IDE / tool configs
 .claude/
+.impeccable/
 parsed_cv.txt
 
-# Large Word / raw CV files (optional to exclude or keep)
+# Large Word / raw CV files (optional to exclude or keep) — except the
+# one servable copy the "Download CV" buttons link to, which must ship.
 *.docx
+!public/documents/*.docx
 
 # Raw drone-flight source frames (26MB) — processed copies live in
 # public/images/hero-flight/, see scripts/process-hero-frames.mjs
@@ -52,6 +55,14 @@ parsed_cv.txt
 # committed in full. This folder is source material for regenerating those,
 # never itself requested by the site, and far too large to push.
 /content and images/
+
+# Raw hero source PNG — the processed copy the site actually serves lives at
+# public/images/hero/tranquil-forested-coastal-cove.webp.
+/Tranquil Forested Coastal Cove.png
+
+# Raw photo dump awaiting integration into the site (not yet processed into
+# public/images/), same reasoning as "content and images/" above.
+/images at PhD scholars/
 
 # Editor / local tool config and debug artifacts
 .vscode/

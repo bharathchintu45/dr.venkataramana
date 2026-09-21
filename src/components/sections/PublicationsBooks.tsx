@@ -7,7 +7,7 @@ import { publicationsData, Publication } from "@/data/publications";
 import { booksData, Book } from "@/data/books";
 import { CATEGORY_LABEL, findPaperUrl, publicationStats } from "@/lib/publications";
 import { SectionShell } from "@/components/ui/SectionShell";
-import { Card } from "@/components/ui/Card";
+import { Card, CardBody, CardTitle, CardMeta } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Metric } from "@/components/ui/Metric";
@@ -113,12 +113,12 @@ export const PublicationsBooks: React.FC = () => {
                 onSelect={() => setActiveBook(book)}
                 media={{ src: book.imageCover, alt: `${book.title}, cover`, sizes: "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 260px", aspect: "3/4" }}
               >
-                <div className="border-t border-line px-3 py-2.5">
-                  <p className="line-clamp-2 text-xs font-medium leading-snug text-ink">{book.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">
+                <CardBody className="p-3">
+                  <CardTitle className="min-h-[2rem] font-sans text-xs font-medium">{book.title}</CardTitle>
+                  <CardMeta>
                     {book.role} · {book.year}
-                  </p>
-                </div>
+                  </CardMeta>
+                </CardBody>
               </Card>
             ))}
           </div>

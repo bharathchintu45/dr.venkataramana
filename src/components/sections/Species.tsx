@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { speciesDiscoveries } from "@/data/species";
 import { getConservationCategory, getSpeciesThumb } from "@/lib/species";
 import { SectionShell } from "@/components/ui/SectionShell";
-import { Card } from "@/components/ui/Card";
+import { Card, CardBody, CardTitle, CardFooter } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Marquee } from "@/components/ui/Marquee";
@@ -14,10 +14,10 @@ export const Species: React.FC = () => {
       id="species"
       label="New species"
       title="Every discovery, at a glance"
-      lede="The same eight specimen sheets from the field notebook above, laid out for quick scanning. Filter the complete set by family, habit, region or conservation status in the plant gallery."
+      lede="The same eight specimen sheets from the field notebook above, laid out for quick scanning. The plant gallery has these alongside every other plant documented on the site, filterable by family, source, habit, region or conservation status."
       cta={
         <Button href="/plant-gallery" variant="secondary" iconRight={<ArrowRight className="h-4 w-4" />}>
-          Browse the full species gallery
+          Browse the full plant gallery
         </Button>
       }
     >
@@ -46,17 +46,24 @@ export const Species: React.FC = () => {
             data-reveal
             style={{ ["--reveal-y" as string]: "12px" }}
             href={`/plant-gallery/${sp.id}`}
-            media={{ src: getSpeciesThumb(sp.imageCard), alt: `Habitat of ${sp.scientificName}`, sizes: "(max-width: 640px) 50vw, 25vw", aspect: "3/4" }}
-          >
-            <div className="p-3">
-              <p className="font-display text-sm italic leading-snug text-ink">{sp.scientificName}</p>
-              <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                <Badge tone="neutral" mono>
+            media={{
+              src: getSpeciesThumb(sp.imageCard),
+              alt: `Habitat of ${sp.scientificName}`,
+              sizes: "(max-width: 640px) 50vw, 25vw",
+              aspect: "4/5",
+              label: (
+                <Badge tone="neutral" mono size="sm" className="border-0 bg-transparent p-0">
                   {sp.year}
                 </Badge>
+              )
+            }}
+          >
+            <CardBody className="p-3">
+              <CardTitle italic>{sp.scientificName}</CardTitle>
+              <CardFooter className="pt-2">
                 <Badge tone="annotation">{getConservationCategory(sp.conservationStatus)}</Badge>
-              </div>
-            </div>
+              </CardFooter>
+            </CardBody>
           </Card>
         ))}
       </div>

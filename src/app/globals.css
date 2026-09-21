@@ -145,6 +145,190 @@ body {
 }
 
 /* ---------------------------------------------------------------------
+   Earth loader (see components/ui/EarthLoader.tsx) — from Uiverse.io by
+   Novaxlo: https://uiverse.io/Novaxlo/rotten-lionfish-4. `--watercolor`/
+   `--landcolor` are a literal illustration, not semantic UI color, so —
+   like the footer's `--heart` cursor — they deliberately stand outside the
+   herbarium palette rather than being reskinned to it; recoloring the
+   ocean/land would stop it reading as a globe. Sized entirely in `em`, so
+   a wrapper's font-size scales the whole thing. Reduced motion is handled
+   by the sitewide `@media (prefers-reduced-motion: reduce)` block already
+   above — it applies to every animation, this one included, with no
+   loader-specific override needed.
+   ------------------------------------------------------------------- */
+.earth-loader {
+  --watercolor: #3344c1;
+  --landcolor: #7cc133;
+  width: 7.5em;
+  height: 7.5em;
+  background-color: var(--watercolor);
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow:
+    inset 0em 0.5em rgb(255 255 255 / 0.25),
+    inset 0em -0.5em rgb(0 0 0 / 0.25);
+  border: solid 0.15em white;
+  animation: earth-loader-startround 1s;
+  animation-iteration-count: 1;
+}
+
+.earth-loader svg:nth-child(1) {
+  position: absolute;
+  bottom: -2em;
+  width: 7em;
+  height: auto;
+  animation: earth-loader-round1 5s infinite linear 0.75s;
+}
+.earth-loader svg:nth-child(2) {
+  position: absolute;
+  top: -3em;
+  width: 7em;
+  height: auto;
+  animation: earth-loader-round1 5s infinite linear;
+}
+.earth-loader svg:nth-child(3) {
+  position: absolute;
+  top: -2.5em;
+  width: 7em;
+  height: auto;
+  animation: earth-loader-round2 5s infinite linear;
+}
+.earth-loader svg:nth-child(4) {
+  position: absolute;
+  bottom: -2.2em;
+  width: 7em;
+  height: auto;
+  animation: earth-loader-round2 5s infinite linear 0.75s;
+}
+
+@keyframes earth-loader-startround {
+  0% {
+    filter: brightness(500%);
+    box-shadow: none;
+  }
+  75% {
+    filter: brightness(500%);
+    box-shadow: none;
+  }
+  100% {
+    filter: brightness(100%);
+    box-shadow:
+      inset 0em 0.5em rgb(255 255 255 / 0.25),
+      inset 0em -0.5em rgb(0 0 0 / 0.25);
+  }
+}
+
+@keyframes earth-loader-round1 {
+  0% {
+    left: -2em;
+    opacity: 100%;
+    transform: skewX(0deg) rotate(0deg);
+  }
+  30% {
+    left: -6em;
+    opacity: 100%;
+    transform: skewX(-25deg) rotate(25deg);
+  }
+  31% {
+    left: -6em;
+    opacity: 0%;
+    transform: skewX(-25deg) rotate(25deg);
+  }
+  35% {
+    left: 7em;
+    opacity: 0%;
+    transform: skewX(25deg) rotate(-25deg);
+  }
+  45% {
+    left: 7em;
+    opacity: 100%;
+    transform: skewX(25deg) rotate(-25deg);
+  }
+  100% {
+    left: -2em;
+    opacity: 100%;
+    transform: skewX(0deg) rotate(0deg);
+  }
+}
+
+@keyframes earth-loader-round2 {
+  0% {
+    left: 5em;
+    opacity: 100%;
+    transform: skewX(0deg) rotate(0deg);
+  }
+  75% {
+    left: -7em;
+    opacity: 100%;
+    transform: skewX(-25deg) rotate(25deg);
+  }
+  76% {
+    left: -7em;
+    opacity: 0%;
+    transform: skewX(-25deg) rotate(25deg);
+  }
+  77% {
+    left: 8em;
+    opacity: 0%;
+    transform: skewX(25deg) rotate(-25deg);
+  }
+  80% {
+    left: 8em;
+    opacity: 100%;
+    transform: skewX(25deg) rotate(-25deg);
+  }
+  100% {
+    left: 5em;
+    opacity: 100%;
+    transform: skewX(0deg) rotate(0deg);
+  }
+}
+
+/* Specimen-tag chip pinned over a Card's image (see Card.tsx `media.label`) —
+   the one label style every image card shares: year, family, photo count. */
+.card-label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-left: 2px solid rgb(var(--herbarium));
+  border-radius: var(--radius-sm);
+  background-color: rgb(var(--paper-raised) / 0.9);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgb(var(--ink));
+  backdrop-filter: blur(2px);
+}
+
+/* Card hover spotlight — a soft herbarium-green light that follows the
+   cursor across an interactive card (Card.tsx writes --mx/--my straight to
+   the element on pointermove, never through React state). Desktop-only: a
+   touch screen has no persistent pointer position to react to, and the
+   whole rule sits behind `html.has-motion` so reduced motion and no-JS
+   never pay for it. `pointer-events: none` on the glow means it can never
+   intercept the card's real click target underneath it. */
+@media (hover: hover) and (pointer: fine) {
+  html.has-motion .card-spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--herbarium) / 0.14), transparent 70%);
+    transition: opacity var(--dur-fast) var(--ease-standard);
+  }
+  html.has-motion .card-spotlight:hover::before {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------
    Motion system
    - Everything that animates on scroll starts HIDDEN only when
      `html.has-motion` is present (added by an inline script in <head>

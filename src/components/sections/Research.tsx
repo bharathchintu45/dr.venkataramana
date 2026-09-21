@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { MapPin, BookMarked, Sparkles } from "lucide-react";
 import { researchAreas, ResearchArea } from "@/data/research";
 import { SectionShell } from "@/components/ui/SectionShell";
-import { Card } from "@/components/ui/Card";
+import { Card, CardBody, CardTitle, CardText } from "@/components/ui/Card";
 import { Dialog } from "@/components/ui/Dialog";
 import { Prose } from "@/components/ui/Prose";
 
@@ -27,13 +27,14 @@ export const Research: React.FC = () => {
             style={{ ["--reveal-y" as string]: "14px" }}
             onSelect={() => setActive(area)}
             media={{ src: area.imagePath, alt: area.title, sizes: "(max-width: 640px) 100vw, 50vw", aspect: "16/9" }}
-            className="flex flex-col"
           >
-            <div className="p-5">
-              <h3 className="font-display text-lg font-medium text-ink">{area.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">{area.shortDesc}</p>
+            <CardBody>
+              <CardTitle as="h3" className="min-h-[3.25rem] text-lg">
+                {area.title}
+              </CardTitle>
+              <CardText className="line-clamp-4 flex-1 text-sm leading-relaxed">{area.shortDesc}</CardText>
               <span className="mt-3 inline-block text-xs font-semibold text-herbarium">Read more →</span>
-            </div>
+            </CardBody>
           </Card>
         ))}
       </div>

@@ -1,19 +1,29 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { speciesDiscoveries } from "@/data/species";
+import React, { useEffect, useMemo, useState } from "react";
+import { allPlantEntries, getPlantFamilyOptions, PlantSource } from "@/lib/plantGallery";
 import {
-  getConservationCategory,
   getConservationCategoryOptions,
-  getFamilyOptions,
   getGrowthHabitOptions,
   getRegionOptions
 } from "@/lib/species";
+import { speciesDiscoveries } from "@/data/species";
+import { landscapeCollections } from "@/data/landscapeCollections";
+import { landscapeFlora } from "@/data/landscapeFlora";
 import { PlantCard } from "./PlantCard";
 import { BackLink } from "./BackLink";
 import { Search, SlidersHorizontal, ChevronDown, ChevronUp, Leaf } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
+import { Select } from "@/components/ui/Field";
+
+const PAGE_SIZE = 48;
+
+const SOURCE_LABEL: Record<PlantSource, string> = {
+  discovery: "New species discoveries",
+  "grove-flora": "Sacred grove survey",
+  "landscape-flora": "Landscape & urban species"
+};
 
 function toggleInSet(set: Set<string>, value: string): Set<string> {
   const next = new Set(set);
@@ -62,45 +72,98 @@ const FacetGroup: React.FC<FacetGroupProps> = ({ label, options, selected, onTog
 export const GalleryView: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [advancedOpen, setAdvancedOpen] = useState(false);
-  const [selectedFamilies, setSelectedFamilies] = useState<Set<string>>(new Set());
+  const [familyFilter, setFamilyFilter] = useState("");
+  const [selectedSources, setSelectedSources] = useState<Set<string>>(new Set());
   const [selectedHabits, setSelectedHabits] = useState<Set<string>>(new Set());
   const [selectedRegions, setSelectedRegions] = useState<Set<string>>(new Set());
   const [selectedStatuses, setSelectedStatuses] = useState<Set<string>>(new Set());
+  const [selectedCollections, setSelectedCollections] = useState<Set<string>>(new Set());
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const familyOptions = useMemo(getFamilyOptions, []);
+  // Family has ~100 options once the 392 grove-flora families are folded
+  // in (vs. 7 for the discoveries alone) — a dropdown, not a chip cloud.
+  const familyOptions = useMemo(getPlantFamilyOptions, []);
+  const sourceOptions = useMemo(
+    () => [SOURCE_LABEL.discovery, SOURCE_LABEL["grove-flora"], SOURCE_LABEL["landscape-flora"]],
+    []
+  );
+  // These three only ever apply to the 8 discoveries — the 392 grove-flora
+  // records don't carry growth habit, region or conservation status, so
+  // picking one of these naturally narrows the grid to discoveries only.
   const habitOptions = useMemo(getGrowthHabitOptions, []);
   const regionOptions = useMemo(getRegionOptions, []);
   const statusOptions = useMemo(getConservationCategoryOptions, []);
+  // Collection only exists on the landscape-flora entries.
+  const collectionOptions = useMemo(() => landscapeCollections.map((c) => c.title), []);
 
   const activeFilterCount =
-    selectedFamilies.size + selectedHabits.size + selectedRegions.size + selectedStatuses.size;
+    (familyFilter ? 1 : 0) +
+    selectedSources.size +
+    selectedHabits.size +
+    selectedRegions.size +
+    selectedStatuses.size +
+    selectedCollections.size;
 
-  const filteredSpecies = useMemo(() => {
+  // Region only exists on the 8 discoveries (speciesDiscoveries), so it's
+  // applied as a lookup rather than a field carried on the unified entry.
+  const regionByDiscoveryId = useMemo(() => new Map(speciesDiscoveries.map((sp) => [sp.id, sp.region])), []);
+  // Collection ids only exist on the landscape-flora records; the unified
+  // entry only carries the display label, so filtering needs the raw ids.
+  const collectionTitlesById = useMemo(() => {
+    const titleById = new Map(landscapeCollections.map((c) => [c.id, c.title]));
+    return new Map(landscapeFlora.map((r) => [r.id, r.collections.map((id) => titleById.get(id) ?? id)]));
+  }, []);
+
+  const filtered = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    return speciesDiscoveries.filter((sp) => {
+    return allPlantEntries.filter((entry) => {
       const matchesSearch =
         q === "" ||
-        sp.scientificName.toLowerCase().includes(q) ||
-        (sp.localName?.toLowerCase().includes(q) ?? false) ||
-        sp.family.toLowerCase().includes(q);
+        entry.scientificName.toLowerCase().includes(q) ||
+        (entry.localName?.toLowerCase().includes(q) ?? false) ||
+        entry.family.toLowerCase().includes(q);
 
-      const matchesFamily = selectedFamilies.size === 0 || selectedFamilies.has(sp.family);
-      const matchesHabit = selectedHabits.size === 0 || selectedHabits.has(sp.growthHabit);
-      const matchesRegion = selectedRegions.size === 0 || selectedRegions.has(sp.region);
+      const matchesFamily = familyFilter === "" || entry.family === familyFilter;
+      const matchesSource = selectedSources.size === 0 || selectedSources.has(SOURCE_LABEL[entry.source]);
+      const matchesHabit = selectedHabits.size === 0 || (entry.growthHabit ? selectedHabits.has(entry.growthHabit) : false);
       const matchesStatus =
-        selectedStatuses.size === 0 ||
-        selectedStatuses.has(getConservationCategory(sp.conservationStatus));
+        selectedStatuses.size === 0 || (entry.conservationCategory ? selectedStatuses.has(entry.conservationCategory) : false);
+      const region = regionByDiscoveryId.get(entry.id);
+      const matchesRegion = selectedRegions.size === 0 || (region ? selectedRegions.has(region) : false);
+      const entryCollections = collectionTitlesById.get(entry.id) ?? [];
+      const matchesCollection =
+        selectedCollections.size === 0 || entryCollections.some((title) => selectedCollections.has(title));
 
-      return matchesSearch && matchesFamily && matchesHabit && matchesRegion && matchesStatus;
+      return matchesSearch && matchesFamily && matchesSource && matchesHabit && matchesStatus && matchesRegion && matchesCollection;
     });
-  }, [searchQuery, selectedFamilies, selectedHabits, selectedRegions, selectedStatuses]);
+  }, [
+    searchQuery,
+    familyFilter,
+    selectedSources,
+    selectedHabits,
+    selectedRegions,
+    selectedStatuses,
+    selectedCollections,
+    regionByDiscoveryId,
+    collectionTitlesById
+  ]);
+
+  const visible = filtered.slice(0, visibleCount);
+
+  // Reset pagination whenever any search/filter changes.
+  useEffect(
+    () => setVisibleCount(PAGE_SIZE),
+    [searchQuery, familyFilter, selectedSources, selectedHabits, selectedRegions, selectedStatuses, selectedCollections]
+  );
 
   const clearAll = () => {
     setSearchQuery("");
-    setSelectedFamilies(new Set());
+    setFamilyFilter("");
+    setSelectedSources(new Set());
     setSelectedHabits(new Set());
     setSelectedRegions(new Set());
     setSelectedStatuses(new Set());
+    setSelectedCollections(new Set());
   };
 
   return (
@@ -108,10 +171,12 @@ export const GalleryView: React.FC = () => {
       <BackLink href="/" label="Back to home" />
 
       <div className="my-6 max-w-2xl">
-        <p className="stamp text-herbarium">{speciesDiscoveries.length} type specimens</p>
+        <p className="stamp text-herbarium">{allPlantEntries.length} plants documented</p>
         <h1 className="mt-2 font-display text-3xl font-medium text-ink sm:text-4xl">Plant gallery</h1>
         <p className="mt-2 text-base text-ink-secondary">
-          Every species discovered and described by Dr. M. Venkat Ramana.
+          Every plant on the site in one place: the {speciesDiscoveries.length} new species discovered and described
+          by Dr. M. Venkat Ramana, alongside the plants recorded during the Telangana sacred-groves field survey and
+          the landscape and urban-forestry species catalog.
         </p>
       </div>
 
@@ -124,7 +189,7 @@ export const GalleryView: React.FC = () => {
               placeholder="Search by scientific name, local name, or family…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="Search species"
+              aria-label="Search plants"
               className="focus-ring w-full rounded-full border border-line-strong bg-paper py-2 pl-10 pr-4 text-sm text-ink placeholder:text-ink-muted focus:border-herbarium"
             />
           </div>
@@ -144,28 +209,62 @@ export const GalleryView: React.FC = () => {
 
         {advancedOpen && (
           <div id="advanced-search" className="mt-5 grid grid-cols-1 gap-5 border-t border-line pt-5 sm:grid-cols-2">
-            <FacetGroup label="Family" options={familyOptions} selected={selectedFamilies} onToggle={(v) => setSelectedFamilies((s) => toggleInSet(s, v))} />
+            <label className="block">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-herbarium">Family</span>
+              <Select value={familyFilter} onChange={(e) => setFamilyFilter(e.target.value)} aria-label="Filter by family">
+                <option value="">All families ({familyOptions.length})</option>
+                {familyOptions.map((f) => (
+                  <option key={f} value={f}>
+                    {f}
+                  </option>
+                ))}
+              </Select>
+            </label>
+            <FacetGroup label="Source" options={sourceOptions} selected={selectedSources} onToggle={(v) => setSelectedSources((s) => toggleInSet(s, v))} />
             <FacetGroup label="Growth habit" options={habitOptions} selected={selectedHabits} onToggle={(v) => setSelectedHabits((s) => toggleInSet(s, v))} />
             <FacetGroup label="Region" options={regionOptions} selected={selectedRegions} onToggle={(v) => setSelectedRegions((s) => toggleInSet(s, v))} />
             <FacetGroup label="Conservation status" options={statusOptions} selected={selectedStatuses} onToggle={(v) => setSelectedStatuses((s) => toggleInSet(s, v))} />
+            <FacetGroup
+              label="Landscape collection"
+              options={collectionOptions}
+              selected={selectedCollections}
+              onToggle={(v) => setSelectedCollections((s) => toggleInSet(s, v))}
+            />
+            <p className="text-xs text-ink-muted sm:col-span-2">
+              Growth habit, region and conservation status are only recorded for the {speciesDiscoveries.length} new
+              species discoveries — picking one of these narrows the grid to those. Landscape collection only applies
+              to the ornamental, windbreak, polythene-replacement and tradable/economic species catalog.
+            </p>
           </div>
         )}
       </div>
 
       <p className="mb-4 text-xs text-ink-muted" role="status">
-        Showing <span className="font-semibold text-herbarium-deep">{filteredSpecies.length}</span> of {speciesDiscoveries.length} species
+        Showing <span className="font-semibold text-herbarium-deep">{filtered.length}</span> of {allPlantEntries.length} plants
       </p>
 
-      {filteredSpecies.length > 0 ? (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
-          {filteredSpecies.map((sp) => (
-            <PlantCard key={sp.id} species={sp} />
-          ))}
-        </div>
+      {filtered.length > 0 ? (
+        <>
+          <div data-reveal-group className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 xl:grid-cols-5">
+            {visible.map((entry) => (
+              <div key={`${entry.source}-${entry.id}`} data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }}>
+                <PlantCard entry={entry} />
+              </div>
+            ))}
+          </div>
+
+          {visibleCount < filtered.length && (
+            <div className="mt-6 flex justify-center">
+              <Button variant="secondary" onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}>
+                Load more ({filtered.length - visibleCount} remaining)
+              </Button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="py-16 text-center text-ink-muted">
           <Leaf className="mx-auto mb-3 h-12 w-12 text-herbarium/40" aria-hidden />
-          <p>No species found matching your search.</p>
+          <p>No plants found matching your search.</p>
           <Button variant="link" onClick={clearAll} className="mt-3">
             Clear filters
           </Button>

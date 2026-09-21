@@ -30,7 +30,7 @@ export const TeachingRecognition: React.FC = () => {
         </Button>
       }
     >
-      <div data-reveal-group className="grid items-start gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
+      <div data-reveal-group className="grid gap-6 lg:grid-cols-[1fr_320px] lg:gap-8">
         <div data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }} className="rounded border border-line bg-paper-raised p-5 sm:p-6">
           <div className="flex items-center justify-between gap-3">
             <h3 className="text-sm font-semibold text-ink">Doctoral scholars mentored</h3>
@@ -54,7 +54,7 @@ export const TeachingRecognition: React.FC = () => {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex h-full flex-col gap-5">
           <div data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }} className="rounded border border-line bg-paper-raised p-4">
             <h3 className="text-sm font-semibold text-ink">Recent honours</h3>
             <ul className="mt-3 space-y-3">
@@ -72,7 +72,17 @@ export const TeachingRecognition: React.FC = () => {
             </ul>
           </div>
 
-          <div data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }} className="rounded border border-line bg-paper-raised p-4">
+          {/* `flex-1` + centered content: the scholars list beside this
+              column is taller, which stretches this whole column via the
+              grid's default items-stretch. Without this, the extra height
+              landed as dead space below this box instead of in it — this
+              panel now grows to absorb it instead. */}
+          <div
+            data-reveal-item
+            data-reveal
+            style={{ ["--reveal-y" as string]: "12px" }}
+            className="flex flex-1 flex-col justify-center rounded border border-line bg-paper-raised p-4"
+          >
             <h3 className="text-sm font-semibold text-ink">Professional memberships</h3>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {membershipsData.map((m) => (
