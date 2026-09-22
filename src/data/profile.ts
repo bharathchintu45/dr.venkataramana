@@ -35,7 +35,7 @@ export interface ProfileData {
 export const profileData: ProfileData = {
   name: "Dr. M. Venkat Ramana",
   degrees: "M.Sc., Ph.D.",
-  designation: "Assistant Professor & Head (I/C), Dept. of Botany",
+  designation: "Assistant Professor, Dept. of Botany",
   employeeId: "31058",
   tagline: "Botanist · Researcher · Educator",
   department: "Department of Botany",

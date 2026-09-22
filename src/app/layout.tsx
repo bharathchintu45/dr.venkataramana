@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     : new URL('http://localhost:3000'),
   title: "Dr. M. Venkat Ramana | Botanist · Researcher · Educator",
   description:
-    "Official research portfolio of Dr. M. Venkat Ramana, Assistant Professor & Head (I/C), Dept. of Botany, University College of Science, Saifabad, Osmania University. Plant systematics, Indian cycad conservation, and 7 species new to science.",
+    "Official research portfolio of Dr. M. Venkat Ramana, Assistant Professor, Dept. of Botany, University College of Science, Saifabad, Osmania University. Plant systematics, Indian cycad conservation, and 7 species new to science.",
   keywords: [
     "Dr. M. Venkat Ramana",
     "Botanist",
@@ -55,7 +55,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Dr. M. Venkat Ramana",
-    jobTitle: "Assistant Professor & Head (I/C), Department of Botany",
+    jobTitle: "Assistant Professor, Department of Botany",
     worksFor: {
       "@type": "CollegeOrUniversity",
       name: "University College of Science, Saifabad, Osmania University",

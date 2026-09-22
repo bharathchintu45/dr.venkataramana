@@ -1,13 +1,12 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { Download, Users, MapPin, Calendar, IndianRupee, Mic2 } from "lucide-react";
+import { Download, Users, MapPin, Calendar, IndianRupee, Mic2, Tv, ExternalLink } from "lucide-react";
 import { profileData } from "@/data/profile";
-import { botanicalJourney } from "@/data/journey";
 import { researchProjectsData } from "@/data/projects";
 import { conferencesData, academicStats } from "@/data/conferences";
 import { externalEvaluations, studentVisits } from "@/data/teaching";
-import { membershipsData } from "@/data/memberships";
 import { achievementStats, editorialReviewerJournals } from "@/data/achievements";
+import { mediaFeatures } from "@/data/fieldwork";
 import { BackLink } from "@/components/plant-gallery/BackLink";
 import { DoctoralScholarsList } from "@/components/about/DoctoralScholarsList";
 import { Badge } from "@/components/ui/Badge";
@@ -18,7 +17,7 @@ import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 export const metadata: Metadata = {
   title: "About | Dr. M. Venkat Ramana",
   description:
-    "Full academic profile of Dr. M. Venkat Ramana: career timeline, funded research projects, conferences, doctoral supervision, and professional memberships."
+    "Full academic profile of Dr. M. Venkat Ramana: funded research projects, conferences, doctoral supervision, and media coverage."
 };
 
 export default function AboutPage() {
@@ -62,34 +61,8 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Career timeline */}
-      <section className="mt-12">
-        <h2 className="font-display text-2xl font-medium text-ink">Career timeline</h2>
-        <ol className="mt-6 space-y-8 border-l border-line pl-6">
-          {botanicalJourney.map((m) => (
-            <li key={m.year} className="relative">
-              <span className="absolute -left-[27px] top-1 h-2.5 w-2.5 rounded-full border-2 border-herbarium bg-paper" aria-hidden />
-              <p className="font-mono text-sm font-semibold text-herbarium">{m.year}</p>
-              <h3 className="mt-1 font-display text-lg font-medium text-ink">{m.title}</h3>
-              <p className="text-sm text-ink-secondary">
-                {m.role} · {m.institution}, {m.location}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-secondary">{m.description}</p>
-              <ul className="mt-2 max-w-[56ch] space-y-1">
-                {m.highlights.map((h) => (
-                  <li key={h} className="text-sm text-ink-secondary">
-                    • {h}
-                  </li>
-                ))}
-              </ul>
-              {m.keyTaxa && <p className="mt-2 text-xs italic text-annotation">{m.keyTaxa}</p>}
-            </li>
-          ))}
-        </ol>
-      </section>
-
       {/* Research projects */}
-      <section className="mt-14 border-t border-line pt-10">
+      <section className="mt-12">
         <h2 className="font-display text-2xl font-medium text-ink">Funded research projects</h2>
         <div className="mt-6 space-y-6">
           {researchProjectsData.map((p) => (
@@ -224,23 +197,30 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      {/* Professional memberships */}
+      {/* Media & news */}
       <section className="mt-14 border-t border-line pt-10 pb-4">
-        <h2 className="font-display text-2xl font-medium text-ink">Professional memberships</h2>
-        <ul data-reveal-group className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {membershipsData.map((m) => (
-            <li
-              key={m.id}
-              data-reveal-item
-              data-reveal
-              style={{ ["--reveal-y" as string]: "10px" }}
-              className="flex h-full flex-col rounded border border-line bg-paper-raised p-4"
-            >
-              <Badge tone="accent" className="self-start">
-                {m.membershipType}
-              </Badge>
-              <p className="mt-2 text-sm font-semibold text-ink">{m.name}</p>
-              <p className="mt-1 text-xs text-ink-secondary">{m.description}</p>
+        <h2 className="font-display text-2xl font-medium text-ink">Media &amp; news</h2>
+        <ul className="mt-6 space-y-5 divide-y divide-line border-t border-line">
+          {mediaFeatures.map((m, i) => (
+            <li key={i} className="flex items-start gap-3 pt-5 first:pt-0">
+              <Tv className="mt-0.5 h-4 w-4 shrink-0 text-herbarium" aria-hidden />
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge tone="neutral">{m.channel}</Badge>
+                  {m.date && <span className="font-mono text-xs text-ink-muted">{m.date}</span>}
+                </div>
+                <p className="mt-1.5 text-sm text-ink-secondary">{m.title}</p>
+                {m.url && (
+                  <a
+                    href={m.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="focus-ring mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-herbarium hover:underline"
+                  >
+                    Watch <ExternalLink className="h-3 w-3" aria-hidden />
+                  </a>
+                )}
+              </div>
             </li>
           ))}
         </ul>

@@ -4,7 +4,6 @@ import { profileData } from "@/data/profile";
 import { awardsData } from "@/data/awards";
 import { academicStats } from "@/data/conferences";
 import { doctoralScholars } from "@/data/teaching";
-import { membershipsData } from "@/data/memberships";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { Metric } from "@/components/ui/Metric";
 import { Badge } from "@/components/ui/Badge";
@@ -54,44 +53,30 @@ export const TeachingRecognition: React.FC = () => {
           </ul>
         </div>
 
-        <div className="flex h-full flex-col gap-5">
-          <div data-reveal-item data-reveal style={{ ["--reveal-y" as string]: "12px" }} className="rounded border border-line bg-paper-raised p-4">
-            <h3 className="text-sm font-semibold text-ink">Recent honours</h3>
-            <ul className="mt-3 space-y-3">
-              {awardsData.map((a) => (
-                <li key={a.id} className="flex gap-2.5">
-                  <Award className="mt-0.5 h-4 w-4 shrink-0 text-annotation" aria-hidden />
-                  <div>
-                    <p className="text-xs font-medium leading-snug text-ink">{a.title}</p>
-                    <p className="mt-0.5 text-xs text-ink-muted">
-                      {a.conferredBy} · {a.year}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* `flex-1` + centered content: the scholars list beside this
-              column is taller, which stretches this whole column via the
-              grid's default items-stretch. Without this, the extra height
-              landed as dead space below this box instead of in it — this
-              panel now grows to absorb it instead. */}
-          <div
-            data-reveal-item
-            data-reveal
-            style={{ ["--reveal-y" as string]: "12px" }}
-            className="flex flex-1 flex-col justify-center rounded border border-line bg-paper-raised p-4"
-          >
-            <h3 className="text-sm font-semibold text-ink">Professional memberships</h3>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {membershipsData.map((m) => (
-                <span key={m.id} title={m.description}>
-                  <Badge tone="neutral">{m.name}</Badge>
-                </span>
-              ))}
-            </div>
-          </div>
+        {/* `h-full` + centered content: the scholars list beside this
+            column is taller, which stretches this box via the grid's
+            default items-stretch. Without this, the extra height landed
+            as dead space below the content instead of around it. */}
+        <div
+          data-reveal-item
+          data-reveal
+          style={{ ["--reveal-y" as string]: "12px" }}
+          className="flex h-full flex-col justify-center rounded border border-line bg-paper-raised p-4"
+        >
+          <h3 className="text-sm font-semibold text-ink">Recent honours</h3>
+          <ul className="mt-3 space-y-3">
+            {awardsData.map((a) => (
+              <li key={a.id} className="flex gap-2.5">
+                <Award className="mt-0.5 h-4 w-4 shrink-0 text-annotation" aria-hidden />
+                <div>
+                  <p className="text-xs font-medium leading-snug text-ink">{a.title}</p>
+                  <p className="mt-0.5 text-xs text-ink-muted">
+                    {a.conferredBy} · {a.year}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

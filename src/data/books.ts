@@ -92,17 +92,5 @@ export const booksData: Book[] = [
     imageBack: "/images/books/mahavir-harina-vanasthali-back.webp",
     description: "A comprehensive photographic and taxonomic field inventory of the dry scrub and grassland flora of Mahavir Harina Vanasthali National Park, highlighting crucial forage plants and deer habitat flora.",
     tags: ["National Park", "FCRI", "Grassland Flora", "Field Guide"]
-  },
-  {
-    id: "gsdp-parataxonomy-chapters",
-    title: "Green Skill Development Programme (GSDP) - Parataxonomy",
-    subtitle: "Training Modules: Biodiversity, Conservation, Ecology, Pharmacognosy & Taxonomy",
-    role: "Author",
-    publishedBy: "Ministry of Environment, Forest & Climate Change (MoEF&CC) / EPTRI ENVIS",
-    year: 2018,
-    releaseDetails: "EPTRI/ENVIS/GSDP/-Parataxonomy/2018-19/670/2018, Govt. of India.",
-    imageCover: "/images/teaching/img-20251117-150520.webp",
-    description: "Curriculum textbooks and training chapters written for national skill certification in Parataxonomy and People's Biodiversity Register preparation, covering core modules in plant taxonomy, herbarium preparation, and ethnobotany.",
-    tags: ["MoEF&CC", "EPTRI", "Green Skills", "Curriculum"]
   }
 ];

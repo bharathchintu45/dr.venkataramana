@@ -35,10 +35,6 @@ export const Footer: React.FC = () => {
         <div className="space-y-3 sm:col-span-5">
           <h2 className="font-display text-xl font-medium text-plate-ink">{profileData.name}</h2>
           <p className="text-sm text-plate-ink-muted">{profileData.tagline}</p>
-          <p className="max-w-sm text-sm leading-relaxed text-plate-ink-muted">
-            Documenting plant diversity across peninsular India and the Andaman &amp; Nicobar Islands:
-            taxonomy, biodiversity conservation, and 7 species new to science.
-          </p>
           <ul className="pt-1 text-sm text-plate-ink-muted sm:space-y-1.5">
             <li className="flex items-center gap-2">
               <Mail className="h-3.5 w-3.5 shrink-0" aria-hidden />

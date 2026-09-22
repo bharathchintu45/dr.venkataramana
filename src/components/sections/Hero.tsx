@@ -33,7 +33,9 @@ export const Hero: React.FC = () => {
           {/* A full job title reads worse tracked and uppercase than the short
               herbarium-tag labels `.stamp` is built for, so this one line
               intentionally breaks from that pattern. */}
-          <p className="text-sm font-medium tracking-wide text-herbarium">{profileData.designation}</p>
+          <p className="text-sm font-medium tracking-wide text-herbarium">
+            {profileData.designation}, {profileData.college}
+          </p>
           <h1 className="mt-3 font-display text-[clamp(2.25rem,5.5vw,3.75rem)] font-medium leading-[1.08] text-ink">
             {profileData.name}
           </h1>

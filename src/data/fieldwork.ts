@@ -93,7 +93,35 @@ export const fieldworkVideos: FieldExpedition[] = [
   }
 ];
 
-export const mediaFeatures = [
+export interface MediaFeature {
+  channel: string;
+  title: string;
+  date: string;
+  /** Only set when a real, working link to the segment exists. */
+  url?: string;
+}
+
+export const mediaFeatures: MediaFeature[] = [
+  {
+    channel: "Mana TV (Govt. of Telangana)",
+    title: "Live Programme: 'Biodiversity and Its Importance for Human Survival', for undergraduate students of Telangana State (organized by the Commissionerate of Collegiate Education, Nampally, Hyderabad)",
+    date: "16 July 2016"
+  },
+  {
+    channel: "TV9 (Telugu News)",
+    title: "Live Programme: Uprooting of Trees for Summer Wind Breaks in Hyderabad",
+    date: "29 May 2016"
+  },
+  {
+    channel: "ETV Telangana",
+    title: "Live Programme: Parasite (Loranthus) and Its Effect on Neem Tree Survival (Telugu: \"Vepanu Bakshisthundi\")",
+    date: ""
+  },
+  {
+    channel: "ETV Telangana",
+    title: "Live Programme: Drying Up of Trees Due to Termites in Hyderabad & Ranga Reddy",
+    date: "14 February 2018"
+  },
   {
     channel: "ETV Telangana",
     title: "Live Programme: Coronavirus Precautions with Herbal Plants",
@@ -101,21 +129,14 @@ export const mediaFeatures = [
     url: "https://youtu.be/UDzsyEzbB14"
   },
   {
+    channel: "T News Telugu",
+    title: "Special Report on Green Campus & Botanical Garden, University College of Science, Saifabad, OU",
+    date: "13 August 2020"
+  },
+  {
     channel: "ETV Telangana",
     title: "Live Programme: 'Conocarpus' Tree Plantations in Urban Areas & Negative Impacts",
     date: "12 January 2023",
     url: "https://youtu.be/g99MQtD5QwM"
-  },
-  {
-    channel: "T News Telugu",
-    title: "Special Report on Green Campus & Botanical Garden, UCS Saifabad, OU",
-    date: "13 August 2020",
-    url: "https://www.youtube.com"
-  },
-  {
-    channel: "Mana TV (Govt. of Telangana)",
-    title: "Live Lecture: 'Biodiversity and Its Importance for Human Survival'",
-    date: "16 July 2016",
-    url: "https://www.youtube.com"
   }
 ];

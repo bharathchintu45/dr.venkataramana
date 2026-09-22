@@ -10,6 +10,7 @@ import { handleSpotlightMove } from "@/components/ui/Card";
 import { cn } from "@/lib/cn";
 
 interface FlatPhoto {
+  file: string;
   src: string;
   thumb: string;
   width: number;
@@ -21,6 +22,7 @@ interface FlatPhoto {
 
 const photosByCategory: FlatPhoto[][] = galleryCategories.map((cat) =>
   cat.photos.map((p, i) => ({
+    file: p.file,
     src: photoSrc(cat.id, p.file),
     thumb: photoThumb(cat.id, p.file),
     width: p.width,
@@ -40,12 +42,36 @@ for (let i = 0; i < Math.max(...photosByCategory.map((c) => c.length)); i++) {
   }
 }
 
+// The "books" category stores each cover as a "<slug>-front" / "<slug>-back"
+// pair. The grid should only show the front as the cover thumbnail; clicking
+// it opens a 2-slide lightbox with the matching back cover, mirroring the
+// front/back viewer already used for books on the homepage.
+const bookSide = (file: string): "front" | "back" | null =>
+  file.endsWith("-front") ? "front" : file.endsWith("-back") ? "back" : null;
+const bookSlug = (file: string) => file.replace(/-front$|-back$/, "");
+const booksPhotos: FlatPhoto[] = allPhotos.filter((p) => p.categoryId === "books");
+
+function toLightboxImage(p: FlatPhoto, description?: string): LightboxImage {
+  return { src: p.src, thumb: p.thumb, width: p.width, height: p.height, alt: p.alt, title: p.categoryTitle, description };
+}
+
+function getBookCoverPair(front: FlatPhoto): LightboxImage[] {
+  const slug = bookSlug(front.file);
+  const back = booksPhotos.find((p) => p !== front && bookSlug(p.file) === slug && bookSide(p.file) === "back");
+  const images = [toLightboxImage(front, "Front cover")];
+  if (back) images.push(toLightboxImage(back, "Back cover"));
+  return images;
+}
+
 const PAGE_SIZE = 48;
 
 export const PhotoGalleryView: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [bookLightboxImages, setBookLightboxImages] = useState<LightboxImage[] | null>(null);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const isBooksCategory = activeCategory === "books";
 
   const photos = useMemo(
     () => (activeCategory === "all" ? allPhotos : allPhotos.filter((p) => p.categoryId === activeCategory)),
@@ -53,6 +79,9 @@ export const PhotoGalleryView: React.FC = () => {
   );
   const activeMeta = galleryCategories.find((c) => c.id === activeCategory);
   const visiblePhotos = photos.slice(0, visibleCount);
+  // Books show only the front cover as the grid thumbnail — the back cover
+  // is reached by clicking through, via getBookCoverPair below.
+  const gridPhotos = isBooksCategory ? visiblePhotos.filter((p) => bookSide(p.file) === "front") : visiblePhotos;
 
   // Reset pagination whenever the category changes.
   useEffect(() => setVisibleCount(PAGE_SIZE), [activeCategory]);
@@ -110,14 +139,14 @@ export const PhotoGalleryView: React.FC = () => {
       </div>
 
       <div data-reveal-group className="columns-2 gap-3 sm:columns-3 sm:gap-4 lg:columns-4">
-        {visiblePhotos.map((photo, i) => (
+        {gridPhotos.map((photo, i) => (
           <button
             key={photo.src}
             type="button"
             data-reveal-item
             data-reveal
             style={{ ["--reveal-y" as string]: "10px" }}
-            onClick={() => setLightboxIndex(i)}
+            onClick={() => (isBooksCategory ? setBookLightboxImages(getBookCoverPair(photo)) : setLightboxIndex(i))}
             onPointerMove={handleSpotlightMove}
             className="card-spotlight focus-ring group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded border border-line bg-paper-raised shadow-card transition-all duration-base hover:-translate-y-1 hover:border-herbarium/60 hover:shadow-raised hover:ring-1 hover:ring-herbarium/25 active:scale-[0.98] sm:mb-4"
             aria-label={`Open ${photo.alt}`}
@@ -150,7 +179,15 @@ export const PhotoGalleryView: React.FC = () => {
 
       <p className="mt-10 text-center text-xs text-ink-muted">All photographs © Dr. M. Venkat Ramana</p>
 
-      <Lightbox images={lightboxImages} open={lightboxIndex !== null} index={lightboxIndex ?? 0} onClose={() => setLightboxIndex(null)} />
+      <Lightbox
+        images={bookLightboxImages ?? lightboxImages}
+        open={bookLightboxImages !== null || lightboxIndex !== null}
+        index={bookLightboxImages ? 0 : lightboxIndex ?? 0}
+        onClose={() => {
+          setBookLightboxImages(null);
+          setLightboxIndex(null);
+        }}
+      />
     </div>
   );
 };
