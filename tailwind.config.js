@@ -90,6 +90,22 @@ module.exports = {
           "0%": { opacity: "1", transform: "translateY(0) scale(1)" },
           "100%": { opacity: "0", transform: "translateY(6px) scale(0.98)" },
         },
+        menuPanelIn: {
+          "0%": { opacity: "0", transform: "translateY(-12px) scaleY(0.96)" },
+          "100%": { opacity: "1", transform: "translateY(0) scaleY(1)" },
+        },
+        menuPanelOut: {
+          "0%": { opacity: "1", transform: "translateY(0) scaleY(1)" },
+          "100%": { opacity: "0", transform: "translateY(-8px) scaleY(0.98)" },
+        },
+        menuItemIn: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        menuItemOut: {
+          "0%": { opacity: "1", transform: "translateY(0)" },
+          "100%": { opacity: "0", transform: "translateY(-10px)" },
+        },
         marquee: {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(calc(-100% - var(--gap)))" },
@@ -103,6 +119,20 @@ module.exports = {
         "fade-in": "fadeIn 180ms ease-out",
         "dialog-in": "dialogIn 280ms cubic-bezier(0.16,1,0.3,1)",
         "dialog-out": "dialogOut 180ms cubic-bezier(0.4,0,1,1)",
+        "menu-panel-in": "menuPanelIn 320ms cubic-bezier(0.16,1,0.3,1)",
+        // 390ms delay = the item stagger's tail (7 * 30ms) + item-out's own
+        // 180ms — the panel only starts collapsing once every item has
+        // finished fading out, so nothing looks clipped mid-fade. `forwards`
+        // keeps it hidden after the animation ends instead of snapping back
+        // to visible for the moment before Navigation.tsx unmounts it.
+        "menu-panel-out": "menuPanelOut 180ms cubic-bezier(0.4,0,1,1) 390ms forwards",
+        // `backwards` holds the 0% frame through the stagger delay —
+        // without it every item flashes at full opacity before animating.
+        "menu-item-in": "menuItemIn 380ms cubic-bezier(0.16,1,0.3,1) backwards",
+        // `forwards` for the same reason as menu-panel-out above: without
+        // it, each item would revert to visible right after its own exit
+        // finishes, flashing back before the panel itself has collapsed.
+        "menu-item-out": "menuItemOut 180ms cubic-bezier(0.4,0,1,1) forwards",
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marqueeVertical var(--duration) linear infinite",
       },

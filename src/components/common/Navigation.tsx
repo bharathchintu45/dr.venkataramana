@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 import { profileData } from "@/data/profile";
-import { scrollToSection } from "@/lib/smoothScroll";
+import { scrollToSection, lockScroll, unlockScroll } from "@/lib/smoothScroll";
 import { cn } from "@/lib/cn";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { useHasMotion } from "@/lib/motion";
 import { HOME_SECTION_IDS } from "@/config/nav";
 import { CV_DOWNLOAD_URL, CV_DOWNLOAD_FILENAME } from "@/lib/cv";
 
@@ -21,10 +21,29 @@ const NAV_LINKS = [
   { name: "Contact", href: "#contact" },
 ];
 
+// +1 for the "Download CV" link the mobile panel appends after NAV_LINKS.
+const MENU_ITEM_COUNT = NAV_LINKS.length + 1;
+const MENU_ITEM_IN_DELAY_BASE = 50;
+const MENU_ITEM_IN_STAGGER = 40;
+const MENU_ITEM_OUT_STAGGER = 30;
+const MENU_ITEM_OUT_DURATION = 180;
+const MENU_PANEL_OUT_DURATION = 180;
+// The panel doesn't start collapsing until every item has finished fading
+// out (reverse stagger tail + its own duration) — must match the delay
+// baked into the "menu-panel-out" animation string in tailwind.config.js.
+const MENU_PANEL_OUT_DELAY = (MENU_ITEM_COUNT - 1) * MENU_ITEM_OUT_STAGGER + MENU_ITEM_OUT_DURATION;
+// Unmount once the whole close sequence has actually finished on screen —
+// items fading out, then the panel itself collapsing.
+const MENU_CLOSE_TOTAL_MS = MENU_PANEL_OUT_DELAY + MENU_PANEL_OUT_DURATION;
+
 export const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  // Presence machine (same shape as Dialog's): `menuOpen` is the intent,
+  // this is what's actually mounted — so the panel can finish its exit
+  // animation instead of disappearing the instant the flag flips.
+  const [menuPresence, setMenuPresence] = useState<"closed" | "open" | "closing">("closed");
   const [activeSection, setActiveSection] = useState("");
   // Hidden for the length of the homepage's drone-flight intro (HeroFlight,
   // above Hero) — the header competes with the footage, so it stays off
@@ -32,6 +51,7 @@ export const Navigation: React.FC = () => {
   // its static (reduced-motion) and animated variants, so this adapts to
   // whichever one is mounted. See globals.css / HeroFlight.tsx.
   const [hideForFlight, setHideForFlight] = useState(false);
+  const hasMotion = useHasMotion();
   const pathname = usePathname();
   const isHome = pathname === "/";
   const menuRef = useRef<HTMLDivElement>(null);
@@ -109,7 +129,28 @@ export const Navigation: React.FC = () => {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  useFocusTrap(menuOpen, menuRef);
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuPresence("open");
+      lockScroll();
+      return () => unlockScroll();
+    }
+    setMenuPresence((p) => (p === "open" ? "closing" : "closed"));
+  }, [menuOpen]);
+
+  // Unmount once the whole close sequence — items staggering out, then the
+  // panel collapsing — has actually finished on screen. Under reduced
+  // motion the CSS collapses to ~0s (globals.css), but this timer doesn't
+  // know that on its own — without the `hasMotion` check it would keep the
+  // (now invisible, `forwards`-held) panel mounted and its links focusable
+  // for the full 570ms anyway.
+  useEffect(() => {
+    if (menuPresence !== "closing") return;
+    const t = window.setTimeout(() => setMenuPresence("closed"), hasMotion ? MENU_CLOSE_TOTAL_MS : 0);
+    return () => window.clearTimeout(t);
+  }, [menuPresence, hasMotion]);
+
+  useFocusTrap(menuPresence !== "closed", menuRef);
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -122,12 +163,31 @@ export const Navigation: React.FC = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
+  const isMenuClosing = menuPresence === "closing";
+
+  // Opening cascades top-to-bottom; closing reverses it — the item closest
+  // to the trigger (the last one, "Download CV") leaves first, so the exit
+  // visually undoes the entrance instead of just replaying it.
+  const menuItemDelay = (i: number) =>
+    isMenuClosing
+      ? (MENU_ITEM_COUNT - 1 - i) * MENU_ITEM_OUT_STAGGER
+      : MENU_ITEM_IN_DELAY_BASE + i * MENU_ITEM_IN_STAGGER;
+
   const resolveHref = (href: string) => (href.startsWith("#") ? (isHome ? href : `/${href}`) : href);
 
   const isLinkActive = (href: string) =>
     href.startsWith("#") ? isHome && activeSection === href.slice(1) : pathname?.startsWith(href);
 
-  const renderLink = (href: string, name: string, onNavigate: () => void, className: string) => {
+  // `style` carries the mobile menu's per-item stagger delay. It's passed
+  // to the link itself rather than a wrapper so the panel's `border-b` /
+  // `last:border-b-0` dividers keep matching real siblings.
+  const renderLink = (
+    href: string,
+    name: string,
+    onNavigate: () => void,
+    className: string,
+    style?: React.CSSProperties
+  ) => {
     const isHashLink = href.startsWith("#");
     if (isHashLink && isHome) {
       return (
@@ -140,13 +200,14 @@ export const Navigation: React.FC = () => {
             onNavigate();
           }}
           className={className}
+          style={style}
         >
           {name}
         </a>
       );
     }
     return (
-      <Link key={name} href={resolveHref(href)} onClick={onNavigate} className={className}>
+      <Link key={name} href={resolveHref(href)} onClick={onNavigate} className={className} style={style}>
         {name}
       </Link>
     );
@@ -200,9 +261,13 @@ export const Navigation: React.FC = () => {
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="focus-ring rounded p-2 text-ink lg:hidden"
+          className="focus-ring rounded p-2 text-ink transition-colors hover:text-herbarium-deep lg:hidden"
         >
-          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <span className="nav-burger" data-open={menuOpen} aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
       </div>
 
@@ -217,34 +282,66 @@ export const Navigation: React.FC = () => {
         />
       </div>
 
-      {menuOpen && (
-        <div
-          id="mobile-menu"
-          ref={menuRef}
-          className="absolute left-0 right-0 top-full border-b border-line bg-paper shadow-raised lg:hidden"
-        >
-          <nav className="flex flex-col px-5 py-3" aria-label="Mobile">
-            {NAV_LINKS.map((link) =>
-              renderLink(
-                link.href,
-                link.name,
-                () => setMenuOpen(false),
-                cn(
-                  "focus-ring rounded px-2 py-3 text-base font-medium border-b border-line last:border-b-0",
-                  isLinkActive(link.href) ? "text-herbarium-deep" : "text-ink-secondary"
-                )
-              )
+      {menuPresence !== "closed" && (
+        <>
+          {/* Scrim. Anchored at `top-full` so it dims the page without ever
+              covering the header bar — the trigger stays visible and
+              tappable, which a full-viewport overlay would prevent. */}
+          <div
+            className={cn(
+              "absolute left-0 right-0 top-full h-screen bg-plate/30 backdrop-blur-[2px] transition-opacity lg:hidden",
+              isMenuClosing ? "opacity-0 ease-exit" : "opacity-100 duration-base ease-enter"
             )}
-            <Link
-              href={CV_DOWNLOAD_URL}
-              download={CV_DOWNLOAD_FILENAME}
-              onClick={() => setMenuOpen(false)}
-              className="focus-ring mt-3 rounded border border-line-strong px-4 py-2.5 text-center text-sm font-semibold text-ink"
-            >
-              Download CV
-            </Link>
-          </nav>
-        </div>
+            // On close the scrim fades with the panel itself (at the end of
+            // the sequence), not the instant the items start staggering out
+            // — otherwise the page would look "undimmed" while the menu is
+            // still visibly closing above it.
+            style={
+              isMenuClosing
+                ? { transitionDuration: `${MENU_PANEL_OUT_DURATION}ms`, transitionDelay: `${MENU_PANEL_OUT_DELAY}ms` }
+                : undefined
+            }
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+          <div
+            id="mobile-menu"
+            ref={menuRef}
+            data-lenis-prevent
+            className={cn(
+              "absolute left-0 right-0 top-full max-h-[calc(100vh-4rem)] origin-top overflow-y-auto border-b border-line bg-paper shadow-raised lg:hidden",
+              isMenuClosing ? "animate-menu-panel-out" : "animate-menu-panel-in"
+            )}
+          >
+            <nav className="flex flex-col px-5 py-3" aria-label="Mobile">
+              {NAV_LINKS.map((link, i) =>
+                renderLink(
+                  link.href,
+                  link.name,
+                  () => setMenuOpen(false),
+                  cn(
+                    "focus-ring rounded px-2 py-3 text-base font-medium border-b border-line last:border-b-0 transition-colors",
+                    isLinkActive(link.href) ? "text-herbarium-deep" : "text-ink-secondary",
+                    isMenuClosing ? "animate-menu-item-out" : "animate-menu-item-in"
+                  ),
+                  { animationDelay: `${menuItemDelay(i)}ms` }
+                )
+              )}
+              <Link
+                href={CV_DOWNLOAD_URL}
+                download={CV_DOWNLOAD_FILENAME}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "focus-ring mt-3 rounded border border-line-strong px-4 py-2.5 text-center text-sm font-semibold text-ink",
+                  isMenuClosing ? "animate-menu-item-out" : "animate-menu-item-in"
+                )}
+                style={{ animationDelay: `${menuItemDelay(NAV_LINKS.length)}ms` }}
+              >
+                Download CV
+              </Link>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );
